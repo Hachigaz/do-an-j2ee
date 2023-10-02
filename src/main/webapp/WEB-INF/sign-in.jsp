@@ -14,7 +14,7 @@
     <form>
         <label>Tên đăng nhập</label><input type="text"><br>
         <label>Mật khẩu</label><input type="text" name="DangNhapPassword"><br>
-        <input type="submit" formaction="DangNhap" name="DangNhap">
+        <input type="submit" formaction="sign-in" name="DangNhap">
     </form>
 </body>
 </html>
