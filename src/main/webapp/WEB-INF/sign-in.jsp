@@ -1,20 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Admin
-  Date: 24/09/2023
-  Time: 18:42
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Đăng nhập</title>
-</head>
-<body>
-    <form>
-        <label>Tên đăng nhập</label><input type="text"><br>
-        <label>Mật khẩu</label><input type="text" name="DangNhapPassword"><br>
-        <input type="submit" formaction="sign-in" name="DangNhap">
-    </form>
-</body>
+    <head>
+        <title>Document</title>
+        <link rel="stylesheet" href="resources/css/login.css" />
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="img-login">
+                <img
+                    src="resources/img/image-login.png"
+                    alt=""
+                    class="img-login"
+                />
+                <span class="title-login">Connect to everyone</span>
+            </div>
+            <div class="container-login">
+                <div class="login-form">
+                    
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
