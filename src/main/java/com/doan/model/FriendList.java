@@ -1,4 +1,4 @@
-package com.doan.doanj2ee.sql;
+package com.doan.model;
 
 public class FriendList {
     private String userID1;

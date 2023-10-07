@@ -1,12 +1,12 @@
-package com.doan.doanj2ee.sql;
+package com.doan.model;
 
-public class AccountDetail {
+public class AccountDetails {
     private String userID;
     private String name;
     private String address;
     private String birthDate;
     
-    public AccountDetail(String userID, String name, String address, String birthDate) {
+    public AccountDetails(String userID, String name, String address, String birthDate) {
         this.userID = userID;
         this.name = name;
         this.address = address;
