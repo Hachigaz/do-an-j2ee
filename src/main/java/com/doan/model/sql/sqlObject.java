@@ -1,4 +1,4 @@
-package com.doan.model.sql.sqlObjects;
+package com.doan.model.sql;
 
 public class sqlObject {
     public static final String dbURL = "jdbc:mysql://localhost:3306/mxh_01";

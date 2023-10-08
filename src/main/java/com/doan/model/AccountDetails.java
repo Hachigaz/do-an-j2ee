@@ -1,29 +1,32 @@
 package com.doan.model;
 
+import java.sql.Date;
+
 public class AccountDetails {
     private String userID;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String address;
-    private String birthDate;
+    private Date birthDate;
+    private String avatar;
+    private String background;
     
-    public AccountDetails(String userID, String name, String address, String birthDate) {
+
+    public AccountDetails(String userID, String firstName, String lastName, String address, Date birthDate,
+            String avatar, String background) {
         this.userID = userID;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.birthDate = birthDate;
+        this.avatar = avatar;
+        this.background = background;
     }
-
     public String getUserID() {
         return userID;
     }
     public void setUserID(String userID) {
         this.userID = userID;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
     public String getAddress() {
         return address;
@@ -31,10 +34,34 @@ public class AccountDetails {
     public void setAddress(String address) {
         this.address = address;
     }
-    public String getBirthDate() {
+    public String getAvatar() {
+        return avatar;
+    }
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+    public String getBackground() {
+        return background;
+    }
+    public void setBackground(String background) {
+        this.background = background;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+    public Date getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 }

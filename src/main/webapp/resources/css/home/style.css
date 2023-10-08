@@ -1,0 +1,101 @@
+.frame {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.frame .div {
+  background-color: #ffffff;
+  width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.frame .option {
+  position: absolute;
+  width: 141px;
+  height: 930px;
+  top: 94px;
+  left: 0;
+  background-color: #3fb5a0;
+}
+
+.frame .feed {
+  position: absolute;
+  width: 1012px;
+  height: 930px;
+  top: 94px;
+  left: 141px;
+  background-color: #597a58;
+}
+
+.frame .friend-bar {
+  position: absolute;
+  width: 287px;
+  height: 930px;
+  top: 94px;
+  left: 1153px;
+  background-color: #a07070;
+}
+
+.frame .header {
+  position: absolute;
+  width: 1440px;
+  height: 94px;
+  top: 0;
+  left: 0;
+  background-color: var(--main);
+  overflow: hidden;
+}
+
+.frame .logo {
+  position: absolute;
+  width: 249px;
+  height: 73px;
+  top: 10px;
+  left: 29px;
+  background-color: #ffffff1f;
+}
+
+.frame .text-wrapper {
+  position: absolute;
+  width: 249px;
+  height: 73px;
+  top: -1px;
+  left: 0;
+  font-family: "Taprom", Helvetica;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 32px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.frame .home-icon {
+  position: absolute;
+  width: 111px;
+  height: 206px;
+  top: -10px;
+  left: 312px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.frame .property-alt {
+  width: 1px;
+  height: 73px;
+  left: 111px;
+  position: absolute;
+  top: 20px;
+}
+
+.frame .property-default {
+  width: 79px;
+  height: 81px;
+  left: 16px;
+  position: absolute;
+  top: 20px;
+}

@@ -18,19 +18,19 @@
             <div class="container-login">
                 <div class="login-form">
                     <span class="title-form">Login</span>
-                    <form action="">
+                    <form action="sign-in" method="post">
                         <div class="input-container">
-                            <input type="text" placeholder="Username">
+                            <input type="text" name="LoginUsername" placeholder="Username">
                         </div>
                         <div class="input-container">
-                            <input type="text" placeholder="Password">
+                            <input type="password" name="LoginPassword" placeholder="Password">
                         </div>
                         <div class="remember-and-forget">
                             <div class="remember">
                                 <input type="checkbox">
                                 <span class="remember-text">Remember me</span>
                             </div>
-                            <a href="#">Forget your <br>Password?</a>
+                            <a href="reset">Forgot your Password?</a>
                         </div>
                         <input type="submit" class="submit-login" value="Login">
                         <span class="register-desc">Don't have account <a href="#" class="register-link">Register</a></span>
