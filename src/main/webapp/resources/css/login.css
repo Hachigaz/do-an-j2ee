@@ -127,13 +127,11 @@ body {
 .remember {
     display: flex;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 70px; 
 }
 .remember .remember-text {
     padding-left: 5px;
-    color: red;
 }
 .remember-and-forget a {
     color: #495057;
-    display: block;
 }
