@@ -77,7 +77,7 @@ public class sqlFriend extends sqlObject {
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
 
-            String sql = "SELECT * FROM account_details,friend WHERE (account_details.userID = friend.userID1 AND friend.userID2 = ?) OR (account_details.userID = friend.userID2 AND friend.userID1 = ?)";
+            String sql = "SELECT * FROM account_details,friend WHERE friend.deleted = 0 AND ((account_details.userID = friend.userID1 AND friend.userID2 = ?) OR (account_details.userID = friend.userID2 AND friend.userID1 = ?))";
         
             PreparedStatement statement = connection.prepareStatement(sql);
 
