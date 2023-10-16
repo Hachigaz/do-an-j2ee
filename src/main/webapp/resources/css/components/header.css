@@ -1,0 +1,27 @@
+.chat{
+    width: 100%;
+    padding: 0 20px;
+}
+.chat .header-wrapper{
+    width: 100%;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.chat .logo-button{
+    width: 280px;
+    display: flex;
+    align-items: center;
+    font-family: "Fredoka", cursive;
+    font-weight: 800;
+    font-size: 32px;
+    color: #05f;
+}
+.chat .logo-button i{
+    width: 36px;
+    height: 36px;
+    color: #10d876;
+    display: block;
+    margin-right: 5px;  
+}

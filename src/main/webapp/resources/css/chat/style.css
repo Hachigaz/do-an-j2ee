@@ -2,14 +2,6 @@
   --header-height: 100px;
 }
 
-.chat {
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
 
 .chat .content {
   background-color: #ffffff;
@@ -222,25 +214,6 @@
   top: 0;
   left: 1px;
   object-fit: cover;
-}
-
-.chat .header {
-  position: absolute;
-  width: 100%;
-  height: var(--header-height);
-  top: 0;
-  left: 0;
-  background-color: var(--main);
-  overflow: hidden;
-}
-
-.chat .logo {
-  position: absolute;
-  width: 249px;
-  height: 73px;
-  top: 10px;
-  left: 29px;
-  background-color: #ffffff1f;
 }
 
 .chat .text-wrapper {
