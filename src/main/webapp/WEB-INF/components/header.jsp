@@ -8,23 +8,25 @@
             </a>
         </div>
         <div class="middle-components">
-            <input type="text" placeholder="Start typing to search...">
-            <button class="search-button">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            <div class="input-container">
+                <input type="text" placeholder="Start typing to search...">
+                <button class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
             <div class="buttons">
-                <a href="#" class="home">Home</a>
-                <a href="#" class="stories">Story</a>
-                <a href="#" class="video">Video</a>
-                <a href="#" class="user">User</a>
-                <a href="#" class="shop">Shop</a>
+                <a href="#" class="home"><i class="fa-solid fa-house"></i></a>
+                <a href="#" class="stories"><i class="fa-solid fa-bolt"></i></a>
+                <a href="#" class="video"><i class="fa-solid fa-video"></i></a>
+                <a href="#" class="user"><i class="fa-regular fa-user"></i></a>
+                <a href="#" class="shop"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
         <div class="right-components">
-            <a href="" class="noti">Noti</a>
-            <a href="" class="message">Message</a>
-            <a href="" class="setting">Setting</a>
-            <a href="" class="setting">Profile</a>
+            <a href="" class="noti"><i class="fa-regular fa-bell"></i></a>
+            <a href="" class="message"><i class="fa-regular fa-message"></i></a>
+            <a href="" class="setting"><i class="fa-solid fa-gear"></i></a>
+            <img src="resources/img/profile-4.png" alt="">
         </div>
     </div>
 </div>
