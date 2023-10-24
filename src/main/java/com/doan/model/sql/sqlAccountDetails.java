@@ -8,13 +8,11 @@ import java.sql.Statement;
 
 import com.doan.model.AccountDetails;
 
-public class sqlAccountDetails extends sqlObject{
+public class sqlAccountDetails{
     public static final String name = "account_details";
     public static void addAccountDetails(AccountDetails details){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
-
+            Connection connection = sqlConnect.connectToDB();
             String sql = "INSERT INTO "+ name + " (userID,firstName,lastName,birthDate,address,avatarName,background) VALUES (?,?,?,?,?,?,?)";
 
             PreparedStatement statement  = connection.prepareStatement(sql);
@@ -45,12 +43,13 @@ public class sqlAccountDetails extends sqlObject{
         AccountDetails details = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
             Statement statement = connection.createStatement();
             
-            String sql = "SELECT * FROM "+ name + " WHERE account_details.username = '"+ userID+"'";
+            String sql = "SELECT * FROM "+ name + " WHERE account_details.userID = '"+ userID+"'";
             ResultSet rs = statement.executeQuery(sql);
+            
             if(rs.next()){
                 details = new AccountDetails(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7));
             }

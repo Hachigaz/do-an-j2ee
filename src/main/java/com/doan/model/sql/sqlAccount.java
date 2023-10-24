@@ -8,14 +8,14 @@ import java.sql.Statement;
 
 import com.doan.model.Account;
 
-public class sqlAccount extends sqlObject{
+public class sqlAccount{
     public static final String name = "account";
 
     public static Account getAccountByID(String userID){
         Account account = null;
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");  
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL, sqlConnect.dbUser,sqlConnect.dbPassword);
 
             Statement statement = connection.createStatement();
             
@@ -38,8 +38,7 @@ public class sqlAccount extends sqlObject{
     public static Account getAccountByUsername(String username){
         Account account = null;
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = sqlConnect.connectToDB();
 
             Statement statement = connection.createStatement();
             
@@ -62,7 +61,7 @@ public class sqlAccount extends sqlObject{
     public static void addAccount(Account account){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
             String sql = "INSERT INTO "+ name + " (userID,username,email,password) VALUES (?,?,?,?)";
 

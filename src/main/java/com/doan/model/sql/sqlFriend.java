@@ -7,17 +7,16 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doan.model.AccountDetails;
 import com.doan.model.Friend;
 
-public class sqlFriend extends sqlObject {
+public class sqlFriend{
     public static final String name = "friend";
     public static void add(Friend friend){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
-            String sql = "INSERT INTO "+ friend + " (userID1,userID2) VALUES (?,?)";
+            String sql = "CALL addFriend(?,?)";
 
             PreparedStatement statement  = connection.prepareStatement(sql);
             
@@ -43,18 +42,14 @@ public class sqlFriend extends sqlObject {
     
     public static void remove(Friend friend){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = sqlConnect.connectToDB();
 
-            String sql = "DELETE FROM " + name + " WHERE (userID1 = ? AND userID2 = ?) OR (userID1 = ? AND userID2 = ?)";
+            String sql = "CALL sRemoveFriend(?,?)";
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setString(1, friend.getUserID1());
             statement.setString(2, friend.getUserID2());
-
-            statement.setString(4, friend.getUserID1());
-            statement.setString(3, friend.getUserID2());
 
             int rowsAffected = statement.executeUpdate();
 
@@ -70,14 +65,14 @@ public class sqlFriend extends sqlObject {
             System.out.println(e.getMessage());
         }
     }
-    public static List<AccountDetails> getFriends(String userID){
-        List<AccountDetails> friends = new ArrayList<AccountDetails>();
+    public static List<Friend> getFriends(String userID){
+        List<Friend> friends = new ArrayList<Friend>();
         
         try{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(dbURL,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
-            String sql = "SELECT * FROM account_details,friend WHERE friend.deleted = 0 AND ((account_details.userID = friend.userID1 AND friend.userID2 = ?) OR (account_details.userID = friend.userID2 AND friend.userID1 = ?))";
+            String sql = "SELECT * FROM friend WHERE friend.deleted = 0 AND (friend.userID1 = ? OR friend.userID2 = ?)";
         
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -87,7 +82,7 @@ public class sqlFriend extends sqlObject {
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                friends.add(new AccountDetails(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(5),rs.getDate(5),rs.getString(6),rs.getString(7)));
+                friends.add(new Friend(rs.getString(1),rs.getString(2),rs.getString(3)));
             }
 
             statement.close();
@@ -98,5 +93,13 @@ public class sqlFriend extends sqlObject {
         }
 
         return friends;
+    }
+
+    public static List<String> getFriendIDS(List<Friend> friends,String userID){
+        List<String> friendIDs = new ArrayList<String>(); 
+        for (Friend friend : friends){
+            friendIDs.add(friend.getUserID1().equals(userID)?friend.getUserID2():friend.getUserID1());
+        }
+        return friendIDs;
     }
 }

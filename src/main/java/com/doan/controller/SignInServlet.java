@@ -28,7 +28,6 @@ public class SignInServlet extends HttpServlet {
                     if(account.getPassword().equals(password)){
                         HttpSession session = request.getSession();
                         //luu user id da dang nhap
-                        System.out.println(session.getId());
                         session.setAttribute("loggedInID", account.getAccountID());
                         //nhay sang trang chu
                         RequestDispatcher dispatcher = request.getRequestDispatcher("/home-page");

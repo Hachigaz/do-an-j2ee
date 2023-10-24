@@ -3,12 +3,15 @@ package com.doan.model;
 public class Friend {
     private String userID1;
     private String userID2;
+    private String chatID;
     
-    public Friend(String userID1, String userID2) {
+
+    public Friend(String userID1, String userID2, String chatID) {
         this.userID1 = userID1;
         this.userID2 = userID2;
+        this.chatID = chatID;
     }
-
+    
     public String getUserID1() {
         return userID1;
     }
@@ -20,5 +23,11 @@ public class Friend {
     }
     public void setUserID2(String userID2) {
         this.userID2 = userID2;
+    }
+    public String getChatID() {
+        return chatID;
+    }
+    public void setChatID(String chatID) {
+        this.chatID = chatID;
     }
 }
