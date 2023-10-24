@@ -40,7 +40,30 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('1','testacc1','test@gmail.com','123'),('2','testacc2','test@gmail.com','123'),('3','testacc3','test@gmail.com','123');
+INSERT INTO `account` (`userID`, `username`, `email`, `password`) VALUES
+('1', 'testacc1', 'test@gmail.com', '123'),
+('10', 'testacc10', 'test10@gmail.com', '123'),
+('11', 'testacc11', 'test11@gmail.com', '123'),
+('12', 'testacc12', 'test12@gmail.com', '123'),
+('13', 'testacc13', 'test13@gmail.com', '123'),
+('14', 'testacc14', 'test14@gmail.com', '123'),
+('15', 'testacc15', 'test15@gmail.com', '123'),
+('16', 'testacc16', 'test16@gmail.com', '123'),
+('17', 'testacc17', 'test17@gmail.com', '123'),
+('18', 'testacc18', 'test18@gmail.com', '123'),
+('19', 'testacc19', 'test19@gmail.com', '123'),
+('2', 'testacc2', 'test@gmail.com', '123'),
+('20', 'testacc20', 'test20@gmail.com', '123'),
+('21', 'testacc21', 'test21@gmail.com', '123'),
+('22', 'testacc22', 'test22@gmail.com', '123'),
+('23', 'testacc23', 'test23@gmail.com', '123'),
+('3', 'testacc3', 'test@gmail.com', '123'),
+('4', 'testacc4', 'test4@gmail.com', '123'),
+('5', 'testacc5', 'test5@gmail.com', '123'),
+('6', 'testacc6', 'test6@gmail.com', '123'),
+('7', 'testacc7', 'test7@gmail.com', '123'),
+('8', 'testacc8', 'test8@gmail.com', '123'),
+('9', 'testacc9', 'test9@gmail.com', '123');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +94,31 @@ CREATE TABLE `account_details` (
 
 LOCK TABLES `account_details` WRITE;
 /*!40000 ALTER TABLE `account_details` DISABLE KEYS */;
-INSERT INTO `account_details` VALUES ('1','Jim','Danger','290 THD','1995-12-12','jim_avt.png','jim_bck.jfif',2),('2','Martin','Lunatic','639 BHN','1992-10-30','martin_avt.png','martin_bck.jpg',2),('3','Smith','Black','401 NVC','1998-01-20','smith_avt.png','smith_bck.jpg',2);
+INSERT INTO `account_details` (`userID`, `firstName`, `lastName`, `address`, `birthDate`, `avatarName`, `background`, `friendCount`) VALUES
+('1', 'Jim', 'Danger', '290 THD', '1995-12-12', 'jim_avt.png', 'jim_bck.jfif', 2),
+('10', 'Grace', 'Anderson', '555 Birch St', '1991-06-18', 'grace_avatar.png', 'grace_bck.jpg', 0),
+('11', 'Henry', 'Martinez', '777 Redwood St', '1986-07-12', 'henry_avatar.png', 'henry_bck.jpg', 0),
+('12', 'Isabella', 'Taylor', '888 Sequoia St', '1989-09-05', 'isabella_avatar.png', 'isabella_bck.jpg', 0),
+('13', 'Jack', 'Moore', '999 Willow St', '1994-04-08', 'jack_avatar.png', 'jack_bck.jpg', 0),
+('14', 'Katherine', 'White', '111 Cedar St', '1984-11-28', 'katherine_avatar.png', 'katherine_bck.jpg', 0),
+('15', 'Liam', 'Hall', '222 Elm St', '1993-07-30', 'liam_avatar.png', 'liam_bck.jpg', 0),
+('16', 'Mia', 'Jackson', '333 Pine St', '1988-01-10', 'mia_avatar.png', 'mia_bck.jpg', 0),
+('17', 'Noah', 'Miller', '444 Oak St', '1996-02-22', 'noah_avatar.png', 'noah_bck.jpg', 0),
+('18', 'Olivia', 'Brown', '666 Maple St', '1982-04-15', 'olivia_avatar.png', 'olivia_bck.jpg', 0),
+('19', 'Paul', 'Garcia', '777 Redwood St', '1997-09-02', 'paul_avatar.png', 'paul_bck.jpg', 0),
+('2', 'Martin', 'Lunatic', '639 BHN', '1992-10-30', 'martin_avt.png', 'martin_bck.jpg', 2),
+('20', 'Quinn', 'Harris', '999 Sequoia St', '1981-12-12', 'quinn_avatar.png', 'quinn_bck.jpg', 0),
+('21', 'Ryan', 'Clark', '123 Birch St', '1998-08-18', 'ryan_avatar.png', 'ryan_bck.jpg', 0),
+('22', 'Sophia', 'Turner', '456 Willow St', '1980-05-25', 'sophia_avatar.png', 'sophia_bck.jpg', 0),
+('23', 'Tyler', 'Walker', '789 Cedar St', '1999-03-08', 'tyler_avatar.png', 'tyler_bck.jpg', 0),
+('3', 'Smith', 'Black', '401 NVC', '1998-01-20', 'smith_avt.png', 'smith_bck.jpg', 2),
+('4', 'Alice', 'Johnson', '123 Main St', '1990-05-15', 'alice_avatar.png', 'alice_bck.jpg', 0),
+('5', 'Bob', 'Smith', '456 Elm St', '1985-08-20', 'bob_avatar.png', 'bob_bck.jpg', 0),
+('6', 'Charlie', 'Brown', '789 Oak St', '1992-02-10', 'charlie_avatar.png', 'charlie_bck.jpg', 0),
+('7', 'David', 'Davis', '101 Pine St', '1987-10-05', 'david_avatar.png', 'david_bck.jpg', 0),
+('8', 'Eva', 'Williams', '246 Cedar St', '1995-03-25', 'eva_avatar.png', 'eva_bck.jpg', 0),
+('9', 'Frank', 'Wilson', '369 Maple St', '1983-12-30', 'frank_avatar.png', 'frank_bck.jpg', 0);
+
 /*!40000 ALTER TABLE `account_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,3 +353,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-10-24 13:15:36
+
