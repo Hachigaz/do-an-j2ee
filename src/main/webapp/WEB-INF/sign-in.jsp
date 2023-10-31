@@ -18,7 +18,7 @@
             <div class="container-login">
                 <div class="login-form">
                     <span class="title-form">Login</span>
-                    <form action="sign-in" method="post">
+                    <form action="home-page" method="post">
                         <div class="input-container">
                             <input type="text" name="LoginUsername" placeholder="Username">
                         </div>

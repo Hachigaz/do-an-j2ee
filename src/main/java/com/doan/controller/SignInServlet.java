@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "sign-in", value = "/sign-in")
+@WebServlet(name = "home-page", value = "/home-page")
 public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/sign-in.jsp");
