@@ -9,9 +9,12 @@
             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         />
         <link rel="stylesheet" href="resources/css/friend.css" />
+        <link rel="stylesheet" href="resources/css/components/header.css">
         <title>Document</title>
     </head>
     <body>
+        <%@ include file="components/header.jsp" %>
+        <div class="mt-20"></div>
         <div class="wrapper">
             <div class="menu">
                 <div class="title">Bạn bè</div>

@@ -5,6 +5,11 @@
     display: flex;
     font-family: monospace;
 }
+.mt-20{
+    height: 20px;
+    width: 100%;
+    background-color: #f7f7f7;
+}
 .wrapper .menu{
     height: 100%;
     width: 300px ;
