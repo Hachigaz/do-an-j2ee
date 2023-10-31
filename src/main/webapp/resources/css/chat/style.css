@@ -1,8 +1,14 @@
 :root{
   --header-height: 100px;
 }
-
-
+.chat {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
 .chat .content {
   background-color: #ffffff;
   width: 100%;
@@ -10,7 +16,6 @@
   position: relative;
   top:var(--header-height)
 }
-
 .chat .friend-panel {
   position: absolute;
   width: 30%;
@@ -19,7 +24,6 @@
   background-color: #efefef;
   overflow-y: scroll;
 }
-
 .chat .friend-panel-frame {
   display: flex;
   flex-direction: column;
@@ -28,7 +32,6 @@
   padding: 0px 0px;
   position: relative;
 }
-
 .chat .friend-item {
   position: relative;
   width: 100%;
@@ -37,7 +40,6 @@
   margin-right: -10px;
   background-color: #f8f9c7;
 }
-
 .chat .username-frame {
   position: absolute;
   width: 70%;
@@ -46,7 +48,6 @@
   left: 145px;
   background-color: #8fd1c5;
 }
-
 .chat .username {
   position: absolute;
   height: 28px;
@@ -60,9 +61,7 @@
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
-  user-select: none;
 }
-
 .chat .avatar {
   position: absolute;
   width: 110px;
@@ -71,7 +70,6 @@
   left: 21px;
   background-color: #8fd1c5;
 }
-
 .chat .user-avatar {
   position: absolute;
   width: 110px;
@@ -80,7 +78,6 @@
   left: 0;
   object-fit: cover;
 }
-
 .chat .chat-panel {
   position: absolute;
   width: 70%;
@@ -88,7 +85,6 @@
   left: 30%;
   background-color: #f8f9c7;
 }
-
 .chat .chat-box {
   position: absolute;
   width: 100%;
@@ -97,7 +93,6 @@
   left: 0;
   background-color: #47567e;
 }
-
 .chat .text-input {
   position: absolute;
   width: calc(70%);
@@ -106,7 +101,6 @@
   left: 24px;
   background-color: #e7e7e7;
 }
-
 .chat .submit {
   position: absolute;
   width: 15%;
@@ -115,7 +109,6 @@
   right: 30px;
   background-color: #e7e7e7;
 }
-
 .chat .chat-display {
   position: absolute;
   width: 100%;
@@ -125,7 +118,6 @@
   background-color: #74a098;
   overflow-y: scroll;
 }
-
 .chat .chat-frame {
   display: flex;
   flex-direction: column;
@@ -137,7 +129,6 @@
   background-color: #65c4b3;
   overflow:hidden;
 }
-
 .chat .message-frame {
   position: relative;
   align-self: stretch;
@@ -146,7 +137,6 @@
   background-color: #ffffff40;
   overflow: hidden;
 }
-
 .chat .from-message {
   position: absolute;
   width: 90%;
@@ -155,20 +145,17 @@
   background-color: #ffffff40;
   overflow: hidden;
 }
-
 .chat .to-message {
   position: absolute;
   width: 90%;
   height: 50px;
   top: 1px;
   right:1px;
-
   text-align: right;
   
   background-color: #ffffff40;
   overflow: hidden;
 }
-
 .chat .message-text {
   position: absolute;
   width: 90%;
@@ -181,15 +168,12 @@
   letter-spacing: 0;
   line-height: normal;
 }
-
 .chat .from-message .message-text{
   left: 63px;
 }
-
 .chat .to-message .message-text{
   right:63px;
 }
-
 .chat .user-avatar-wrapper {
   position: absolute;
   width: 50px;
@@ -197,17 +181,14 @@
   top: 0;
   background-color: #ffffff;
 }
-
 .chat .from-message .user-avatar-wrapper{
   position: absolute;
   left:-1px;
 }
-
 .chat .to-message .user-avatar-wrapper{
   position: absolute;
   right:-1px;
 }
-
 .chat .img {
   position: absolute;
   width: 49px;
@@ -216,7 +197,23 @@
   left: 1px;
   object-fit: cover;
 }
-
+.chat .header {
+  position: absolute;
+  width: 100%;
+  height: var(--header-height);
+  top: 0;
+  left: 0;
+  background-color: var(--main);
+  overflow: hidden;
+}
+.chat .logo {
+  position: absolute;
+  width: 249px;
+  height: 73px;
+  top: 10px;
+  left: 29px;
+  background-color: #ffffff1f;
+}
 .chat .text-wrapper {
   position: absolute;
   width: 249px;
@@ -231,7 +228,6 @@
   letter-spacing: 0;
   line-height: normal;
 }
-
 .chat .home-icon {
   position: absolute;
   width: 111px;
@@ -241,7 +237,6 @@
   border-radius: 5px;
   overflow: hidden;
 }
-
 .chat .property-alt {
   width: 1px;
   height: 73px;
@@ -249,7 +244,6 @@
   position: absolute;
   top: 20px;
 }
-
 .chat .property-default {
   width: 79px;
   height: 81px;

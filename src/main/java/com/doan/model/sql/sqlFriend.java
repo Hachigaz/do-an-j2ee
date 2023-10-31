@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.doan.model.AccountDetails;
 import com.doan.model.Friend;
+import com.doan.model.FriendDetails;
 
 public class sqlFriend{
     public static final String name = "friend";
@@ -69,8 +71,7 @@ public class sqlFriend{
         List<Friend> friends = new ArrayList<Friend>();
         
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
+            Connection connection = sqlConnect.connectToDB();
 
             String sql = "SELECT * FROM friend WHERE friend.deleted = 0 AND (friend.userID1 = ? OR friend.userID2 = ?)";
         
@@ -95,11 +96,57 @@ public class sqlFriend{
         return friends;
     }
 
+    public static List<FriendDetails> getFriendsDetails(String userID){
+        List<FriendDetails> friendDetails = new ArrayList<FriendDetails>();
+        
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "SELECT * FROM friend WHERE friend.deleted = 0 AND (friend.userID1 = ? OR friend.userID2 = ?)";
+        
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            statement.setString(1, userID);
+            statement.setString(2, userID);
+            
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()){
+                String friendID = rs.getString(1).equals(userID)?rs.getString(2):rs.getString(1);
+                AccountDetails friendAccountDetails = sqlAccountDetails.getDetails(friendID);
+                
+                friendDetails.add(new FriendDetails(rs.getString(3),friendAccountDetails));
+            }
+
+            statement.close();
+            connection.close();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return friendDetails;
+    }
+
     public static List<String> getFriendIDS(List<Friend> friends,String userID){
         List<String> friendIDs = new ArrayList<String>(); 
         for (Friend friend : friends){
             friendIDs.add(friend.getUserID1().equals(userID)?friend.getUserID2():friend.getUserID1());
         }
         return friendIDs;
+    }
+
+    public static void sendFriendRequest(String sendUserID,String receiveUserID){
+        try{
+            Connection connection = sqlConnect.connectToDB();
+            String sql = "call sendFriendRequest(?,?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, sendUserID);
+            preparedStatement.setString(2, receiveUserID);
+            preparedStatement.execute();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
