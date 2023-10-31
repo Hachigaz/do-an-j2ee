@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="resources/css/chat/styleguide.css" />
     <link rel="stylesheet" href="resources/css/chat/style.css" />
 
-    <script src="resources/scripts/chat/message.js"></script>
+    <script src="resources/scripts/chat/MessageBox.js"></script>
+    <script src="resources/scripts/chat/MessagePage.js"></script>
     <script type="text/javascript">
       window.addEventListener('load',setupPage)
     </script>

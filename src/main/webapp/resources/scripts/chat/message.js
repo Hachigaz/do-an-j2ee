@@ -7,7 +7,6 @@ let chat_panel
 let myUserInfo;
 
 imageSrc = "resources/img/userdata/"
-chatFrameIDStr = "chat-frame-"
 chatUserItemIDStr = "user-item-"
 
 let chatFrames = [];

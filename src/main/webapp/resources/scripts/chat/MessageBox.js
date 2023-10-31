@@ -1,38 +1,62 @@
+let chatFrameIDStr = "chat-frame-"
+let chatUserItemIDStr = "friend-item-"
+
+let imageSrc = "resources/img/userdata/"
+
 class MessageBox{
-    
     chatID;
     friendAccountDetails;
+    
+    friendItemElement;
+    chatFrameElement;
 
     //
     constructor(chatID, friendAccountDetails){
         this.chatID = chatID;
         this.friendAccountDetails = friendAccountDetails;
+
+        {
+            let chatItemHTML = `
+                <div class="friend-item" id="${chatUserItemIDStr+chatID}" onclick="showChatFrame(${chatID})">
+                    <div class="username-frame">
+                        <div class="username">${friendAccountDetails.firstName+" "+friendAccountDetails.lastName}</div>
+                    </div>
+                    <div class="avatar">
+                        <img class="user-avatar" src="resources/img/userdata/${friendAccountDetails.avatar}" />
+                    </div>
+                </div> 
+            `
+            friendPanelElement.insertAdjacentHTML("beforeend",chatItemHTML)
+            chatDisplayElement.insertAdjacentHTML("beforeend",`<div class="chat-frame" id="${chatFrameIDStr+chatID}"></div>`)
+        }
+
+        this.friendItemElement = document.querySelector(`div#${chatUserItemIDStr+chatID}`)
+        this.chatFrameElement = document.querySelector(`div#${chatFrameIDStr+chatID}`)
     }
     messages =[];
+    
     addMessage(message){
-        messages.push(message)
+        this.messages.push(message)
+
+        if(message.userID==this.friendAccountDetails.userID){
+            let fromMessageHTML = 
+            `<div class="message-frame"}">
+                <div class="from-message">
+                    <div class="message-text">${message.message}</div>
+                    <div class="user-avatar-wrapper"><img class="img" src="${imageSrc+this.friendAccountDetails.avatar}" draggable="false"/></div>
+                </div>
+            </div>`
+            this.chatFrameElement.insertAdjacentHTML("beforeend",fromMessageHTML)
+        }
+        else{
+            let toMessageHTML = 
+            `<div class="message-frame">
+                <div class="to-message">
+                <div class="message-text">${message.message}</div>
+                <div class="user-avatar-wrapper"><img class="img" src="${imageSrc+userAccountDetails.avatar}" draggable="false"/></div>
+                </div>
+            </div>`
+            this.chatFrameElement.insertAdjacentHTML("beforeend",toMessageHTML)
+        }
     }
-}
-
-class Message{
-    chatID;
-    sentUserID;
-    messageText;
-    messageIndex;
-    dateSent;
-
-    constructor(chatID, sentUserID, messageText, messageIndex, dateSent){
-        this.chatID = chatID;
-        this.sentUserID = sentUserID;
-        this.messageText = messageText;
-        this.messageIndex = messageIndex;
-        this.dateSent = dateSent;
-    }
-}
-
-//này làm xong hết rãnh thì làm, này là hình ảnh đính kèm tin nhắn
-class AttachedImage{
-    chatID;
-    chatIndex;
-    imagePath;
 }
