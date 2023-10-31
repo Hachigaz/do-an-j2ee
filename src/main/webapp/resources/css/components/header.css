@@ -37,19 +37,18 @@ a{
     text-decoration: none;
 }
 
-
-.chat{
-    width: 100%;
-    padding: 0 20px;
+.header-component{
+  width: 100%;
+  padding: 0 25px;
 }
-.chat .header-wrapper{
+.header-component .header-wrapper{
     width: 100%;
     height: 96px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.chat .logo-button{
+.header-component .logo-button{
     width: 280px;
     display: flex;
     align-items: center;
@@ -58,25 +57,25 @@ a{
     font-size: 32px;
     color: #05f;
 }
-.chat .logo-button i{
+.header-component .logo-button i{
     width: 36px;
     height: 36px;
     color: #10d876;
     display: block;
     margin-right: 5px;  
 }
-.chat .middle-components{
+.header-component .middle-components{
     /* min-width: auto; */
     display: flex;
     align-items: center;
     margin-left: -250px;
 }
-.chat .header .middle-components .buttons{
+.header-component .middle-components .buttons{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.chat .header .middle-components .buttons i{
+.header-component .middle-components .buttons i{
     font-size: 22px;
     color: #adb5bd;
     position: absolute;
@@ -84,7 +83,7 @@ a{
     left: 50%;
     transform: translate(-50%,-50%);
 }
-.chat .header .middle-components .buttons a{
+.header-component .middle-components .buttons a{
     position: relative;
     width: 50px;
     height: 50px;
@@ -94,11 +93,11 @@ a{
     background-color: #f5f5f5;
     display: inline-block;
 }
-.chat .header .middle-components .input-container{
+.header-component .middle-components .input-container{
   position: relative;
   margin-right: 20px;
 }
-.chat .header .middle-components input{
+.header-component .middle-components input{
   background-color: #eee;
   padding: 12px 35px;
   border: none;
@@ -107,7 +106,7 @@ a{
   font-family: 'Lato', sans-serif;
   font-size: 14px;
 }
-.chat .header .middle-components .search-button{
+.header-component .middle-components .search-button{
   position: absolute;
   top: 50%;
   left: 0px;
@@ -118,11 +117,11 @@ a{
   padding-left: 10px;
   color: #adb5bd;
 }
-.chat .header .right-components{
+.header-component .right-components{
   display: flex;
   align-items: center;
 }
-.chat .header .right-components a{
+.header-component .right-components a{
   position: relative;
   display: flex;
   margin: 0 10px;
@@ -132,13 +131,13 @@ a{
   font-size: 25px;
   display: inline-block;
 }
-.chat .header .right-components i{
+.header-component .right-components i{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
 }
-.chat .header .right-components img{
+.header-component .right-components img{
   width: 40px;
   height: 40px;
   display: inline-block;

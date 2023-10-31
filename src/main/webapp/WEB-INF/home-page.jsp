@@ -4,9 +4,12 @@
     <link rel="stylesheet" href="resources/css/home/globals.css" />
     <link rel="stylesheet" href="resources/css/home/styleguide.css" />
     <link rel="stylesheet" href="resources/css/home/style.css" />
+    <link rel="stylesheet" href="resources/css/components/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-    <div class="frame">
+    <%@ include file="components/header.jsp" %>
+    <!-- <div class="frame">
       <div class="div">
         <div class="option"></div>
         <div class="feed"></div>
@@ -19,6 +22,6 @@
           </a>
         </header>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
