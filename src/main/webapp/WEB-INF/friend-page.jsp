@@ -8,8 +8,7 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         />
-        <link rel="stylesheet" href="resources/css/friend.css">
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="resources/css/friend.css" />
         <title>Document</title>
     </head>
     <body>
@@ -32,7 +31,10 @@
                             </div>
                             <div class="user-name">The Hien</div>
                             <div class="common-friend">105 bạn chung</div>
+                            <div class="status">Bạn bè</div>
                         </div>
+                        <div class="col-md-3 item"></div>
+                        <div class="col-md-3 item"></div>
                         <div class="col-md-3 item"></div>
                         <div class="col-md-3 item"></div>
                         <div class="col-md-3 item"></div>

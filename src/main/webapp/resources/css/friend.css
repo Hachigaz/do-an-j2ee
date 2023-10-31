@@ -11,16 +11,17 @@
     background-color: #fff;
 }
 .wrapper .friend-wrapper{
-    width: 100%;
+    width: 80%;
 }
 .wrapper .friend-wrapper .friend-list{
     height: 100%;
     margin: 0 130px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .wrapper-item{
-    width: 100%;
+    width: 80%;
 }
 .menu .title{
     font-size: 30px;
@@ -37,7 +38,7 @@
     display: flex;
     align-items: center;
     border-radius: 5px;
-    padding-left: 30px;
+    margin-left: 100px;
     font-size: 25px;
     font-weight: 800;
 }
@@ -66,4 +67,13 @@
 .friend-list .item .common-friend{
     font-size: 10px;
 }
-
+.friend-list .wrapper-item .status{
+    background-color: rgb(163, 155, 155);
+    height: 20px;
+    width: 60%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px auto 0;
+}
