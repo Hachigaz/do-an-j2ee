@@ -1,0 +1,69 @@
+.wrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: #f7f7f7;
+    display: flex;
+    font-family: monospace;
+}
+.wrapper .menu{
+    height: 100%;
+    width: 300px ;
+    background-color: #fff;
+}
+.wrapper .friend-wrapper{
+    width: 100%;
+}
+.wrapper .friend-wrapper .friend-list{
+    height: 100%;
+    margin: 0 130px;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper-item{
+    width: 100%;
+}
+.menu .title{
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+.wrapper .friend-wrapper .title{
+    width: 100%;
+}
+.wrapper .friend-wrapper .title span{
+    margin: 15px 0;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 30px;
+    font-size: 25px;
+    font-weight: 800;
+}
+.friend-wrapper .friend-list .item{
+    background-color: #fff;
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+.friend-list .item .avatar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.friend-list .item .avatar img{
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+}
+.friend-list .item .user-name{
+    margin-top: 5px;
+    font-weight: 800;
+}
+.friend-list .item .common-friend{
+    font-size: 10px;
+}
+

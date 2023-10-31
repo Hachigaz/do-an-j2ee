@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <div class="header-component">
     <div class="header-wrapper">
         <div class="logo">
@@ -18,7 +19,7 @@
                 <a href="#" class="home"><i class="fa-solid fa-house"></i></a>
                 <a href="#" class="stories"><i class="fa-solid fa-bolt"></i></a>
                 <a href="#" class="video"><i class="fa-solid fa-video"></i></a>
-                <a href="#" class="user"><i class="fa-regular fa-user"></i></a>
+                <a href="friend-page" class="user"><i class="fa-regular fa-user"></i></a>
                 <a href="#" class="shop"><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
