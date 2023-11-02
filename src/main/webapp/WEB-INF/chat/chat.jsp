@@ -33,20 +33,30 @@
         </div>
         <div class="chat-panel">
           <div class="chat-display">
-            <!-- <div class="chat-frame">
-              <div class="message-frame">
+            <div class="chat-frame">
+              <!-- <div class="message-frame">
                 <div class="from-message">
                   <div class="message-text">from message</div>
-                  <div class="user-avatar-wrapper"><img class="img" src="" /></div>
+                  <div class="message-user-wrapper">
+                      <div class="user-avatar-wrapper"><img class="img" src="" /></div>
+                      <div>UserName</div>
+                      <div>dateSent</div>
+                  </div>
                 </div>
               </div>
               <div class="message-frame">
                 <div class="to-message">
                   <div class="message-text">to message</div>
-                  <div class="user-avatar-wrapper"><img class="img" src="" /></div>
+                  <div class="message-user-wrapper">
+                      <div class="user-avatar-wrapper">
+                        <img class="img" src="" />
+                      </div>
+                      <div>UserName</div>
+                      <div>dateSent</div>
+                  </div>
                 </div>
-              </div>
-            </div> -->
+              </div> -->
+            </div>
           </div>
           <div class="chat-box">
             <input type="text" class="text-input" placeholder="Nhập tin nhắn"></input>

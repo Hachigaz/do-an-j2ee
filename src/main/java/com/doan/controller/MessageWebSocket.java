@@ -40,7 +40,7 @@ public class MessageWebSocket {
 
         int chatID = Integer.parseInt(messageJSON.get("chatID").getAsString());
 
-        String textMessage = messageJSON.get("textMessage").getAsString();        
+        String textMessage = messageJSON.get("message").getAsString();        
 
         Message userMsg = new Message(
             messageJSON.get("userID").getAsString(),

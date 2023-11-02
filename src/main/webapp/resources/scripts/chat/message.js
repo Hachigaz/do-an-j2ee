@@ -189,6 +189,9 @@ function sendMessage(){
 function processIncomingMessage(event){
     const receivedMessage = event.data;
     console.log(receivedMessage)
+    let messageObject = JSON.parse(receivedMessage)
+
+    messageBoxes[messageObject.chatID].sendMessage(messageObject)
 }
 
 function getDateSent() {

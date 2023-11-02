@@ -51,7 +51,7 @@ class MessageBox{
         else{
             let toMessageHTML = 
             `<div class="message-frame">
-                <div class="to-message">
+                <div class="to-message"> 
                 <div class="message-text">${message.message}</div>
                 <div class="user-avatar-wrapper"><img class="img" src="${imageSrc+userAccountDetails.avatar}" draggable="false"/></div>
                 </div>

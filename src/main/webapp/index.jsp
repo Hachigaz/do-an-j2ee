@@ -7,6 +7,6 @@
 <body>
 
 <br/>
-<a href="home-page">nhảy tới đăng nhập</a>
+<a href="sign-in">nhảy tới đăng nhập</a>
 </body>
 </html>
