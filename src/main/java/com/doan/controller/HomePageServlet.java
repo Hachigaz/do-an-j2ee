@@ -11,10 +11,10 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="home-page",value=("/home-page"))
 public class HomePageServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("WEB-INF/home-page.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/home-page/home-page.jsp").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("WEB-INF/home-page.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/home-page/home-page.jsp").forward(request, response);
     }
 }
