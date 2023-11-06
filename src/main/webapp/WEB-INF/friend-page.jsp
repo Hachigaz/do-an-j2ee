@@ -13,7 +13,7 @@
         <title>Document</title>
     </head>
     <body>
-        <%@ include file="components/header/header.jsp" %>
+        <%@ include file="components/header.jsp" %>
         <div class="mt-20"></div>
         <div class="wrapper">
             <div class="menu">
@@ -47,4 +47,5 @@
             </div>
         </div>
     </body>
+    <script src="resources/scripts/friends.js"></script>
 </html>

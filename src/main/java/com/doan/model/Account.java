@@ -12,6 +12,9 @@ public class Account {
         this.email = email;
         this.password = password;
     }
+    public Account(){
+        
+    }
 
     public String getAccountID() {
         return accountID;

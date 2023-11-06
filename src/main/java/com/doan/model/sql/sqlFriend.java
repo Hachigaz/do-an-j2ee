@@ -4,12 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.doan.model.AccountDetails;
-import com.doan.model.Friend;
-import com.doan.model.FriendDetails;
+import com.doan.model.*;
 
 public class sqlFriend{
     public static final String name = "friend";
@@ -95,6 +94,36 @@ public class sqlFriend{
 
         return friends;
     }
+    public static List<Account> getAllFriend(String accountID) {
+        List<Account> friends = new ArrayList<Account>();
+        try {
+            Connection connection = sqlConnect.connectToDB();
+            String sql = "SELECT account.* FROM account JOIN friend ON (account.userID = friend.userID1 OR account.userID = friend.userID2) WHERE friend.userID1 = ? OR friend.userID2 = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, accountID);
+            preparedStatement.setString(2, accountID);
+            ResultSet resultSet = preparedStatement.executeQuery();
+    
+            while (resultSet.next()) {
+                Account friend = new Account();
+                // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
+                friend.setAccountID(resultSet.getString("userID"));
+                friend.setUsername(resultSet.getString("username"));
+                friend.setEmail(resultSet.getString("email"));
+                // Thêm friend vào danh sách
+                friends.add(friend);
+            }
+    
+            // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return friends;
+    }
+    
 
     public static List<FriendDetails> getFriendsDetails(String userID){
         List<FriendDetails> friendDetails = new ArrayList<FriendDetails>();
