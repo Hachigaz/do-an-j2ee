@@ -98,10 +98,11 @@ public class sqlFriend{
         List<Account> friends = new ArrayList<Account>();
         try {
             Connection connection = sqlConnect.connectToDB();
-            String sql = "SELECT account.* FROM account JOIN friend ON (account.userID = friend.userID1 OR account.userID = friend.userID2) WHERE friend.userID1 = ? OR friend.userID2 = ?";
+            String sql = "(SELECT account.* FROM account JOIN friend ON (account.userID = friend.userID1 OR account.userID = friend.userID2) WHERE (friend.userID1 = ? OR friend.userID2 = ?) AND account.userID != ?) JOIN account_details ON account.userID = account_details.userID";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, accountID);
             preparedStatement.setString(2, accountID);
+            preparedStatement.setString(3, accountID);
             ResultSet resultSet = preparedStatement.executeQuery();
     
             while (resultSet.next()) {
@@ -110,6 +111,7 @@ public class sqlFriend{
                 friend.setAccountID(resultSet.getString("userID"));
                 friend.setUsername(resultSet.getString("username"));
                 friend.setEmail(resultSet.getString("email"));
+                friend.setPassword("");
                 // Thêm friend vào danh sách
                 friends.add(friend);
             }
