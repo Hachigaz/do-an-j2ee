@@ -11,7 +11,9 @@ public class AccountDetails {
     private String avatar;
     private String background;
     
-
+    public AccountDetails(){
+        
+    }
     public AccountDetails(String userID, String firstName, String lastName, String address, Date birthDate,
             String avatar, String background) {
         this.userID = userID;

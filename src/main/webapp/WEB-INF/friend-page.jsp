@@ -26,23 +26,7 @@
                         <span>Danh sách bạn bè</span>
                     </div>
                     <div class="wrapper-item">
-                        <div class="col-md-3 item">
-                            <div class="avatar">
-                                <img
-                                    src="resources/img/profile-4.png"
-                                    alt=""
-                                />
-                            </div>
-                            <div class="user-name">The Hien</div>
-                            <div class="common-friend">105 bạn chung</div>
-                            <div class="status">Bạn bè</div>
-                        </div>
-                        <div class="col-md-3 item"></div>
-                        <div class="col-md-3 item"></div>
-                        <div class="col-md-3 item"></div>
-                        <div class="col-md-3 item"></div>
-                        <div class="col-md-3 item"></div>
-                        <div class="col-md-3 item"></div>
+                    
                     </div>
                 </div>
             </div>

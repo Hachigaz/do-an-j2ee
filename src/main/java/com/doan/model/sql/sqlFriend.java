@@ -125,6 +125,42 @@ public class sqlFriend{
         }
         return friends;
     }
+    public static List<AccountDetails> getAllFriendAccountDetails(String userId){
+        List<AccountDetails> friends = new ArrayList<AccountDetails>();
+        try {
+            Connection connection = sqlConnect.connectToDB();
+            String sql = "SELECT ad.* FROM account_details ad JOIN friend f ON ad.userID = CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END WHERE f.userID1 = ? OR f.userID2 = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userId);
+            preparedStatement.setString(3, userId);
+            preparedStatement.setString(4, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+    
+            
+            while (resultSet.next()) {
+                AccountDetails friend = new AccountDetails();
+                // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
+                friend.setUserID(resultSet.getString("userID"));
+                friend.setFirstName(resultSet.getString("firstName"));
+                friend.setLastName(resultSet.getString("lastName"));
+                friend.setAddress(resultSet.getString("address"));
+                friend.setBirthDate(resultSet.getDate("birthDate"));
+                friend.setAvatar(resultSet.getString("avatarName"));
+                friend.setBackground(resultSet.getString("background"));
+                // Thêm friend vào danh sách
+                friends.add(friend);
+            }
+    
+            // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return friends;
+    }
     
 
     public static List<FriendDetails> getFriendsDetails(String userID){
