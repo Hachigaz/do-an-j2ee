@@ -8,6 +8,7 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="resources/css/friend.css" />
         <link rel="stylesheet" href="resources/css/components/header.css">
         <title>Document</title>
@@ -28,7 +29,7 @@
                         <div class="col-md-3 item">
                             <div class="avatar">
                                 <img
-                                    src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-1/381471977_816348800176080_808001412073896283_n.jpg?stp=dst-jpg_p240x240&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7UZYln8S3PwAX9oLp4b&_nc_ht=scontent.fsgn2-4.fna&oh=00_AfAUeXNQIOmCEAxPDFLHvonF7krB2lV0GuE9UZCmMuCJcw&oe=6544025A"
+                                    src="resources/img/profile-4.png"
                                     alt=""
                                 />
                             </div>
