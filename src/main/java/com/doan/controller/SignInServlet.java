@@ -31,8 +31,9 @@ public class SignInServlet extends HttpServlet {
                         session.setAttribute("loggedInID", account.getAccountID());
                         
                         //nhay sang trang chu
-                        RequestDispatcher dispatcher = request.getRequestDispatcher("/home-page");
-                        dispatcher.forward(request, response);
+                        String redirectURL = request.getContextPath() + "/home-page";
+                        // Perform the redirection
+                        response.sendRedirect(redirectURL);
                     }
                     else{
                         //sai mat khau

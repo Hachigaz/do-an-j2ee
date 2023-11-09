@@ -1,0 +1,112 @@
+package com.doan.model;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+public class UserPost {
+    private String postID;
+    private String userID;
+    private String description;
+    private Timestamp datePosted;
+    private int likeCount;
+    private int commentCount;
+    public UserPost(String postID, String userID,
+        String description, Timestamp datePosted,
+        int likeCount, int commentCount) {
+        this.postID = postID;
+        this.userID = userID;
+        this.description = description;
+        this.datePosted = datePosted;
+        this.likeCount = likeCount;
+        this.commentCount = commentCount;
+    }
+    public String getPostID() {
+        return postID;
+    }
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
+    public String getUserID() {
+        return userID;
+    }
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public Timestamp getDatePosted() {
+        return datePosted;
+    }
+    public void setDatePosted(Timestamp datePosted) {
+        this.datePosted = datePosted;
+    }
+    public int getLikeCount() {
+        return likeCount;
+    }
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+    public int getCommentCount() {
+        return commentCount;
+    }
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
+    
+    static class PostImage{
+        private String postID;
+        private int index;
+        private String image;
+        public PostImage(String postID, int index, String image) {
+            this.postID = postID;
+            this.index = index;
+            this.image = image;
+        }
+        public String getPostID() {
+            return postID;
+        }
+        public void setPostID(String postID) {
+            this.postID = postID;
+        }
+        public int getIndex() {
+            return index;
+        }
+        public void setIndex(int index) {
+            this.index = index;
+        }
+        public String getImage() {
+            return image;
+        }
+        public void setImage(String image) {
+            this.image = image;
+        }
+    }
+
+    static class PostData{
+        private UserPost post;
+        private List<PostImage> images;
+        
+        public PostData(UserPost post, List<PostImage> images) {
+            this.post = post;
+            this.images = images;
+        }
+
+        public UserPost getPost() {
+            return post;
+        }
+        public void setPost(UserPost post) {
+            this.post = post;
+        }
+        public List<PostImage> getImages() {
+            return images;
+        }
+        public void setImages(List<PostImage> images) {
+            this.images = images;
+        }
+        
+    }
+}

@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="buttons">
-                <a href="#" class="home"><i class="fa-solid fa-house"></i></a>
+                <a href="home-page" class="home"><i class="fa-solid fa-house"></i></a>
                 <a href="#" class="stories"><i class="fa-solid fa-bolt"></i></a>
                 <a href="#" class="video"><i class="fa-solid fa-video"></i></a>
                 <a href="friend-page" class="user"><i class="fa-regular fa-user"></i></a>
@@ -24,9 +24,9 @@
             </div>
         </div>
         <div class="right-components">
-            <a href="" class="noti"><i class="fa-regular fa-bell"></i></a>
+            <a href="#" class="noti"><i class="fa-regular fa-bell"></i></a>
             <a href="chat-messenger" class="message"><i class="fa-regular fa-message"></i></a>
-            <a href="" class="setting"><i class="fa-solid fa-gear"></i></a>
+            <a href="#" class="setting"><i class="fa-solid fa-gear"></i></a>
             <img src="resources/img/profile-4.png" alt="">
         </div>
     </div>

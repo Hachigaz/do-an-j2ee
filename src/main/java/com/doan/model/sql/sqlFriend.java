@@ -13,9 +13,8 @@ import com.doan.model.*;
 public class sqlFriend{
     public static final String name = "friend";
     public static void add(Friend friend){
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
+        try{ 
+            Connection connection = sqlConnect.connectToDB();
 
             String sql = "CALL addFriend(?,?)";
 
@@ -195,8 +194,9 @@ public class sqlFriend{
         return friendDetails;
     }
 
-    public static List<String> getFriendIDS(List<Friend> friends,String userID){
-        List<String> friendIDs = new ArrayList<String>(); 
+    public static List<String> getFriendIDS(String userID){
+        List<String> friendIDs = new ArrayList<String>();
+        List<Friend> friends = getFriends(userID);
         for (Friend friend : friends){
             friendIDs.add(friend.getUserID1().equals(userID)?friend.getUserID2():friend.getUserID1());
         }

@@ -39,23 +39,39 @@ class MessageBox{
         this.messages.push(message)
 
         if(message.userID==this.friendAccountDetails.userID){
-            let fromMessageHTML = 
-            `<div class="message-frame"}">
-                <div class="from-message">
-                    <div class="message-text">${message.message}</div>
-                    <div class="user-avatar-wrapper"><img class="img" src="${imageSrc+this.friendAccountDetails.avatar}" draggable="false"/></div>
-                </div>
-            </div>`
+            let fromMessageHTML = `
+                <div class="message-frame">
+                    <div class="from-message">
+                        <div class="message-user-wrapper">
+                            <div class="user-avatar-wrapper">
+                                <img class="img" src="${imageSrc+this.friendAccountDetails.avatar}">
+                            </div>
+                        </div>
+                        <div class="message-box">
+                            <div class="user-fullname">${this.friendAccountDetails.lastName}</div>
+                            <div class="message-text">${message.message}</div>
+                            <div class="date-sent">${message.dateSent}</div>
+                        </div>
+                    </div>
+                </div>`
             this.chatFrameElement.insertAdjacentHTML("beforeend",fromMessageHTML)
         }
         else{
-            let toMessageHTML = 
-            `<div class="message-frame">
-                <div class="to-message"> 
-                <div class="message-text">${message.message}</div>
-                <div class="user-avatar-wrapper"><img class="img" src="${imageSrc+userAccountDetails.avatar}" draggable="false"/></div>
-                </div>
-            </div>`
+            let toMessageHTML = `
+                <div class="message-frame">
+                    <div class="to-message">
+                        <div class="user-avatar-wrapper">
+                            <img class="img" src="${imageSrc+userAccountDetails.avatar}" />
+                        </div>
+                        <div class="message-box">
+                            <div class="message-user-wrapper">
+                            <div class="user-fullname">${userAccountDetails.lastName}</div>
+                            <div class="message-text">${message.message}</div>
+                                <div class="date-sent">${message.dateSent}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
             this.chatFrameElement.insertAdjacentHTML("beforeend",toMessageHTML)
         }
     }
