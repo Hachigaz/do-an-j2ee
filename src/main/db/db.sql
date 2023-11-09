@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `mxh_01` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `mxh_01`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: mxh_01
@@ -95,7 +93,7 @@ CREATE TABLE `chat` (
 
 LOCK TABLES `chat` WRITE;
 /*!40000 ALTER TABLE `chat` DISABLE KEYS */;
-INSERT INTO `chat` VALUES (0,8),(1,7),(2,1),(3,0),(4,0),(5,0);
+INSERT INTO `chat` VALUES (0,26),(1,2),(2,1),(3,0),(4,0),(5,0);
 /*!40000 ALTER TABLE `chat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,7 +207,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',5,'123','2023-10-20 09:54:31',0),(0,'1',6,'qwe','2023-10-24 12:56:32',0),(0,'1',7,'asdax','2023-10-24 13:52:21',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(1,'1',6,'123123','2023-10-20 09:54:40',0),(2,'3',0,'123','2023-10-17 14:10:11',0);
+INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',3,'123','2023-11-01 23:14:19',0),(0,'2',4,'123','2023-11-01 23:15:32',0),(0,'1',5,'ok','2023-11-01 23:18:08',0),(0,'2',6,'ok ko','2023-11-01 23:18:30',0),(0,'2',7,'ok','2023-11-01 23:18:42',0),(0,'2',8,'ok','2023-11-01 23:19:44',0),(0,'2',9,'đẹp','2023-11-01 23:19:52',0),(0,'1',10,'đẹp z','2023-11-01 23:20:44',0),(0,'2',11,'đu đủ','2023-11-01 23:20:53',0),(0,'2',12,'what','2023-11-02 16:52:30',0),(0,'2',13,'ok','2023-11-02 16:53:51',0),(0,'2',14,'ok','2023-11-02 16:55:58',0),(0,'1',15,'helo','2023-11-02 16:56:05',0),(0,'1',16,'ok','2023-11-03 08:32:19',0),(0,'2',17,'ok','2023-11-03 08:32:29',0),(0,'1',18,'123','2023-11-07 13:41:37',0),(0,'1',19,'123','2023-11-07 19:48:00',0),(0,'1',20,'okok','2023-11-07 19:48:11',0),(0,'2',21,'123','2023-11-07 19:49:10',0),(0,'2',22,'123','2023-11-07 21:00:27',0),(0,'2',23,'In this code, we use a SimpleDateFormat with the pattern \"MMM d, yyyy, h:mm:ss a\" to match the date and time format of your input string. Then, we parse the input string into a Date object using dateFormat.parse(dateString). Finally, we create a Timestamp object from the parsed Date object to represent the same date and time as in the input string.','2023-11-07 21:01:34',0),(0,'1',24,'In this example, we first create a Date object with the specified date and time (November 7, 2023, 19:48:11). Then, we convert the Date object to a Timestamp object using the getTime() method, which returns the number of milliseconds since January 1, 1970, which is used as the underlying value for the Timestamp object.','2023-11-07 21:01:55',0),(0,'1',25,'123','2023-11-08 15:51:23',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(2,'3',0,'123','2023-10-17 14:10:11',0);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -229,6 +227,23 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `message_AFTER_DELETE` AFTER DELETE ON `message` FOR EACH ROW BEGIN
+	update chat set message_count = message_count - 1 where chatID = old.chatID;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `post_comment`
@@ -239,14 +254,14 @@ DROP TABLE IF EXISTS `post_comment`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `post_comment` (
   `postID` varchar(16) NOT NULL,
-  `userID` varchar(16) NOT NULL,
+  `commentID` int NOT NULL,
+  `userID` varchar(16) DEFAULT NULL,
   `comment` text,
   `date` datetime DEFAULT NULL,
   `like_count` int DEFAULT NULL,
-  PRIMARY KEY (`postID`,`userID`),
-  KEY `post_user_idx` (`userID`),
-  CONSTRAINT `post_comment` FOREIGN KEY (`postID`) REFERENCES `user_post` (`postID`),
-  CONSTRAINT `post_user` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
+  `deleted` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`postID`,`commentID`),
+  CONSTRAINT `post_comment` FOREIGN KEY (`postID`) REFERENCES `user_post` (`postID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -256,6 +271,7 @@ CREATE TABLE `post_comment` (
 
 LOCK TABLES `post_comment` WRITE;
 /*!40000 ALTER TABLE `post_comment` DISABLE KEYS */;
+INSERT INTO `post_comment` VALUES ('1',0,'1','Bạn thật xinh đẹp','2023-11-07 15:24:07',0,0);
 /*!40000 ALTER TABLE `post_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -391,7 +407,8 @@ CREATE TABLE `user_post` (
   `description` text,
   `datePosted` datetime DEFAULT NULL,
   `like_count` int DEFAULT NULL,
-  `comment_counts` int DEFAULT NULL,
+  `comment_count` int DEFAULT NULL,
+  `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`postID`),
   KEY `acc-post_idx` (`userID`),
   CONSTRAINT `acc-post` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
@@ -404,6 +421,7 @@ CREATE TABLE `user_post` (
 
 LOCK TABLES `user_post` WRITE;
 /*!40000 ALTER TABLE `user_post` DISABLE KEYS */;
+INSERT INTO `user_post` VALUES ('0','1','Dưới nắng rọi, hoa nở rộ đầy sân,\nGió nhẹ lay, cây lá xanh tươi thắm.\nTrong tĩnh lặng, lòng hòa mình với thiên nhiên,\nNhững đam mê, hạnh phúc như đang vẽ nên.\n\nSông rì rào, tiếng chim hát ca vui,\nTrải qua ngày, tâm hồn thêm sáng ngời.\nThế giới này, tuy nhỏ bé trong tay,\nNhưng nắng vàng, luôn ấm lòng mỗi ngày.','2023-11-07 14:45:51',0,0,0),('1','2','\nDưới bầu trời xanh vờn mây trắng\nLời thơ rơi nhẹ như hạt sương\nNgọn gió nhẹ, lá cây xanh tươi\nCảm xúc tràn đầy, lòng không buồn\n\nSông rì rào, tiếng sóng reo vui\nDưới bóng cây, tình yêu đẹp như tranh\nCuộc đời ngắn, hãy sống trọn vẹn\nBài thơ này, trái tim chúng ta tặng.','2023-11-07 14:47:42',0,2,0),('2','2','\"Chia sẻ với mọi người một ngày đẹp trời hôm nay! ? Thời tiết tại đây rất tốt, và tôi đang cảm thấy tràn đầy năng lượng. ? Cuối tuần này, tôi đã lên kế hoạch tham gia một cuộc dã ngoại với bạn bè, và tôi không thể đợi để thư giãn và tận hưởng thiên nhiên.\n\nNgoài ra, tôi đã bắt đầu đọc một cuốn sách tuyệt vời mới và tôi muốn chia sẻ nó với bạn. ? Cuốn này thật sự sâu sắc và thú vị!\n\nHy vọng mọi người cũng có một ngày tuyệt vời và chia sẻ những khoảnh khắc tươi đẹp trong cuộc sống của bạn. ❤️ #HạnhPhúc #CuộcSống #ThưGiãn #ĐọcSách\"','2023-11-07 14:48:17',0,0,0);
 /*!40000 ALTER TABLE `user_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,6 +432,28 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'mxh_01'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `addComment` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addComment`(cPostID varchar(16),cUserID varchar(16),cText text,cDate datetime)
+BEGIN
+	declare newCommentID int;
+    select count(commentID) into newCommentID from post_comment where postID = cPostID;
+	insert into post_comment values(cPostID,newCommentID,cUserID,cText,cDate,0,false);
+    update user_post set comment_counts=comment_counts+1 where postID = cPostID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `addFriend` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -458,6 +498,27 @@ BEGIN
 	END;
     END IF;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `createPost` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `createPost`(pUserID varchar(16),pDescription text,pDatePosted datetime)
+BEGIN
+	declare newPostID int;
+    select count(postID) into newPostID from user_post;
+	insert into user_post values(newPostID,pUserID,pDescription,pDatePosted,0,0,false);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -660,4 +721,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-30 14:35:10
+-- Dump completed on 2023-11-09 18:50:52
