@@ -1,7 +1,9 @@
 package com.doan.controller;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import jakarta.websocket.OnClose;
@@ -21,7 +23,6 @@ public class MessageWebSocket {
     private static List<Session> sessions = new ArrayList<Session>();
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("opened session: "+session.getId());
         sessions.add(session);
         
         String socketUserID = session.getRequestParameterMap().get("userID").get(0);
@@ -30,43 +31,48 @@ public class MessageWebSocket {
     
     @OnClose
     public void onClose(Session session) {
-        System.out.println("closed session: "+session.getId());
         sessions.remove(session);
     }
     
     @OnMessage
-    public void onMessage(String message, Session session) {
-        JsonObject messageJSON = JsonParser.parseString(message).getAsJsonObject();
+    public void onMessage(String message, Session session) { 
+        try {
+            JsonObject messageJSON = JsonParser.parseString(message).getAsJsonObject();
 
-        int chatID = Integer.parseInt(messageJSON.get("chatID").getAsString());
+            int chatID = Integer.parseInt(messageJSON.get("chatID").getAsString());
 
-        String textMessage = messageJSON.get("message").getAsString();        
+            String textMessage = messageJSON.get("message").getAsString();       
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy, h:mm:ss a");
+            Date parsedDate = dateFormat.parse(messageJSON.get("dateSent").getAsString());
+            Timestamp timestamp = new Timestamp(parsedDate.getTime());
 
-        Message userMsg = new Message(
-            messageJSON.get("userID").getAsString(),
-            -1,
-            textMessage,
-            Timestamp.valueOf(messageJSON.get("dateSent").getAsString())
-        );
-        sqlChatObject.sendMessage(chatID, userMsg);
-        
-        System.out.println(message);
+            Message userMsg = new Message(
+                messageJSON.get("userID").getAsString(),
+                -1,//msg index
+                textMessage,
+                timestamp
+            );
+            sqlChatObject.sendMessage(chatID, userMsg);
 
-        String sendUserID = session.getUserProperties().get("userID").toString();
-        List<String> friendIDs = sqlFriend.getFriendIDS(sqlFriend.getFriends(sendUserID),sendUserID);
 
-        for(Session otherSession : sessions){
-            for(String friendID : friendIDs){
-                if(otherSession.getUserProperties().get("userID").equals(friendID)){
-                    try{
-                        otherSession.getBasicRemote().sendText(message);
-                        System.out.println("sent message to "+otherSession.getId());
-                    }
-                    catch(Exception e){
-                        System.out.println(e);
+            String sendUserID = session.getUserProperties().get("userID").toString();
+            List<String> friendIDs = sqlFriend.getFriendIDS(sendUserID);
+
+            for(Session otherSession : sessions){
+                for(String friendID : friendIDs){
+                    if(otherSession.getUserProperties().get("userID").equals(friendID)){
+                        try{
+                            otherSession.getBasicRemote().sendText(message);
+                        }
+                        catch(Exception e){
+                            System.out.println(e);
+                        }
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

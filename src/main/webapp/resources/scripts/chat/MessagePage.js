@@ -10,8 +10,8 @@ function setupPage(){
     chatDisplayElement = document.querySelector("div.chat-display")
     friendPanelElement = document.querySelector("div.friend-panel-frame")
     //get friend details
-    const friendDataRequestURL = `DataRequest/FriendList`;
-    fetch(friendDataRequestURL)
+    const friendChatRequestURL = `ChatRequest/FriendList`;
+    fetch(friendChatRequestURL)
         .then(response => response.json())
         .then(fetchedFriendData =>{
             let friendData = fetchedFriendData[0]
@@ -24,10 +24,10 @@ function setupPage(){
 
                 const params = new URLSearchParams();
                 params.append('chatID', currentFriendData.chatID);
-                const messageDataRequestURL = `DataRequest/Messages?${params.toString()}`;
+                const messageChatRequestURL = `ChatRequest/Messages?${params.toString()}`;
 
 
-                fetch(messageDataRequestURL)
+                fetch(messageChatRequestURL)
                     .then(response => response.json())
                     .then(fetchedMessageData => {
                         for(messageIndex in fetchedMessageData){
@@ -54,6 +54,8 @@ function showChatFrame(chatID){
         if(index == chatID){
             messageBoxes[index].chatFrameElement.style.display = "flex"
             currentOpenChatID = messageBoxes[index].chatID
+
+            chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
         }
         else{
             messageBoxes[index].chatFrameElement.style.display = "none"
@@ -71,32 +73,18 @@ function sendMessage(){
             chatID : currentOpenChatID,
             userID : userAccountDetails.userID,
             message : textInputElement.value,
-            dateSent : getCurrentDate()
+            dateSent : getCurrentFormattedDate()
         }
-
-        console.log(messageBoxes[currentOpenChatID]);
-        console.log(message)
 
         textInputElement.value = ""
 
         messageBoxes[currentOpenChatID].addMessage(message)
+        
+        chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
 
         let messageStringJSON = JSON.stringify(message);
         messageSocket.send(messageStringJSON)
     }
-}
-
-function getCurrentDate() {
-    var date = new Date();
-
-    var year = date.getFullYear();
-    var month = (date.getMonth() + 1).toString().padStart(2, '0');
-    var day = date.getDate().toString().padStart(2, '0');
-    var hours = date.getHours().toString().padStart(2, '0');
-    var minutes = date.getMinutes().toString().padStart(2, '0');
-    var seconds = date.getSeconds().toString().padStart(2, '0');
-    
-    return year + "-"+month+"-"+day+" "+ hours + ":" + minutes + ":" + seconds;
 }
 
 function processIncomingMessage(event){
