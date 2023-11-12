@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.doan.model.*;
 
@@ -129,7 +131,7 @@ public class sqlFriend{
         List<AccountDetails> friends = new ArrayList<AccountDetails>();
         try {
             Connection connection = sqlConnect.connectToDB();
-            String sql = "SELECT ad.* FROM account_details ad JOIN friend f ON ad.userID = CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END WHERE f.userID1 = ? OR f.userID2 = ?";
+            String sql = "SELECT ad.* FROM account_details ad JOIN friend f ON ad.userID = CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END WHERE (f.userID1 = ? OR f.userID2 = ?) AND f.deleted = 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, userId);
@@ -137,7 +139,6 @@ public class sqlFriend{
             preparedStatement.setString(4, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
     
-            
             while (resultSet.next()) {
                 AccountDetails friend = new AccountDetails();
                 // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
@@ -161,6 +162,41 @@ public class sqlFriend{
         }
         return friends;
     }
+    // public static int getQuantityCommonFriend(String userID){
+    //     int countCommonFriend = 0;
+    //     try {
+    //         Connection connection = sqlConnect.connectToDB();
+    //         String sql = "SELECT COUNT(*) AS common_friends FROM friend WHERE (userID1 = ? AND userID2 = ?) OR (userID1 = ? AND userID2 = ?)";
+    //         PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    //         preparedStatement.setString(1, userId);
+    //         preparedStatement.setString(2, userId);
+    //         preparedStatement.setString(3, userId);
+    //         preparedStatement.setString(4, userId);
+    //         ResultSet resultSet = preparedStatement.executeQuery();
+    
+    //         while (resultSet.next()) {
+    //             AccountDetails friend = new AccountDetails();
+    //             // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
+    //             friend.setUserID(resultSet.getString("userID"));
+    //             friend.setFirstName(resultSet.getString("firstName"));
+    //             friend.setLastName(resultSet.getString("lastName"));
+    //             friend.setAddress(resultSet.getString("address"));
+    //             friend.setBirthDate(resultSet.getDate("birthDate"));
+    //             friend.setAvatar(resultSet.getString("avatarName"));
+    //             friend.setBackground(resultSet.getString("background"));
+    //             // Thêm friend vào danh sách
+    //             friends.add(friend);
+    //         }
+    
+    //         // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
+    //         resultSet.close();
+    //         preparedStatement.close();
+    //         connection.close();
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    //     return countCommonFriend;
+    // }
     
 
     public static List<FriendDetails> getFriendsDetails(String userID){
@@ -201,6 +237,32 @@ public class sqlFriend{
             friendIDs.add(friend.getUserID1().equals(userID)?friend.getUserID2():friend.getUserID1());
         }
         return friendIDs;
+    }
+    public static int countMatchingPairs(List<String> list1, List<String> list2) {
+        // Sử dụng Map để lưu trữ số lượng xuất hiện của từng phần tử trong danh sách 1
+        Map<String, Integer> countMap = new HashMap<>();
+        // Đếm số lượng xuất hiện của từng phần tử trong danh sách 1
+        for (String element : list1) {
+            countMap.put(element, countMap.getOrDefault(element, 0) + 1);
+        }
+        // Đếm số lượng cặp phần tử bằng nhau giữa danh sách 1 và danh sách 2
+        int matchingPairs = 0;
+        for (String element : list2) {
+            if (countMap.containsKey(element) && countMap.get(element) > 0) {
+                matchingPairs++;
+                countMap.put(element, countMap.get(element) - 1);
+            }
+        }
+        return matchingPairs;
+    }
+    public static int countEqualPairs(List<String> list1, List<String> list2) {
+        int count = 0;
+        for (String i : list1) {
+            if (list2.contains(i)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static void sendFriendRequest(String sendUserID,String receiveUserID){

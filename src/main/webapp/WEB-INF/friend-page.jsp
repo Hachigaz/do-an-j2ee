@@ -24,6 +24,10 @@
                 <div class="friend-list">
                     <div class="title col-md-12">
                         <span>Danh sách bạn bè</span>
+                        <form action="" class="search-section">
+                            <input type="text" class="search-friend" placeholder="Tìm kiếm bạn bè...">
+                            <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
                     </div>
                     <div class="wrapper-item">
                     
