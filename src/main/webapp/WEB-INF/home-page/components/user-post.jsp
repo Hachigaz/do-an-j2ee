@@ -1,41 +1,135 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
   <head>
     <link rel="stylesheet" href="resources/css/home/components/user-post/style.css" />
+    <% pageContext.setAttribute("newLineChar", "\n"); %> 
   </head>
   <body>
     <c:forEach var="postItem" items="${postItems}">
-      <div class="post-panel">
-        <div class="post-head">
-          <div class="author-wrapper">
+      <div class="post-item" id="post-item-${postItem.post.postID}">
+        <div class="post-panel">
+          <div class="post-head">
             <div class="user-icon-wrapper">
-              <img src="resources/img/userdata/${userDetails[postItem.userID].avatar}">
+              <img class="user-icon" src="resources/img/userdata/${userDetails[postItem.post.userID].avatar}">
             </div>
-            <div class="user-name">
-              ${userDetails[postItem.userID].firstName} ${userDetails[postItem.userID].lastName}
+            <div class="user-info-wrapper">
+              <div class="user-name">
+                ${userDetails[postItem.post.userID].firstName} ${userDetails[postItem.post.userID].lastName}
+              </div>
+              <div class="post-date">
+                ${postItem.fDatePosted}
+              </div>
             </div>
-            <div class="post-date">
-              ${postItem.datePosted}
+          </div>
+  
+          <div class="post-content">
+            <div class="post-text-wrapper">
+              <div class="post-text">
+                <c:set var="paragraphs" value="${fn:split(postItem.post.description,newLineChar)}"/>
+                <c:forEach var="para" items="${paragraphs}">
+                  <div class="post-text-para">    
+                    ${para}
+                  </div>
+                </c:forEach>
+              </div>
+              <br>
+              <div class="post-image-display">
+                <c:if test="${fn:length(postItem.images)>0}">
+                  <c:choose>
+                    <c:when test="${fn:length(postItem.images)==1}">
+                      <div class="post-image-item-large">
+                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                      </div>
+                    </c:when>
+                    <c:when test="${fn:length(postItem.images)==2}">
+                      <div class="post-image-item-small-wrapper">
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                        </div>
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                        </div>
+                      </div>
+                    </c:when>
+                    <c:when test="${fn:length(postItem.images)==3}">
+                      <div class="post-image-item-large">
+                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                      </div>
+                      <div class="post-image-item-small-wrapper">
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                        </div>
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[2].image}">
+                        </div>
+                      </div>
+                    </c:when>
+                    <c:when test="${fn:length(postItem.images)>3}">
+                      <div class="post-image-item-large">
+                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                      </div>
+                      <div class="post-image-item-small-wrapper">
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                        </div>
+                        <div class="post-image-item-small">
+                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[2].image}">
+                          <div class="image-overlay"></div>
+                        </div>
+                      </div>
+                    </c:when>
+                  </c:choose>
+                </c:if>
+              </div>
+            </div>
+          </div>
+  
+          <div class="post-end">
+            <div class="post-stat no-select">
+              <div class="like-count">
+                <div>
+                  ${postItem.post.likeCount}
+                </div>
+                <div class="stat-like-icon-wrapper">
+                  <img src="resources/img/web_img/home-page/like.png">
+                </div>
+                  
+              </div>
+              <div class="comment-count">
+                <div>
+                  ${postItem.post.commentCount}
+                </div>
+                <div class="stat-like-icon-wrapper">
+                  <img src="resources/img/web_img/home-page/comment.png">
+                </div>
+              </div>
+            </div>
+            <div class="post-options">
+              <div class="option-button-wrapper no-select" onclick="processLike('${postItem.post.postID}',this)">
+                <div class="option-icon-wrapper">
+                  <img src="resources/img/web_img/home-page/like.png">
+                </div>
+                <div class="option-name">
+                  Thích
+                </div>
+              </div>
+              <div class="option-button-wrapper no-select" onclick="processComment('${postItem.post.postID}')">
+                <div class="option-icon-wrapper">
+                  <img src="resources/img/web_img/home-page/comment.png">
+                </div>
+                <div class="option-name">
+                  Bình luận
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="comment-section" id="comment-section-${postItem.post.postID}">
 
-        <div class="post-content">
-            <div class="post-text">
-              ${postItem.description}
-            </div>
-            <div class="post-images">
-              <!-- hinh anh bai viet -->
-            </div>
-        </div>
-
-        <div class="post-end">
-          <!-- like comment subrise -->
-          <c:import url="/WEB-INF/home-page/components/comment-section.jsp">
-              <c:param name="itemValue" value="${item}"/>
-          </c:import>
         </div>
       </div>
     </c:forEach>

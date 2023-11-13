@@ -57,7 +57,7 @@ public class UserPost {
         this.commentCount = commentCount;
     }
     
-    static class PostImage{
+    public static class PostImage{
         private String postID;
         private int index;
         private String image;
@@ -86,12 +86,14 @@ public class UserPost {
         }
     }
 
-    static class PostData{
+    public static class PostData{
         private UserPost post;
+        private String fDatePosted;
         private List<PostImage> images;
-        
-        public PostData(UserPost post, List<PostImage> images) {
+
+        public PostData(UserPost post, String fDatePosted, List<PostImage> images) {
             this.post = post;
+            this.fDatePosted = fDatePosted;
             this.images = images;
         }
 
@@ -106,6 +108,12 @@ public class UserPost {
         }
         public void setImages(List<PostImage> images) {
             this.images = images;
+        }
+        public String getfDatePosted() {
+            return fDatePosted;
+        }
+        public void setfDatePosted(String fDatePosted) {
+            this.fDatePosted = fDatePosted;
         }
         
     }

@@ -33,5 +33,13 @@ function getCurrentFormattedDate() {
 }
 
 function convertToSQLDate(date){
-    return date.getFullYear() + "-"+date.getMonth()+"-"+date.getDate()+" "+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    return date.getFullYear() + "-"+(date.getMonth()+1)+"-"+date.getDate()+" "+ date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+}
+
+function convertToJSDate(datetimeString){
+    const [datePart, timePart] = datetimeString.split(' ');
+    const [year, month, day] = datePart.split('-');
+    const [hour, minute, second] = timePart.split(':');
+    
+    return new Date(year, month - 1, day, hour, minute, second);
 }

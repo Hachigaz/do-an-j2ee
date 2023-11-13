@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `mxh_01` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `mxh_01`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: mxh_01
@@ -38,7 +40,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('1','testacc1','test@gmail.com','123'),('10','testacc10','test10@gmail.com','123'),('11','testacc11','test11@gmail.com','123'),('12','testacc12','test12@gmail.com','123'),('13','testacc13','test13@gmail.com','123'),('14','testacc14','test14@gmail.com','123'),('15','testacc15','test15@gmail.com','123'),('16','testacc16','test16@gmail.com','123'),('17','testacc17','test17@gmail.com','123'),('18','testacc18','test18@gmail.com','123'),('19','testacc19','test19@gmail.com','123'),('2','testacc2','test@gmail.com','123'),('20','testacc20','test20@gmail.com','123'),('21','testacc21','test21@gmail.com','123'),('22','testacc22','test22@gmail.com','123'),('23','testacc23','test23@gmail.com','123'),('24','therock','rock.123@gmail.com','rock123'),('3','testacc3','test@gmail.com','123'),('4','testacc4','test4@gmail.com','123'),('5','testacc5','test5@gmail.com','123'),('6','testacc6','test6@gmail.com','123'),('7','testacc7','test7@gmail.com','123'),('8','testacc8','test8@gmail.com','123'),('9','testacc9','test9@gmail.com','123');
+INSERT INTO `account` VALUES ('0','testacc0','test0@gmail.com','123'),('1','testacc1','test@gmail.com','123'),('10','testacc10','test10@gmail.com','123'),('11','testacc11','test11@gmail.com','123'),('12','testacc12','test12@gmail.com','123'),('13','testacc13','test13@gmail.com','123'),('14','testacc14','test14@gmail.com','123'),('15','testacc15','test15@gmail.com','123'),('16','testacc16','test16@gmail.com','123'),('17','testacc17','test17@gmail.com','123'),('18','testacc18','test18@gmail.com','123'),('19','testacc19','test19@gmail.com','123'),('2','testacc2','test@gmail.com','123'),('20','testacc20','test20@gmail.com','123'),('21','testacc21','test21@gmail.com','123'),('22','testacc22','test22@gmail.com','123'),('23','testacc23','test23@gmail.com','123'),('24','therock','rock.123@gmail.com','rock123'),('3','testacc3','test@gmail.com','123'),('4','testacc4','test4@gmail.com','123'),('5','testacc5','test5@gmail.com','123'),('6','testacc6','test6@gmail.com','123'),('7','testacc7','test7@gmail.com','123'),('8','testacc8','test8@gmail.com','123'),('9','testacc9','test9@gmail.com','123');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -69,7 +71,7 @@ CREATE TABLE `account_details` (
 
 LOCK TABLES `account_details` WRITE;
 /*!40000 ALTER TABLE `account_details` DISABLE KEYS */;
-INSERT INTO `account_details` VALUES ('1','Jim','Danger','290 THD','1995-12-12','jim_avt.png','jim_bck.jfif',5),('10','Grace','Anderson','555 Birch St','1991-06-18','grace_avatar.png','grace_bck.jpg',0),('11','Henry','Martinez','777 Redwood St','1986-07-12','henry_avatar.png','henry_bck.jpg',0),('12','Isabella','Taylor','888 Sequoia St','1989-09-05','isabella_avatar.png','isabella_bck.jpg',0),('13','Jack','Moore','999 Willow St','1994-04-08','jack_avatar.png','jack_bck.jpg',0),('14','Katherine','White','111 Cedar St','1984-11-28','katherine_avatar.png','katherine_bck.jpg',0),('15','Liam','Hall','222 Elm St','1993-07-30','liam_avatar.png','liam_bck.jpg',0),('16','Mia','Jackson','333 Pine St','1988-01-10','mia_avatar.png','mia_bck.jpg',0),('17','Noah','Miller','444 Oak St','1996-02-22','noah_avatar.png','noah_bck.jpg',0),('18','Olivia','Brown','666 Maple St','1982-04-15','olivia_avatar.png','olivia_bck.jpg',0),('19','Paul','Garcia','777 Redwood St','1997-09-02','paul_avatar.png','paul_bck.jpg',0),('2','Martin','Lunatic','639 BHN','1992-10-30','martin_avt.png','martin_bck.jpg',2),('20','Quinn','Harris','999 Sequoia St','1981-12-12','quinn_avatar.png','quinn_bck.jpg',0),('21','Ryan','Clark','123 Birch St','1998-08-18','ryan_avatar.png','ryan_bck.jpg',0),('22','Sophia','Turner','456 Willow St','1980-05-25','sophia_avatar.png','sophia_bck.jpg',0),('23','Tyler','Walker','789 Cedar St','1999-03-08','tyler_avatar.png','tyler_bck.jpg',0),('24','The','Rock Man','200 Bekela','1975-04-30','therock.png','therock.jpg',0),('3','Smith','Black','401 NVC','1998-01-20','smith_avt.png','smith_bck.jpg',2),('4','Alice','Johnson','123 Main St','1990-05-15','alice_avatar.png','alice_bck.jpg',2),('5','Bob','Smith','456 Elm St','1985-08-20','bob_avatar.png','bob_bck.jpg',1),('6','Charlie','Brown','789 Oak St','1992-02-10','charlie_avatar.png','charlie_bck.jpg',0),('7','David','Davis','101 Pine St','1987-10-05','david_avatar.png','david_bck.jpg',0),('8','Eva','Williams','246 Cedar St','1995-03-25','eva_avatar.png','eva_bck.jpg',0),('9','Frank','Wilson','369 Maple St','1983-12-30','frank_avatar.png','frank_bck.jpg',0);
+INSERT INTO `account_details` VALUES ('0','Michael','Brown','200 THG','1880-10-10','cat-d.png','rock-d.jfif',1),('1','Jim','Danger','290 THD','1995-12-12','jim_avt.png','jim_bck.jfif',10),('10','Grace','Anderson','555 Birch St','1991-06-18','grace_avatar.png','grace_bck.jpg',0),('11','Henry','Martinez','777 Redwood St','1986-07-12','henry_avatar.png','henry_bck.jpg',0),('12','Isabella','Taylor','888 Sequoia St','1989-09-05','isabella_avatar.png','isabella_bck.jpg',0),('13','Jack','Moore','999 Willow St','1994-04-08','jack_avatar.png','jack_bck.jpg',0),('14','Katherine','White','111 Cedar St','1984-11-28','katherine_avatar.png','katherine_bck.jpg',0),('15','Liam','Hall','222 Elm St','1993-07-30','liam_avatar.png','liam_bck.jpg',0),('16','Mia','Jackson','333 Pine St','1988-01-10','mia_avatar.png','mia_bck.jpg',0),('17','Noah','Miller','444 Oak St','1996-02-22','noah_avatar.png','noah_bck.jpg',0),('18','Olivia','Brown','666 Maple St','1982-04-15','olivia_avatar.png','olivia_bck.jpg',0),('19','Paul','Garcia','777 Redwood St','1997-09-02','paul_avatar.png','paul_bck.jpg',0),('2','Martin','Lunatic','639 BHN','1992-10-30','martin_avt.png','martin_bck.jpg',8),('20','Quinn','Harris','999 Sequoia St','1981-12-12','quinn_avatar.png','quinn_bck.jpg',0),('21','Ryan','Clark','123 Birch St','1998-08-18','ryan_avatar.png','ryan_bck.jpg',0),('22','Sophia','Turner','456 Willow St','1980-05-25','sophia_avatar.png','sophia_bck.jpg',0),('23','Tyler','Walker','789 Cedar St','1999-03-08','tyler_avatar.png','tyler_bck.jpg',0),('24','The','Rock Man','200 Bekela','1975-04-30','therock.png','therock.jpg',0),('3','Smith','Black','401 NVC','1998-01-20','smith_avt.png','smith_bck.jpg',8),('4','Alice','Johnson','123 Main St','1990-05-15','alice_avatar.png','alice_bck.jpg',4),('5','Bob','Smith','456 Elm St','1985-08-20','bob_avatar.png','bob_bck.jpg',3),('6','Charlie','Brown','789 Oak St','1992-02-10','charlie_avatar.png','charlie_bck.jpg',3),('7','David','Davis','101 Pine St','1987-10-05','david_avatar.png','david_bck.jpg',3),('8','Eva','Williams','246 Cedar St','1995-03-25','eva_avatar.png','eva_bck.jpg',3),('9','Frank','Wilson','369 Maple St','1983-12-30','frank_avatar.png','frank_bck.jpg',3);
 /*!40000 ALTER TABLE `account_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +95,7 @@ CREATE TABLE `chat` (
 
 LOCK TABLES `chat` WRITE;
 /*!40000 ALTER TABLE `chat` DISABLE KEYS */;
-INSERT INTO `chat` VALUES (0,26),(1,2),(2,1),(3,0),(4,0),(5,0);
+INSERT INTO `chat` VALUES (0,20),(1,2),(2,1),(3,0),(4,0),(5,0),(6,0),(7,0),(8,0),(9,0),(10,0),(11,0),(12,0),(13,0),(14,0),(15,0),(16,0),(17,0),(18,0),(19,0),(20,0),(21,0),(22,0);
 /*!40000 ALTER TABLE `chat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +122,7 @@ CREATE TABLE `chat_users` (
 
 LOCK TABLES `chat_users` WRITE;
 /*!40000 ALTER TABLE `chat_users` DISABLE KEYS */;
-INSERT INTO `chat_users` VALUES (0,'1'),(1,'1'),(3,'1'),(4,'1'),(5,'1'),(0,'2'),(2,'2'),(1,'3'),(2,'3'),(3,'4'),(4,'4'),(5,'5');
+INSERT INTO `chat_users` VALUES (6,'0'),(0,'1'),(1,'1'),(3,'1'),(4,'1'),(5,'1'),(6,'1'),(11,'1'),(12,'1'),(13,'1'),(14,'1'),(0,'2'),(2,'2'),(7,'2'),(8,'2'),(15,'2'),(16,'2'),(17,'2'),(18,'2'),(1,'3'),(2,'3'),(9,'3'),(10,'3'),(19,'3'),(20,'3'),(21,'3'),(22,'3'),(3,'4'),(4,'4'),(7,'4'),(9,'4'),(5,'5'),(8,'5'),(10,'5'),(11,'6'),(15,'6'),(19,'6'),(12,'7'),(16,'7'),(20,'7'),(13,'8'),(17,'8'),(21,'8'),(14,'9'),(18,'9'),(22,'9');
 /*!40000 ALTER TABLE `chat_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +152,7 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
-INSERT INTO `friend` VALUES ('1','2',0,0),('1','3',1,0),('1','4',4,0),('1','5',5,0),('2','3',2,0);
+INSERT INTO `friend` VALUES ('1','2',0,0),('1','3',1,0),('1','4',4,0),('1','5',5,0),('1','6',11,0),('1','7',12,0),('1','8',13,0),('1','9',14,0),('2','3',2,0),('2','4',7,0),('2','5',8,0),('2','6',15,0),('2','7',16,0),('2','8',17,0),('2','9',18,0),('3','4',9,0),('3','5',10,0),('3','6',19,0),('3','7',20,0),('3','8',21,0),('3','9',22,0);
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +209,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',3,'123','2023-11-01 23:14:19',0),(0,'2',4,'123','2023-11-01 23:15:32',0),(0,'1',5,'ok','2023-11-01 23:18:08',0),(0,'2',6,'ok ko','2023-11-01 23:18:30',0),(0,'2',7,'ok','2023-11-01 23:18:42',0),(0,'2',8,'ok','2023-11-01 23:19:44',0),(0,'2',9,'đẹp','2023-11-01 23:19:52',0),(0,'1',10,'đẹp z','2023-11-01 23:20:44',0),(0,'2',11,'đu đủ','2023-11-01 23:20:53',0),(0,'2',12,'what','2023-11-02 16:52:30',0),(0,'2',13,'ok','2023-11-02 16:53:51',0),(0,'2',14,'ok','2023-11-02 16:55:58',0),(0,'1',15,'helo','2023-11-02 16:56:05',0),(0,'1',16,'ok','2023-11-03 08:32:19',0),(0,'2',17,'ok','2023-11-03 08:32:29',0),(0,'1',18,'123','2023-11-07 13:41:37',0),(0,'1',19,'123','2023-11-07 19:48:00',0),(0,'1',20,'okok','2023-11-07 19:48:11',0),(0,'2',21,'123','2023-11-07 19:49:10',0),(0,'2',22,'123','2023-11-07 21:00:27',0),(0,'2',23,'In this code, we use a SimpleDateFormat with the pattern \"MMM d, yyyy, h:mm:ss a\" to match the date and time format of your input string. Then, we parse the input string into a Date object using dateFormat.parse(dateString). Finally, we create a Timestamp object from the parsed Date object to represent the same date and time as in the input string.','2023-11-07 21:01:34',0),(0,'1',24,'In this example, we first create a Date object with the specified date and time (November 7, 2023, 19:48:11). Then, we convert the Date object to a Timestamp object using the getTime() method, which returns the number of milliseconds since January 1, 1970, which is used as the underlying value for the Timestamp object.','2023-11-07 21:01:55',0),(0,'1',25,'123','2023-11-08 15:51:23',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(2,'3',0,'123','2023-10-17 14:10:11',0);
+INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',3,'123','2023-11-01 23:14:19',0),(0,'2',4,'123','2023-11-01 23:15:32',0),(0,'1',5,'ok','2023-11-01 23:18:08',0),(0,'2',6,'ok ko','2023-11-01 23:18:30',0),(0,'2',7,'ok','2023-11-01 23:18:42',0),(0,'2',8,'ok','2023-11-01 23:19:44',0),(0,'2',9,'đẹp','2023-11-01 23:19:52',0),(0,'1',10,'đẹp z','2023-11-01 23:20:44',0),(0,'2',11,'đu đủ','2023-11-01 23:20:53',0),(0,'2',12,'what','2023-11-02 16:52:30',0),(0,'2',13,'ok','2023-11-02 16:53:51',0),(0,'2',14,'ok','2023-11-02 16:55:58',0),(0,'1',15,'helo','2023-11-02 16:56:05',0),(0,'1',16,'asd','2023-11-13 07:54:09',0),(0,'1',17,'asd','2023-11-13 07:54:14',0),(0,'1',18,'qwre','2023-11-13 07:54:19',0),(0,'1',19,'asdasdsaodkasodkasokdoaksdkaokdaoskdoaskdoaskdoaskdokasodkasodkaso','2023-11-13 07:55:46',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(2,'3',0,'123','2023-10-17 14:10:11',0);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -331,6 +333,7 @@ CREATE TABLE `post_image` (
 
 LOCK TABLES `post_image` WRITE;
 /*!40000 ALTER TABLE `post_image` DISABLE KEYS */;
+INSERT INTO `post_image` VALUES ('0',0,'my-tree.jpg'),('0',1,'blue-beach.jfif'),('0',2,'camelia.jpg'),('0',3,'vgarden.jpg'),('1',0,'beach-hotel.jpg');
 /*!40000 ALTER TABLE `post_image` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,6 +507,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `addPostImage` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addPostImage`(pPostID varchar(16), pImagePath varchar(256))
+BEGIN
+	declare newImageIndex int;
+    select count(post_image.index) into newImageIndex from post_image where postID = pPostID;
+    insert into post_image values(pPostID,newImageIndex,pImagePath);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `createPost` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -571,6 +595,52 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getMutualCount` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getMutualCount`(fUserID1 varchar(16), fUserID2 varchar(16))
+BEGIN
+	select count(f1.userID1) from friend f1 join friend f2 on 
+		(f1.userID1 = f2.userID1 AND ((f1.userID2 = fUserID1 AND f2.userID2 = fUserID2) OR (f1.userID2 = fUserID2 AND f2.userID2 = fUserID1)))  or 
+		(f1.userID2 = f2.userID2 AND ((f1.userID1 = fUserID1 AND f2.userID1 = fUserID2) OR (f1.userID1 = fUserID2 AND f2.userID1 = fUserID1)))  or 
+		(f1.userID1 = f2.userID2 AND ((f1.userID1 = fUserID1 AND f2.userID2 = fUserID2) OR (f1.userID1 = fUserID2 AND f2.userID2 = fUserID1)))  or 
+		(f1.userID2 = f2.userID1 AND ((f1.userID2 = fUserID1 AND f2.userID1 = fUserID2) OR (f1.userID2 = fUserID2 AND f2.userID1 = fUserID1)));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `getMutualFriends` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getMutualFriends`(fUserID1 varchar(16), fUserID2 varchar(16))
+BEGIN
+	select * from friend f1 join friend f2 on 
+		(f1.userID1 = f2.userID1 AND ((f1.userID2 = fUserID1 AND f2.userID2 = fUserID2) OR (f1.userID2 = fUserID2 AND f2.userID2 = fUserID1)))  or 
+		(f1.userID2 = f2.userID2 AND ((f1.userID1 = fUserID1 AND f2.userID1 = fUserID2) OR (f1.userID1 = fUserID2 AND f2.userID1 = fUserID1)))  or 
+		(f1.userID1 = f2.userID2 AND ((f1.userID1 = fUserID1 AND f2.userID2 = fUserID2) OR (f1.userID1 = fUserID2 AND f2.userID2 = fUserID1)))  or 
+		(f1.userID2 = f2.userID1 AND ((f1.userID2 = fUserID1 AND f2.userID1 = fUserID2) OR (f1.userID2 = fUserID2 AND f2.userID1 = fUserID1)));
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `processFriendRequest` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -617,6 +687,32 @@ BEGIN
     else begin
 		signal sqlstate '45000'
         set message_text = 'Cannot send request: User friend have already existed';
+    end;
+    end if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `process_like_post` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `process_like_post`(lPostID varchar(16), lUserID varchar(16))
+BEGIN
+	if(not exists(select * from post_like where postID = lPostID and userID=lUserID))
+    then begin
+		insert into post_like values(lPostID,lUserID);
+    end;
+    else begin
+		delete from post_like where postID = lPostID and userID = lUserID;
     end;
     end if;
 END ;;
@@ -721,4 +817,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09 18:50:52
+-- Dump completed on 2023-11-13  8:56:03

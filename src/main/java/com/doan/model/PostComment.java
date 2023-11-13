@@ -53,4 +53,9 @@ public class PostComment {
     public void setLikeCount(int likeCount) {
         this.likeCount = likeCount;
     }
+
+    public static class PostCommentData{
+        AccountDetails userDetails;
+        PostComment comment;
+    }
 }

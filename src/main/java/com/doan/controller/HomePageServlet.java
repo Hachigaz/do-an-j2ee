@@ -1,14 +1,16 @@
 package com.doan.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.doan.model.Account;
 import com.doan.model.AccountDetails;
 import com.doan.model.UserPost;
+import com.doan.model.UserPost.PostData;
+import com.doan.model.UserPost.PostImage;
 import com.doan.model.sql.sqlAccountDetails;
 import com.doan.model.sql.sqlFriend;
 import com.doan.model.sql.sqlPost;
@@ -25,7 +27,8 @@ import jakarta.servlet.http.HttpSession;
     name="home-page",
     value={
         "/home-page",
-        "/Post/GetPosts"
+        "/Post/GetPosts",
+        "/Post/GetComments"
     })
 public class HomePageServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -37,6 +40,9 @@ public class HomePageServlet extends HttpServlet{
             uri.replace("/Post","");
             if(uri.contains("/GetPosts")){
                 getUserPosts(request, response);
+            }
+            if(uri.contains("/GetComments")){
+                GetCommentsFromPost(request,response);
             }
         }
     }
@@ -50,8 +56,8 @@ public class HomePageServlet extends HttpServlet{
     }
 
     private void getUserPosts(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        Timestamp start = Timestamp.valueOf(request.getParameter("startDate"));
-        Timestamp end = Timestamp.valueOf(request.getParameter("endDate"));
+        int postCount = Integer.parseInt(request.getParameter("postCount").toString());
+        Timestamp endDate = Timestamp.valueOf(request.getParameter("endDate"));
         
         HttpSession session = request.getSession();
         String loggedInUser = session.getAttribute("loggedInID").toString();
@@ -71,13 +77,36 @@ public class HomePageServlet extends HttpServlet{
 
         friendIDs.add(loggedInUser);
 
-        List<UserPost> posts = sqlPost.getPostsWithin(start, end, friendIDs);
+        List<UserPost> posts = sqlPost.getPostsByDate(endDate, postCount, friendIDs);
+        List<PostData> postDatas = new ArrayList<PostData>();
+        for(UserPost post:posts){
+            List<PostImage> attachedImages = sqlPost.getAttachedImageFromPost(post.getPostID());
 
-        request.setAttribute("postItems", posts);
+            String formattedDate = post.getDatePosted().toString();
+            try{
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMM d, yyyy, h:mm:ss a");
+
+                java.util.Date date = inputFormat.parse(post.getDatePosted().toString());
+                formattedDate = outputFormat.format(date);
+
+
+            }
+            catch(Exception e){
+                System.err.println(e.getMessage());
+            }
+            postDatas.add(new PostData(post, formattedDate, attachedImages));
+        }
+        request.setAttribute("postItems", postDatas);
 
         
         response.setContentType("text/html");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home-page/components/user-post.jsp");
         dispatcher.forward(request, response);
+    }
+
+    public void GetCommentsFromPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        int postCount = Integer.parseInt(request.getParameter("postCount").toString());
+        Timestamp endDate = Timestamp.valueOf(request.getParameter("endDate"));
     }
 }

@@ -14,7 +14,7 @@
         <title>Document</title>
     </head>
     <body>
-        <%@ include file="components/header.jsp" %>
+        <%@ include file="components/header/header.jsp" %>
         <div class="mt-20"></div>
         <div class="wrapper">
             <div class="menu">

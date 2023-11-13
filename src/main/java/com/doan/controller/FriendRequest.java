@@ -28,8 +28,6 @@ public class FriendRequest extends HttpServlet{
             getFriendList(req,resp);
         }else if(uri.contains("FriendDetails")){
             getFriendsDetails(req,resp);
-        }else if(uri.contains("CountCommonFriend")){
-            getQuantityCommonFriend(req, resp);
         }
         
     }
@@ -49,25 +47,6 @@ public class FriendRequest extends HttpServlet{
 
         List<AccountDetails> accountDetails = sqlFriend.getAllFriendAccountDetails(userID);
         String list = new Gson().toJson(accountDetails);
-        resp.setContentType("application/json");
-        PrintWriter out = resp.getWriter();
-        out.println(list);
-    }
-    private void getQuantityCommonFriend(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-        HttpSession session = req.getSession();
-        String userID = session.getAttribute("loggedInID").toString();
-
-        List<String> listCurrentAccount = sqlFriend.getFriendIDS(sqlFriend.getFriends(userID), userID);
-        ArrayList<ArrayList<String>> commonFriendList = new ArrayList<>();
-        for(int i=0;i<listCurrentAccount.size();i++){
-            List<String> listCountFriend = sqlFriend.getFriendIDS(sqlFriend.getFriends(listCurrentAccount.get(i)), listCurrentAccount.get(i));
-            int countCommonFriend = sqlFriend.countEqualPairs(listCurrentAccount, listCountFriend);
-            ArrayList<String> commonFriend = new ArrayList<>();
-            commonFriend.add(listCurrentAccount.get(i));
-            commonFriend.add(Integer.toString(countCommonFriend));
-            commonFriendList.add(commonFriend);
-        }
-        String list = new Gson().toJson(commonFriendList);
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         out.println(list);
