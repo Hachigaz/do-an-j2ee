@@ -15,14 +15,14 @@
 .wrapper{
     width: 100%;
     height: 100vh;
-    background-color: #f7f7f7;
+    background-color: #b6d8eb;
     display: flex;
     font-family: monospace;
 }
 .mt-20{
     height: 20px;
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #b6d8eb;
 }
 .wrapper .menu{
     height: 100%;
@@ -96,7 +96,7 @@
     height: 210px;
     padding: 10px;
     margin: 15px;
-    border-radius: 5px;
+    border-radius: 6px;
     text-align: center;
 }
 .friend-list .item .avatar{
@@ -120,15 +120,28 @@
     font-size: 13px;
     padding: 5px 0;
 }
+.friend-list .wrapper-item .status-wrapper{
+    width: 60%;
+    height: 30px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.friend-list .wrapper-item .status-wrapper i{
+    position: absolute;
+    top: 85%;
+    right: 10px;
+    color: #fff;
+}
 .friend-list .wrapper-item .status{
-    background-color: #0055ff;
+    background-color: #10d876;
     color: #fff;
     height: 30px;
     font-size: 16px;
-    width: 60%;
+    width: 100%;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px auto 0;
+    margin: 20px auto;
 }

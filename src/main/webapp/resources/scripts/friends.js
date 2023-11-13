@@ -18,14 +18,17 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 userFullname.classList.add("user-name");
                 userFullname.textContent = data[user].firstName+" "+data[user].lastName;
                 item.appendChild(userFullname); 
-                var commonFriends = document.createElement("div");
-                commonFriends.classList.add("common-friend") 
-                commonFriends.textContent = "105 bạn chung";
-                item.appendChild(commonFriends);
                 var relationship = document.createElement("div");
                 relationship.classList.add("status");
                 relationship.textContent = "Bạn bè";
-                item.appendChild(relationship);
+                var statusWrapper = document.createElement("div");
+                statusWrapper.classList.add("status-wrapper");
+                statusWrapper.appendChild(relationship);
+                var caretIcon = document.createElement("i");
+                caretIcon.classList.add("fa-solid");
+                caretIcon.classList.add("fa-caret-down");
+                statusWrapper.appendChild(caretIcon);
+                item.appendChild(statusWrapper);
             }   
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
