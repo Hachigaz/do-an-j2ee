@@ -57,30 +57,45 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 dropdown_list.appendChild(dropdown_item_chat);
                 statusWrapper.appendChild(dropdown_list);
             }   
+            const dropdownSelects = document.querySelectorAll(".dropdown-select");
+            Array.from(dropdownSelects).forEach(function(item){
+                item.addEventListener("click",function(){
+                var dropdown = item.querySelector(".dropdown-list");
+                var caret = item.querySelector(".dropdown-caret");
+                dropdown.classList.toggle("show");
+                caret.classList.toggle("fa-caret-down");
+                caret.classList.toggle("fa-caret-up");
+                });
+            });
+
+            document.addEventListener("click", function(e){
+                Array.from(dropdownSelects).forEach(function(item){
+                if(!item.contains(e.target)){
+                    var dropdown = item.querySelector(".dropdown-list");
+                    var caret = item.querySelector(".dropdown-caret");
+                    dropdown.classList.remove("show");
+                    caret.classList.add("fa-caret-down");
+                    caret.classList.remove("fa-caret-up");
+                }
+                });
+            });
+            const title_friend_list = document.querySelector(".title-friend-list");
+            const title_friend_suggest = document.querySelector(".title-friend-suggest");
+            const friend_list = document.querySelector(".friend-list");
+            const friend_suggest = document.querySelector(".friend-suggest");
+
+            title_friend_list.addEventListener("click", function(){
+                title_friend_list.style.backgroundColor = "#dadada";
+                title_friend_suggest.style.backgroundColor = "transparent";
+                friend_list.style.display = "flex";
+                friend_suggest.style.display = "none";
+            });
+            title_friend_suggest.addEventListener("click", function(){
+                title_friend_suggest.style.backgroundColor = "#dadada";
+                title_friend_list.style.backgroundColor = "transparent";
+                friend_suggest.style.display = "flex";
+                friend_list.style.display = "none";
+            });
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
 
-const dropdownSelects = document.querySelectorAll(".dropdown-select");
-const dropdownList = document.querySelector(".dropdown-list");
-const dropdownItems = document.querySelector(".dropdown-item");
-const dropdownCaret = document.querySelector(".dropdown-caret");
-
-// dropdownSelect.addEventListener("click", function(){
-//     dropdownList.classList.toggle("show");
-//     dropdownCaret.classList.toggle("fa-caret-down");
-//     dropdownCaret.classList.toggle("fa-caret-up");
-// });
-dropdownSelects.forEach(function(item){
-    item.addEventListener("click", function(){
-        dropdownList.classList.toggle("show");
-        dropdownCaret.classList.toggle("fa-caret-down");
-        dropdownCaret.classList.toggle("fa-caret-up");
-    })
-});
-document.addEventListener("click", function(e){
-    if(!dropdownSelects.contains(e.target)){
-        dropdownList.classList.remove("show");
-        dropdownCaret.classList.add("fa-caret-down");
-        dropdownCaret.classList.remove("fa-caret-up");
-    }
-});

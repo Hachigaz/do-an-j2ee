@@ -27,11 +27,12 @@
 .wrapper .menu{
     height: 100%;
     width: 300px ;
-    background-color: #fff;
+    background-color: transparent;
 }
 .wrapper .friend-wrapper{
     width: 80%;
 }
+.wrapper .friend-wrapper .friend-suggest,
 .wrapper .friend-wrapper .friend-list{
     height: 100%;
     padding: 0 130px;
@@ -42,10 +43,15 @@
 .wrapper-item{
     width: 100%;
 }
-.menu .title{
-    font-size: 30px;
+.menu .title-friend-suggest,
+.menu .title-friend-list{
+    font-size: 25px;
     font-weight: 800;
     text-align: center;
+    transition: 0.25s;
+    cursor: pointer;
+    padding: 20px 0;
+    border-bottom: 1px solid #fff;
 }
 .wrapper .friend-wrapper .title{
     width: calc(100% - 35px);
@@ -170,8 +176,10 @@
 .dropdown-list .dropdown-item:hover{
     background-color: #e4e4e4;
 }
+.dropdown-list .dropdown-item .chat-icon,
 .dropdown-list .dropdown-item .unfriend-icon{
     width: 20px;
     height: 20px;
     margin-left: 5px;
+    display: inline;
 }
