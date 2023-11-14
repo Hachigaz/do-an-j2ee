@@ -55,7 +55,34 @@ public class PostComment {
     }
 
     public static class PostCommentData{
-        AccountDetails userDetails;
-        PostComment comment;
+        private AccountDetails userDetails;
+        private PostComment comment;
+        boolean isLikedByUser;
+
+        public PostCommentData(AccountDetails userDetails, PostComment comment, boolean isLikedByUser) {
+            this.userDetails = userDetails;
+            this.comment = comment;
+            this.isLikedByUser = isLikedByUser;
+        }
+        
+        public AccountDetails getUserDetails() {
+            return userDetails;
+        }
+        public void setUserDetails(AccountDetails userDetails) {
+            this.userDetails = userDetails;
+        }
+        public PostComment getComment() {
+            return comment;
+        }
+        public void setComment(PostComment comment) {
+            this.comment = comment;
+        }
+        public boolean getIsLikedByUser() {
+            return isLikedByUser;
+        }
+        public void setLikeByUser(boolean isLikedByUser) {
+            this.isLikedByUser = isLikedByUser;
+        }
+
     }
 }

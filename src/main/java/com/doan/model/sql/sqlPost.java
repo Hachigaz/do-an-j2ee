@@ -117,7 +117,7 @@ public class sqlPost {
 
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                comments.add(new PostComment(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getTimestamp(4),rs.getInt(5)));
+                comments.add(new PostComment(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5),rs.getInt(6)));
             }
         }
         catch(Exception e){
@@ -125,6 +125,7 @@ public class sqlPost {
         }
         return comments;
     }
+
     public static List<PostComment> getCommentsFromPostByCount(String postID, int count, Timestamp lastTime){
         List<PostComment> comments = new ArrayList<PostComment>();
         try{
@@ -140,7 +141,7 @@ public class sqlPost {
 
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                comments.add(new PostComment(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getTimestamp(4),rs.getInt(5)));
+                comments.add(new PostComment(rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getTimestamp(5),rs.getInt(6)));
             }
         }
         catch(Exception e){
@@ -148,7 +149,6 @@ public class sqlPost {
         }
         return comments;
     }
-
 
     public static List<PostImage> getAttachedImageFromPost(String postID){
         List<PostImage> attachedImage = new ArrayList<PostImage>();
@@ -167,5 +167,98 @@ public class sqlPost {
             System.err.println(e.getMessage());
         }
         return attachedImage;
+    }
+
+    public static void likePost(String postID, String userID){
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "CALL processLikePost(?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, postID);            
+            statement.setString(2, userID);
+
+            statement.execute();
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void likeComment(String postID, int commentID, String userID){
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "CALL processLikeComment(?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, postID);
+            statement.setInt(2, commentID);            
+            statement.setString(3, userID);
+
+            statement.execute();
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void addCommentToPost(String postID, String userID, String comment, Timestamp dateSent){
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "CALL addComment(?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, postID);
+            statement.setString(2, userID);            
+            statement.setString(3, comment);
+            statement.setTimestamp(4, dateSent);
+
+            statement.execute();
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static boolean checkUserLikePost(String postID, String userID){
+        boolean isAvail = false;
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "SELECT * FROM post_like WHERE postID = ? AND userID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, postID);
+            statement.setString(2, userID);
+            
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                isAvail=true;
+            }
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return isAvail;
+    }
+
+    public static boolean checkUserLikeComment(String postID, int commentID, String userID){
+        boolean isAvail = false;
+        try{
+            Connection connection = sqlConnect.connectToDB();
+
+            String sql = "SELECT * FROM post_like WHERE postID = ? AND userID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, postID);
+            statement.setString(2, userID);
+            
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                isAvail=true;
+            }
+        }
+        catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return isAvail;
     }
 }

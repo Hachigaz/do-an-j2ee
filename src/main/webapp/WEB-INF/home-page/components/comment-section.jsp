@@ -5,28 +5,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+    <link rel="stylesheet" href="resources/css/home/components/comment-section/style.css" />
   </head>
   <body>
-    <c:forEach var="comment" items="${comments}">
+    <c:forEach var="commentItem" items="${commentItems}">
       <div class="comment-item">
         <div class="comment-avatar-icon-wrapper">
-          <img src="resources/img/userdata/${}">
+          <img src="resources/img/userdata/${commentItem.userDetails.avatar}">
         </div>
-        <div class="comment-bubble">
-          <div class="comment-username">
-            ${}
+        <div class="comment-content">
+          <div class="comment-bubble">
+            <div class="comment-username">
+              ${commentItem.userDetails.firstName} ${commentItem.userDetails.lastName}
+            </div>
+            <div class="comment-text">
+              ${commentItem.comment.comment}
+            </div>
           </div>
-          <div class="comment-text">
-            ${}
-          </div>
-        </div>
-        <div class="comment-options">
-          <div class="comment-date">
-            ${}
-          </div>
-          <div class="comment-like-button">
-            Thích
+          <div class="comment-options">
+            <div class="comment-date">
+              ${commentItem.comment.date}
+            </div>
+            <!-- <c:if test="${commentItem.isLikedByUser}">
+              <div class="comment-like-button clicked" onclick="processLikeComment()">
+                Thích
+              </div>
+            </c:if>
+
+            <c:if test="${not commentItem.isLikedByUser}">
+              <div class="comment-like-button" onclick="processLikeComment()">
+                Thích
+              </div>
+            </c:if> -->
           </div>
         </div>
       </div>

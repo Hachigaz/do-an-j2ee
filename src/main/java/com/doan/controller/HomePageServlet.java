@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.doan.model.AccountDetails;
+import com.doan.model.PostComment;
 import com.doan.model.UserPost;
+import com.doan.model.PostComment.PostCommentData;
 import com.doan.model.UserPost.PostData;
 import com.doan.model.UserPost.PostImage;
 import com.doan.model.sql.sqlAccountDetails;
@@ -28,7 +31,10 @@ import jakarta.servlet.http.HttpSession;
     value={
         "/home-page",
         "/Post/GetPosts",
-        "/Post/GetComments"
+        "/Post/GetComments",
+        "/Post/LikePost",
+        "/Post/AddComment",
+        "/Post/LikeComment"
     })
 public class HomePageServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -42,7 +48,16 @@ public class HomePageServlet extends HttpServlet{
                 getUserPosts(request, response);
             }
             if(uri.contains("/GetComments")){
-                GetCommentsFromPost(request,response);
+                getCommentsFromPost(request,response);
+            }
+            if(uri.contains("/LikePost")){
+                processLikePost(request, response);
+            }
+            if(uri.contains("/AddComment")){
+                processAddComment(request, response);
+            }
+            if(uri.contains("/LikeComment")){
+                processLikeComment(request, response);
             }
         }
     }
@@ -90,23 +105,77 @@ public class HomePageServlet extends HttpServlet{
                 java.util.Date date = inputFormat.parse(post.getDatePosted().toString());
                 formattedDate = outputFormat.format(date);
 
-
+                
             }
             catch(Exception e){
                 System.err.println(e.getMessage());
             }
-            postDatas.add(new PostData(post, formattedDate, attachedImages));
+            boolean isLiked = sqlPost.checkUserLikePost(post.getPostID(), loggedInUser);
+            postDatas.add(new PostData(post, formattedDate, attachedImages, isLiked));
         }
         request.setAttribute("postItems", postDatas);
 
-        
         response.setContentType("text/html");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home-page/components/user-post.jsp");
         dispatcher.forward(request, response);
     }
 
-    public void GetCommentsFromPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        int postCount = Integer.parseInt(request.getParameter("postCount").toString());
-        Timestamp endDate = Timestamp.valueOf(request.getParameter("endDate"));
+    public void getCommentsFromPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        int postCount = Integer.parseInt(request.getParameter("commentCount").toString());
+        Timestamp endDate = Timestamp.valueOf(request.getParameter("lastDate"));
+        String postID =request.getParameter("postID").toString();
+        List<PostCommentData> commentData = new ArrayList<PostCommentData>();
+    
+        HttpSession session = request.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        for(PostComment comment : sqlPost.getCommentsFromPostByCount(postID, postCount, endDate)){
+            boolean isLiked = sqlPost.checkUserLikeComment(postID, comment.getCommentID(), userID);
+            commentData.add(new PostCommentData(sqlAccountDetails.getDetails(comment.getUserID()), comment, isLiked));
+        }
+        
+        request.setAttribute("commentItems", commentData);
+
+        response.setContentType("text/html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home-page/components/comment-section.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    public void processLikePost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        HttpSession session = request.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        String postID = request.getParameter("postID").toString();
+
+        System.out.println(postID +" " + userID);
+        
+        sqlPost.likePost(postID, userID);
+    }
+    public void processAddComment(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        try{
+            HttpSession session = request.getSession();
+            String userID = session.getAttribute("loggedInID").toString();
+
+            String postID = request.getParameter("postID").toString();
+            String commentText = request.getParameter("commentText").toString();
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy, h:mm:ss a");
+            Date parsedDate = dateFormat.parse(request.getParameter("dateSent").toString());
+            Timestamp dateSent = new Timestamp(parsedDate.getTime());
+
+
+            sqlPost.addCommentToPost(postID, userID, commentText,dateSent );
+        }
+        catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+    public void processLikeComment(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        HttpSession session = request.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+        String postID = request.getParameter("postID").toString();
+        int commentID = Integer.parseInt(request.getParameter("commentID").toString());
+
+        sqlPost.likeComment(postID, commentID, userID);
     }
 }

@@ -87,34 +87,48 @@ public class UserPost {
     }
 
     public static class PostData{
-        private UserPost post;
-        private String fDatePosted;
-        private List<PostImage> images;
-
-        public PostData(UserPost post, String fDatePosted, List<PostImage> images) {
+        public PostData(UserPost post, String fDatePosted, List<PostImage> images, boolean isLikedByUser) {
             this.post = post;
             this.fDatePosted = fDatePosted;
             this.images = images;
+            this.isLikedByUser = isLikedByUser;
         }
+
+        private UserPost post;
+        private String fDatePosted;
+        private List<PostImage> images;
+        private boolean isLikedByUser;
 
         public UserPost getPost() {
             return post;
         }
+
         public void setPost(UserPost post) {
             this.post = post;
         }
-        public List<PostImage> getImages() {
-            return images;
-        }
-        public void setImages(List<PostImage> images) {
-            this.images = images;
-        }
+
         public String getfDatePosted() {
             return fDatePosted;
         }
+
         public void setfDatePosted(String fDatePosted) {
             this.fDatePosted = fDatePosted;
         }
-        
+
+        public List<PostImage> getImages() {
+            return images;
+        }
+
+        public void setImages(List<PostImage> images) {
+            this.images = images;
+        }
+
+        public boolean getIsLikedByUser() {
+            return isLikedByUser;
+        }
+
+        public void setLikedByUser(boolean isLikedByUser) {
+            this.isLikedByUser = isLikedByUser;
+        }
     }
 }

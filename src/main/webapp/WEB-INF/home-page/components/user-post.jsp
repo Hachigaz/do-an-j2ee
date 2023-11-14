@@ -91,7 +91,7 @@
           <div class="post-end">
             <div class="post-stat no-select">
               <div class="like-count">
-                <div>
+                <div class="count-number">
                   ${postItem.post.likeCount}
                 </div>
                 <div class="stat-like-icon-wrapper">
@@ -100,7 +100,7 @@
                   
               </div>
               <div class="comment-count">
-                <div>
+                <div class="count-number">
                   ${postItem.post.commentCount}
                 </div>
                 <div class="stat-like-icon-wrapper">
@@ -109,14 +109,29 @@
               </div>
             </div>
             <div class="post-options">
-              <div class="option-button-wrapper no-select" onclick="processLike('${postItem.post.postID}',this)">
-                <div class="option-icon-wrapper">
-                  <img src="resources/img/web_img/home-page/like.png">
+              <c:if test="${not postItem.isLikedByUser}">
+                <div class="option-button-wrapper no-select" onclick="processLike('${postItem.post.postID}',this)">
+                  <div class="option-icon-wrapper">
+                    <img class="unclicked-icon show-icon" src="resources/img/web_img/home-page/like.png">
+                    <img class="clicked-icon hide-icon" src="resources/img/web_img/home-page/like-clicked.png">
+                  </div>
+                  <div class="option-name">
+                    Thích
+                  </div>
                 </div>
-                <div class="option-name">
-                  Thích
+              </c:if>
+
+              <c:if test="${postItem.isLikedByUser}">
+                <div class="option-button-wrapper no-select clicked" onclick="processLike('${postItem.post.postID}',this)">
+                  <div class="option-icon-wrapper">
+                    <img class="unclicked-icon hide-icon" src="resources/img/web_img/home-page/like.png">
+                    <img class="clicked-icon show-icon clicked" src="resources/img/web_img/home-page/like-clicked.png">
+                  </div>
+                  <div class="option-name">
+                    Thích
+                  </div>
                 </div>
-              </div>
+              </c:if>
               <div class="option-button-wrapper no-select" onclick="processComment('${postItem.post.postID}')">
                 <div class="option-icon-wrapper">
                   <img src="resources/img/web_img/home-page/comment.png">
@@ -129,7 +144,22 @@
           </div>
         </div>
         <div class="comment-section" id="comment-section-${postItem.post.postID}">
-
+          <div class="comment-section-title">Bình luận</div>
+          <div class="send-comment-form">
+            <div class="comment-avatar-icon-wrapper">
+              <img src="resources/img/userdata/${userDetails[sessionScope.loggedInID].avatar}">
+            </div>
+            <div class="comment-input-wrapper">
+              <textarea placeholder="Nhập bình luận" value=""
+                oninput="(function(textElement){})(this)"></textarea>
+              <div class="comment-input-options">
+                <div class="submit-comment-button" onclick="processSubmitComment('${postItem.post.postID}')">Gửi</div>
+              </div>
+            </div>
+          </div>
+          <div class="comment-list">
+            
+          </div>
         </div>
       </div>
     </c:forEach>

@@ -43,3 +43,23 @@ function convertToJSDate(datetimeString){
     
     return new Date(year, month - 1, day, hour, minute, second);
 }
+
+function findOccurences(mainString, substringToCount) {
+    let count = 0;
+    let index = mainString.indexOf(substringToCount);
+
+    while (index !== -1) {
+        count++;
+        index = mainString.indexOf(substringToCount, index + 1);
+    }
+
+    return count;
+}
+
+function showDialog(){
+
+}
+
+function showYesNoDialog(){
+    
+}
