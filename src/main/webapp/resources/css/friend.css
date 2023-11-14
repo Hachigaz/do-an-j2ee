@@ -129,7 +129,7 @@
 }
 .friend-list .wrapper-item .status-wrapper i{
     position: absolute;
-    top: 85%;
+    top: 90%;
     right: 10px;
     color: #fff;
 }
@@ -144,4 +144,34 @@
     align-items: center;
     justify-content: center;
     margin: 20px auto;
+    cursor: pointer;
+}
+.dropdown-select{
+    position: relative;
+}
+.dropdown-list{
+    width: 126px;
+    position: absolute;
+    top: 50px;
+    display: none;
+}
+.show{
+    display: block;
+}
+.dropdown-list .dropdown-item{
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.dropdown-list .dropdown-item:hover{
+    background-color: #e4e4e4;
+}
+.dropdown-list .dropdown-item .unfriend-icon{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
 }
