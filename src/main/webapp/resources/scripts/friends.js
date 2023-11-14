@@ -1,5 +1,4 @@
 const wrapperItem = document.querySelector(".wrapper-item");
-
 fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của bạn    
     .then(response => response.json())
     .then(data => {
@@ -18,14 +17,85 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 userFullname.classList.add("user-name");
                 userFullname.textContent = data[user].firstName+" "+data[user].lastName;
                 item.appendChild(userFullname); 
-                var commonFriends = document.createElement("div");
-                commonFriends.classList.add("common-friend") 
-                commonFriends.textContent = "105 bạn chung";
-                item.appendChild(commonFriends);
                 var relationship = document.createElement("div");
                 relationship.classList.add("status");
                 relationship.textContent = "Bạn bè";
-                item.appendChild(relationship);
+                var statusWrapper = document.createElement("div");
+                statusWrapper.classList.add("status-wrapper");
+                statusWrapper.classList.add("dropdown-select");
+                statusWrapper.appendChild(relationship);
+                var caretIcon = document.createElement("i");
+                caretIcon.classList.add("fa-solid");
+                caretIcon.classList.add("fa-caret-down");
+                caretIcon.classList.add("dropdown-caret")
+                statusWrapper.appendChild(caretIcon);
+                item.appendChild(statusWrapper);
+                var dropdown_list = document.createElement("div");
+                dropdown_list.classList.add("dropdown-list");
+                // 
+                var dropdown_item_unfriend = document.createElement("div");
+                dropdown_item_unfriend.classList.add("dropdown-item");
+                var dropdown_text_unfriend = document.createElement("span");
+                dropdown_text_unfriend.textContent = "Unfriend";
+                var dropdown_icon_unfriend = document.createElement("img");
+                dropdown_icon_unfriend.classList.add("unfriend-icon");
+                dropdown_icon_unfriend.setAttribute("src","resources/img/icon/remove-contact.png");
+                dropdown_item_unfriend.appendChild(dropdown_text_unfriend);
+                dropdown_item_unfriend.appendChild(dropdown_icon_unfriend);
+                // 
+                var dropdown_item_chat = document.createElement("div");
+                dropdown_item_chat.classList.add("dropdown-item");
+                var dropdown_text_chat = document.createElement("span");
+                dropdown_text_chat.textContent = "Nhắn tin";
+                var dropdown_icon_chat = document.createElement("img");
+                dropdown_icon_chat.classList.add("chat-icon");
+                dropdown_icon_chat.setAttribute("src","resources/img/icon/chat.png");
+                dropdown_item_chat.appendChild(dropdown_text_chat);
+                dropdown_item_chat.appendChild(dropdown_icon_chat);
+                dropdown_list.appendChild(dropdown_item_unfriend);
+
+                dropdown_list.appendChild(dropdown_item_chat);
+                statusWrapper.appendChild(dropdown_list);
             }   
+            const dropdownSelects = document.querySelectorAll(".dropdown-select");
+            Array.from(dropdownSelects).forEach(function(item){
+                item.addEventListener("click",function(){
+                var dropdown = item.querySelector(".dropdown-list");
+                var caret = item.querySelector(".dropdown-caret");
+                dropdown.classList.toggle("show");
+                caret.classList.toggle("fa-caret-down");
+                caret.classList.toggle("fa-caret-up");
+                });
+            });
+
+            document.addEventListener("click", function(e){
+                Array.from(dropdownSelects).forEach(function(item){
+                if(!item.contains(e.target)){
+                    var dropdown = item.querySelector(".dropdown-list");
+                    var caret = item.querySelector(".dropdown-caret");
+                    dropdown.classList.remove("show");
+                    caret.classList.add("fa-caret-down");
+                    caret.classList.remove("fa-caret-up");
+                }
+                });
+            });
+            const title_friend_list = document.querySelector(".title-friend-list");
+            const title_friend_suggest = document.querySelector(".title-friend-suggest");
+            const friend_list = document.querySelector(".friend-list");
+            const friend_suggest = document.querySelector(".friend-suggest");
+
+            title_friend_list.addEventListener("click", function(){
+                title_friend_list.style.backgroundColor = "#dadada";
+                title_friend_suggest.style.backgroundColor = "transparent";
+                friend_list.style.display = "flex";
+                friend_suggest.style.display = "none";
+            });
+            title_friend_suggest.addEventListener("click", function(){
+                title_friend_suggest.style.backgroundColor = "#dadada";
+                title_friend_list.style.backgroundColor = "transparent";
+                friend_suggest.style.display = "flex";
+                friend_list.style.display = "none";
+            });
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
+

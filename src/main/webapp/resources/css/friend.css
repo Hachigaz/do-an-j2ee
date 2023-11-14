@@ -15,23 +15,24 @@
 .wrapper{
     width: 100%;
     height: 100vh;
-    background-color: #f7f7f7;
+    background-color: #b6d8eb;
     display: flex;
     font-family: monospace;
 }
 .mt-20{
     height: 20px;
     width: 100%;
-    background-color: #f7f7f7;
+    background-color: #b6d8eb;
 }
 .wrapper .menu{
     height: 100%;
     width: 300px ;
-    background-color: #fff;
+    background-color: transparent;
 }
 .wrapper .friend-wrapper{
     width: 80%;
 }
+.wrapper .friend-wrapper .friend-suggest,
 .wrapper .friend-wrapper .friend-list{
     height: 100%;
     padding: 0 130px;
@@ -42,10 +43,15 @@
 .wrapper-item{
     width: 100%;
 }
-.menu .title{
-    font-size: 30px;
+.menu .title-friend-suggest,
+.menu .title-friend-list{
+    font-size: 25px;
     font-weight: 800;
     text-align: center;
+    transition: 0.25s;
+    cursor: pointer;
+    padding: 20px 0;
+    border-bottom: 1px solid #fff;
 }
 .wrapper .friend-wrapper .title{
     width: calc(100% - 35px);
@@ -96,7 +102,7 @@
     height: 210px;
     padding: 10px;
     margin: 15px;
-    border-radius: 5px;
+    border-radius: 6px;
     text-align: center;
 }
 .friend-list .item .avatar{
@@ -120,15 +126,60 @@
     font-size: 13px;
     padding: 5px 0;
 }
+.friend-list .wrapper-item .status-wrapper{
+    width: 60%;
+    height: 30px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.friend-list .wrapper-item .status-wrapper i{
+    position: absolute;
+    top: 90%;
+    right: 10px;
+    color: #fff;
+}
 .friend-list .wrapper-item .status{
-    background-color: #0055ff;
+    background-color: #10d876;
     color: #fff;
     height: 30px;
     font-size: 16px;
-    width: 60%;
+    width: 100%;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px auto 0;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.dropdown-select{
+    position: relative;
+}
+.dropdown-list{
+    width: 126px;
+    position: absolute;
+    top: 50px;
+    display: none;
+}
+.show{
+    display: block;
+}
+.dropdown-list .dropdown-item{
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.dropdown-list .dropdown-item:hover{
+    background-color: #e4e4e4;
+}
+.dropdown-list .dropdown-item .chat-icon,
+.dropdown-list .dropdown-item .unfriend-icon{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    display: inline;
 }
