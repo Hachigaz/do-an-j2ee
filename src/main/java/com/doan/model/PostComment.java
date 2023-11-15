@@ -57,14 +57,17 @@ public class PostComment {
     public static class PostCommentData{
         private AccountDetails userDetails;
         private PostComment comment;
-        boolean isLikedByUser;
+        private String fDateSent;
+        private boolean isLikedByUser;
 
-        public PostCommentData(AccountDetails userDetails, PostComment comment, boolean isLikedByUser) {
+        
+        public PostCommentData(AccountDetails userDetails, PostComment comment, String fDateSent,
+                boolean isLikedByUser) {
             this.userDetails = userDetails;
             this.comment = comment;
+            this.fDateSent = fDateSent;
             this.isLikedByUser = isLikedByUser;
         }
-        
         public AccountDetails getUserDetails() {
             return userDetails;
         }
@@ -81,6 +84,15 @@ public class PostComment {
             return isLikedByUser;
         }
         public void setLikeByUser(boolean isLikedByUser) {
+            this.isLikedByUser = isLikedByUser;
+        }
+        public String getfDateSent() {
+            return fDateSent;
+        }
+        public void setfDateSent(String fDateSent) {
+            this.fDateSent = fDateSent;
+        }
+        public void setLikedByUser(boolean isLikedByUser) {
             this.isLikedByUser = isLikedByUser;
         }
 

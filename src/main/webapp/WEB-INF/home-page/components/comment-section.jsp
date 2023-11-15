@@ -24,7 +24,7 @@
           </div>
           <div class="comment-options">
             <div class="comment-date">
-              ${commentItem.comment.date}
+              ${commentItem.fDateSent}
             </div>
             <!-- <c:if test="${commentItem.isLikedByUser}">
               <div class="comment-like-button clicked" onclick="processLikeComment()">

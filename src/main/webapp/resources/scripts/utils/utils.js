@@ -63,3 +63,9 @@ function showDialog(){
 function showYesNoDialog(){
     
 }
+
+function scrollToElement(element){
+    element.scrollIntoView({
+        behavior: 'smooth' // You can use 'auto' or 'smooth' for animation
+    });
+}
