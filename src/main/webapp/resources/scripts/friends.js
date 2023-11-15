@@ -84,14 +84,15 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
             const friend_list = document.querySelector(".friend-list");
             const friend_suggest = document.querySelector(".friend-suggest");
 
+            title_friend_list.style.backgroundColor = "#fff";
             title_friend_list.addEventListener("click", function(){
-                title_friend_list.style.backgroundColor = "#dadada";
+                title_friend_list.style.backgroundColor = "#fff";
                 title_friend_suggest.style.backgroundColor = "transparent";
                 friend_list.style.display = "flex";
                 friend_suggest.style.display = "none";
             });
             title_friend_suggest.addEventListener("click", function(){
-                title_friend_suggest.style.backgroundColor = "#dadada";
+                title_friend_suggest.style.backgroundColor = "#fff";
                 title_friend_list.style.backgroundColor = "transparent";
                 friend_suggest.style.display = "flex";
                 friend_list.style.display = "none";
