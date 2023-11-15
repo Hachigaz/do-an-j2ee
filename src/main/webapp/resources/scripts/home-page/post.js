@@ -1,5 +1,7 @@
 let postFrameElement
 
+let loggedInUserDetails;
+
 let postCount = 10;
 function setupPostFeed(){
     postFrameElement = document.querySelector("div.user-feed-panel div.posts-frame");
@@ -7,6 +9,14 @@ function setupPostFeed(){
     let currentDate = getCurrentDate();
 
     getPosts(currentDate,postCount)
+
+    let requestUSerDetailParams = new URLSearchParams()
+    fetch(`UserServlet/GetUserDetails`)
+        .then(response=>response.json())
+        .then(jsonObject => {
+            loggedInUserDetails = jsonObject;
+            console.log(loggedInUserDetails)
+        })
 }
 
 let lastUpdatedPost;
@@ -183,7 +193,7 @@ function processSubmitComment(postID){
                 </div>
             </div>
             `
-            let commentListElement = document.querySelector(`#post-item-${postID}`)
+            let commentListElement = document.querySelector(`#post-item-${postID} .comment-list`)
             commentListElement.insertAdjacentHTML('afterbegin',newCommentHTML);
         }
     }
