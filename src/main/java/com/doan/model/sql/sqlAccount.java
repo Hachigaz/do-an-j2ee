@@ -1,6 +1,7 @@
 package com.doan.model.sql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,20 +59,33 @@ public class sqlAccount{
         }
         return account;
     }
-    public static void addAccount(Account account){
+    public static void addAccount(
+        String username, String email,
+        String userpass, String firstName,
+        String lastName, String address,
+        Date birthDate, String avatarName,
+        String backgroundName
+    ){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
-            String sql = "INSERT INTO "+ name + " (userID,username,email,password) VALUES (?,?,?,?)";
+            String sql = "CALL addAccount(?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement statement  = connection.prepareStatement(sql);
             
             // Set parameter values
-            statement.setString(1, account.getAccountID());
-            statement.setString(2, account.getUsername());
-            statement.setString(3, account.getEmail());
-            statement.setString(4, account.getPassword());
+            statement.setString(1, username);
+            statement.setString(2, email);
+            statement.setString(3, userpass);
+            statement.setString(4, firstName);
+            statement.setString(5, lastName);
+            statement.setString(6, address);
+            statement.setDate(7, birthDate);
+            statement.setString(8, avatarName);
+            statement.setString(9, backgroundName);
+
+
 
             // Execute s INSERT statement
             int rowsInserted = statement.executeUpdate();

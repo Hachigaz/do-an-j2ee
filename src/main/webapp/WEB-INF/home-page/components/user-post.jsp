@@ -132,7 +132,7 @@
                   </div>
                 </div>
               </c:if>
-              <div class="option-button-wrapper no-select" onclick="processComment('${postItem.post.postID}')">
+              <div class="option-button-wrapper no-select" onclick="showComment('${postItem.post.postID}')">
                 <div class="option-icon-wrapper">
                   <img src="resources/img/web_img/home-page/comment.png">
                 </div>

@@ -104,8 +104,6 @@ public class HomePageServlet extends HttpServlet{
 
                 java.util.Date date = inputFormat.parse(post.getDatePosted().toString());
                 formattedDate = outputFormat.format(date);
-
-                
             }
             catch(Exception e){
                 System.err.println(e.getMessage());
@@ -131,7 +129,20 @@ public class HomePageServlet extends HttpServlet{
 
         for(PostComment comment : sqlPost.getCommentsFromPostByCount(postID, postCount, endDate)){
             boolean isLiked = sqlPost.checkUserLikeComment(postID, comment.getCommentID(), userID);
-            commentData.add(new PostCommentData(sqlAccountDetails.getDetails(comment.getUserID()), comment, isLiked));
+
+            String formattedDate = comment.getDate().toString();
+            try{
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMM d, yyyy, h:mm:ss a");
+
+                java.util.Date date = inputFormat.parse(comment.getDate().toString());
+                formattedDate = outputFormat.format(date);
+            }
+            catch(Exception e){
+                System.err.println(e.getMessage());
+            }
+
+            commentData.add(new PostCommentData(sqlAccountDetails.getDetails(comment.getUserID()), comment,formattedDate,isLiked));
         }
         
         request.setAttribute("commentItems", commentData);
@@ -146,8 +157,6 @@ public class HomePageServlet extends HttpServlet{
         String userID = session.getAttribute("loggedInID").toString();
 
         String postID = request.getParameter("postID").toString();
-
-        System.out.println(postID +" " + userID);
         
         sqlPost.likePost(postID, userID);
     }
@@ -159,8 +168,9 @@ public class HomePageServlet extends HttpServlet{
             String postID = request.getParameter("postID").toString();
             String commentText = request.getParameter("commentText").toString();
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy, h:mm:ss a");
-            Date parsedDate = dateFormat.parse(request.getParameter("dateSent").toString());
+
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date parsedDate = inputFormat.parse(request.getParameter("dateSent").toString());
             Timestamp dateSent = new Timestamp(parsedDate.getTime());
 
 
