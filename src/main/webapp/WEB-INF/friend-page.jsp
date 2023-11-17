@@ -15,7 +15,6 @@
     </head>
     <body>
         <%@ include file="components/header/header.jsp" %>
-        <div class="mt-20"></div>
         <div class="wrapper">
             <div class="menu">
                 <div class="title-friend-list">Danh sách bạn bè</div>
@@ -42,6 +41,7 @@
                             <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
+                    <div class="wrapper-item"></div>
                 </div>
             </div>
         </div>

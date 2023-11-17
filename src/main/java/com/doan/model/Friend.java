@@ -11,6 +11,11 @@ public class Friend {
         this.userID2 = userID2;
         this.chatID = chatID;
     }
+    public Friend(String userID1, String userID2){
+        this.userID1 = userID1;
+        this.userID2 = userID2;
+        this.chatID = null;
+    }
     
     public String getUserID1() {
         return userID1;

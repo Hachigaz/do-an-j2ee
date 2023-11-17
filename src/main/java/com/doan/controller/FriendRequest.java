@@ -9,6 +9,7 @@ import java.util.List;
 import com.doan.model.Account;
 import com.doan.model.AccountDetails;
 import com.doan.model.ChatObject.Message;
+import com.doan.model.Friend;
 import com.doan.model.sql.sqlFriend;
 import com.google.gson.Gson;
 
@@ -19,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet({"/DataRequest/Friends","/DataRequest/FriendDetails"})
+@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers"})
 public class FriendRequest extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +29,10 @@ public class FriendRequest extends HttpServlet{
             getFriendList(req,resp);
         }else if(uri.contains("FriendDetails")){
             getFriendsDetails(req,resp);
+        }else if(uri.contains("Unfriend")){
+            removeFriend(req, resp);
+        }else if(uri.contains("Strangers")){
+            getStrangerDetails(req,resp);
         }
         
     }
@@ -50,5 +55,35 @@ public class FriendRequest extends HttpServlet{
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         out.println(list);
+    }
+    private void getStrangerDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        List<AccountDetails> accountDetails = sqlFriend.getAllStrangerAccountDetails(userID);
+        String list = new Gson().toJson(accountDetails);
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        out.println(list);
+    }
+    private void removeFriend(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        String friendID = req.getParameter("friendID");
+
+        if (friendID != null && !friendID.isEmpty()) {
+            // Giả sử lớp Friend có một constructor nhận hai ID người dùng
+            Friend friendToRemove = new Friend(userID, friendID);
+
+            // Gọi phương thức remove từ lớp sqlFriend
+            sqlFriend.remove(friendToRemove);
+
+            // Phản hồi cho client
+            resp.getWriter().println(friendID);
+        } else {
+            resp.getWriter().println("Không có friendID được cung cấp.");
+            // Xử lý lỗi hoặc cung cấp thông báo khác tùy thuộc vào yêu cầu của bạn.
+        }
     }
 }

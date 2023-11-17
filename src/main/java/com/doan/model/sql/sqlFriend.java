@@ -124,6 +124,43 @@ public class sqlFriend{
         }
         return friends;
     }
+    public static List<AccountDetails> getAllStrangerAccountDetails(String userId){
+        List<AccountDetails> strangers = new ArrayList<AccountDetails>();
+        try {
+            Connection connection = sqlConnect.connectToDB();
+            String sql = "SELECT * FROM account_details ad1 WHERE NOT EXISTS (SELECT ad.* FROM account_details ad JOIN friend f ON ad.userID = (CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END) WHERE ad1.userID = ad.userID AND (f.userID1 = ? OR f.userID2 = ?) AND f.deleted = 0) AND ad1.userID != ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            preparedStatement.setString(2, userId);
+            preparedStatement.setString(3, userId);
+            preparedStatement.setString(4, userId);
+            preparedStatement.setString(5, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                AccountDetails stranger = new AccountDetails();
+                // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
+                stranger.setUserID(resultSet.getString("userID"));
+                stranger.setFirstName(resultSet.getString("firstName"));
+                stranger.setLastName(resultSet.getString("lastName"));
+                stranger.setAddress(resultSet.getString("address"));
+                stranger.setBirthDate(resultSet.getDate("birthDate"));
+                stranger.setAvatar(resultSet.getString("avatarName"));
+                stranger.setBackground(resultSet.getString("background"));
+                // Thêm friend vào danh sách
+                strangers.add(stranger);
+            }
+    
+            // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strangers;
+    }
     public static List<AccountDetails> getAllFriendAccountDetails(String userId){
         List<AccountDetails> friends = new ArrayList<AccountDetails>();
         try {
