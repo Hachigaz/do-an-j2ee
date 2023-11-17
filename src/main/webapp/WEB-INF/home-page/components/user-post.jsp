@@ -6,6 +6,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="resources/css/home/components/user-post/style.css" />
+    <link rel="stylesheet" href="resources/css/globals.css" />
     <% pageContext.setAttribute("newLineChar", "\n"); %> 
   </head>
   <body>
@@ -37,7 +38,7 @@
                 </c:forEach>
               </div>
               <br>
-              <div class="post-image-display">
+              <div class="post-image-display" onclick="togglePopup(document.querySelector('#post-item-${postItem.post.postID} .popup-element'))">
                 <c:if test="${fn:length(postItem.images)>0}">
                   <c:choose>
                     <c:when test="${fn:length(postItem.images)==1}">
@@ -78,11 +79,34 @@
                         </div>
                         <div class="post-image-item-small">
                           <img class="post-attached-image" src="resources/img/userdata/${postItem.images[2].image}">
-                          <div class="image-overlay"></div>
+                          <div class="image-overlay">+${postItem.images.size() - 2}</div>
                         </div>
                       </div>
                     </c:when>
                   </c:choose>
+                  
+                  <div class="popup-element">
+                    <div class="popup-content">
+                      <!-- <span class="close-button" onclick="togglePopup(document.querySelector('#post-item-${postItem.post.postID} .popup-element'))">&times;</span> -->
+                      <div class="image-display">
+                        <div class="image-display-frame">
+                          <c:forEach var="imageItem" items="${postItem.images}">
+                            <div class="display-image-wrapper hover-item" id="image-item-${imageItem.index}">
+                              <img class="post-attached-image" src="resources/img/userdata/${imageItem.image}">
+                            </div>
+                          </c:forEach>
+                        </div>
+                      </div>
+                      <!-- <div class="image-display-options">
+                        <div class="image-display-button" onclick="hoverLeft(document.querySelector('#post-item-${postItem.post.postID} .popup-element .image-display'))">
+                          Qua trái
+                        </div>
+                        <div class="image-display-button" onclick="hoverRight(document.querySelector('#post-item-${postItem.post.postID} .popup-element .image-display'))">
+                          Qua phải
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
                 </c:if>
               </div>
             </div>
@@ -143,7 +167,7 @@
             </div>
           </div>
         </div>
-        <div class="comment-section" id="comment-section-${postItem.post.postID}">
+        <div class="comment-section" id="comment-section-${postItem.post.postID}" onscroll="checkCommentScroll('${postItem.post.postID}')">
           <div class="comment-section-title">Bình luận</div>
           <div class="send-comment-form">
             <div class="comment-avatar-icon-wrapper">

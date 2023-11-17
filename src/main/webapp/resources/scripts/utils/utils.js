@@ -69,3 +69,17 @@ function scrollToElement(element){
         behavior: 'smooth' // You can use 'auto' or 'smooth' for animation
     });
 }
+
+function togglePopup(element){
+    element.style.display = element.style.display === "none" ? "block" : "none";
+}
+
+function setupPopupContent(element){
+    console.log(element.hasSetup)
+    if (!element.hasSetup) {
+        element.addEventListener('click', function(event) {
+            event.stopPropagation()
+        });
+        element.hasSetup = true;
+    }
+}
