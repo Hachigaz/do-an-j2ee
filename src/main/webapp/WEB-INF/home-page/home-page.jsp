@@ -17,7 +17,7 @@
       window.addEventListener('load',start)
     </script>
   </head>
-  <body class="main-page">
+  <body class="main-page" onscroll="checkPostScroll(this)">
     <%@ include file="/WEB-INF/components/header/header.jsp" %>
     <div class="content-panel">
       <div class="menu-bar">
