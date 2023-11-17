@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend"})
+@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers"})
 public class FriendRequest extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,6 +31,8 @@ public class FriendRequest extends HttpServlet{
             getFriendsDetails(req,resp);
         }else if(uri.contains("Unfriend")){
             removeFriend(req, resp);
+        }else if(uri.contains("Strangers")){
+            getStrangerDetails(req,resp);
         }
         
     }
@@ -49,6 +51,16 @@ public class FriendRequest extends HttpServlet{
         String userID = session.getAttribute("loggedInID").toString();
 
         List<AccountDetails> accountDetails = sqlFriend.getAllFriendAccountDetails(userID);
+        String list = new Gson().toJson(accountDetails);
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        out.println(list);
+    }
+    private void getStrangerDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        List<AccountDetails> accountDetails = sqlFriend.getAllStrangerAccountDetails(userID);
         String list = new Gson().toJson(accountDetails);
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();

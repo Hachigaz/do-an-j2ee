@@ -41,6 +41,7 @@
                             <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </div>
+                    <div class="wrapper-item"></div>
                 </div>
             </div>
         </div>

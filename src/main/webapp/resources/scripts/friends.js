@@ -38,10 +38,9 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 dropdown_item_unfriend.classList.add("dropdown-item");
                 var dropdown_text_unfriend = document.createElement("span");
                 dropdown_text_unfriend.id = data[user].userID;
-                // dropdown_text_unfriend.setAttribute("onclick","removeFriend("+data[user].userID+")");
-                dropdown_text_unfriend.dataset.fullname = userFullname;
+                dropdown_text_unfriend.dataset.fullname = userFullname.textContent;
                 dropdown_text_unfriend.textContent = "Unfriend";
-                dropdown_text_unfriend.setAttribute("onclick","showDialog("+dropdown_text_unfriend.dataset.fullname+")");
+                dropdown_item_unfriend.setAttribute("onclick","showDialog('"+dropdown_text_unfriend.dataset.fullname+"'); confirmRemove('"+dropdown_text_unfriend.id+"');");
                 var dropdown_icon_unfriend = document.createElement("img");
                 dropdown_icon_unfriend.classList.add("unfriend-icon");
                 dropdown_icon_unfriend.setAttribute("src","resources/img/icon/remove-contact.png");
@@ -52,6 +51,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 dropdown_item_chat.classList.add("dropdown-item");
                 var dropdown_text_chat = document.createElement("span");
                 dropdown_text_chat.textContent = "Nhắn tin";
+                dropdown_text_chat.setAttribute("onclick","showChatFrame()")
                 var dropdown_icon_chat = document.createElement("img");
                 dropdown_icon_chat.classList.add("chat-icon");
                 dropdown_icon_chat.setAttribute("src","resources/img/icon/chat.png");
@@ -102,6 +102,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 friend_suggest.style.display = "flex";
                 friend_list.style.display = "none";
             });
+
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
 
@@ -112,13 +113,13 @@ const confirm_content = document.createElement("div");
 confirm_content.classList.add("confirm-content");
 const confirm_text = document.createElement("div");
 confirm_text.classList.add("confirm-text");     
-confirm_text.textContent = "Bạn có chắc chắn muốn unfriend "+dropdown_text_unfriend.dataset.fullname+" không?";
 
 const confirm_btns = document.createElement("div");
 confirm_btns.classList.add("confirm-btns");
 const yes_btn = document.createElement("div");
 yes_btn.classList.add("yes-btn");
 yes_btn.textContent = "Có";
+yes_btn.setAttribute("onclick","removeFriend()");
 const no_btn = document.createElement("div");
 no_btn.classList.add("no-btn");
 no_btn.textContent = "Không";
@@ -145,6 +146,41 @@ function removeFriend(userID) {
     location.reload(true);
     // window.location.href = "/mxh/friend-page";
 }
+
 function showDialog(fullname){
     confirm_wrapper.classList.remove("hide");
+    confirm_text.textContent = "Bạn có chắc chắn muốn unfriend "+fullname+" không?";
 }
+no_btn.addEventListener("click", function(){
+    confirm_wrapper.classList.add("hide");
+});
+function confirmRemove(userID){
+    yes_btn.addEventListener("click",function(){
+        removeFriend(userID);
+    });
+}
+
+const wrapper_item_suggest = document.querySelector(".friend-suggest .wrapper-item");
+function renderItem(item){
+    const template = `<div class="col-md-3 item">
+    <div class="avatar">
+        <img
+            src="resources/img/userdata/${item.avatar}"
+        />
+    </div>
+    <div class="user-name">${item.firstName} ${item.lastName}</div>
+    <div class="status-wrapper">
+        <div class="status">Thêm bạn bè</div>
+    </div>
+</div>`;
+    wrapper_item_suggest.insertAdjacentHTML("beforeend", template);
+}
+fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của bạn    
+    .then(response => response.json())
+    .then(data => {
+        for(user in data){
+            renderItem(data[user]);
+        }
+        const 
+    })
+    .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));

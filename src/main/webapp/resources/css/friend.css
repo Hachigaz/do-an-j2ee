@@ -44,6 +44,8 @@
 }
 .wrapper-item{
     width: 100%;
+    height: 90%;
+    overflow-y: scroll;
 }
 .menu .title-friend-suggest,
 .menu .title-friend-list{
@@ -208,16 +210,17 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .confirm-content{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     width: 500px;
     height: 300px;
     background-color: #fff;
     border-radius: 10px;
+    animation: showModal ease 0.5s;
 }
 .confirm-text{
     position: absolute;
@@ -258,4 +261,14 @@
 .confirm-btns .yes-btn:hover{
     background-color: #D0D4CA;
     color: #000;
+}
+@keyframes showModal{
+    from{
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
