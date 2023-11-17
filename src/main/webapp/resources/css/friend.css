@@ -13,11 +13,13 @@
     border-radius: 20px;
   }
 .wrapper{
+    position: relative;
     width: 100%;
     height: 100vh;
     background-color: #b6d8eb;
     display: flex;
     font-family: monospace;
+    padding-top: 20px;
 }
 .mt-20{
     height: 20px;
@@ -96,6 +98,7 @@
     position: absolute;
     right: 35px;
 }
+.friend-wrapper .friend-suggest .item,
 .friend-wrapper .friend-list .item{
     background-color: #fff;
     width: 210px;
@@ -105,27 +108,32 @@
     border-radius: 6px;
     text-align: center;
 }
+.friend-suggest .item .avatar,
 .friend-list .item .avatar{
     margin-top: 10px;
     display: flex;
     justify-content: center;
     padding: 10px 0;
 }
+.friend-suggest .item .avatar img,
 .friend-list .item .avatar img{
     border-radius: 50%;
     width: 65px;
     height: 65px;
     object-fit: cover;
 }
+.friend-suggest .item .user-name,
 .friend-list .item .user-name{
     margin-top: 5px;
     font-weight: 800;
     font-size: 17px;
 }
+.friend-suggest .item .common-friend,
 .friend-list .item .common-friend{
     font-size: 13px;
     padding: 5px 0;
 }
+.friend-suggest .wrapper-item .status-wrapper,
 .friend-list .wrapper-item .status-wrapper{
     width: 60%;
     height: 30px;
@@ -133,12 +141,14 @@
     transform: translateX(-50%);
     left: 50%;
 }
+.friend-suggest .wrapper-item .status-wrapper i,
 .friend-list .wrapper-item .status-wrapper i{
     position: absolute;
     top: 90%;
     right: 10px;
     color: #fff;
 }
+.friend-suggest .wrapper-item .status,
 .friend-list .wrapper-item .status{
     background-color: #10d876;
     color: #fff;
@@ -182,4 +192,70 @@
     height: 20px;
     margin-left: 5px;
     display: inline;
+}
+
+/* Confirm */
+.hide{
+    display: none;
+}
+.confirm-wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+.confirm-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.confirm-text{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+}
+.confirm-btns{
+    position: absolute;
+    width: 250px;
+    text-align: center;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.confirm-btns .no-btn,
+.confirm-btns .yes-btn{
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+.confirm-btns .yes-btn{
+    background-color: #10d876;
+}
+.confirm-btns .no-btn{
+    background-color: #F31559;
+}
+.confirm-btns .no-btn:hover,
+.confirm-btns .yes-btn:hover{
+    background-color: #D0D4CA;
+    color: #000;
 }
