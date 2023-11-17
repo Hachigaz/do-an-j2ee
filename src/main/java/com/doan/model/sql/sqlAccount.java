@@ -102,4 +102,91 @@ public class sqlAccount{
             System.out.println(e.getMessage());
         }
     }
+        
+    public static boolean isEmailExists (String email){
+        boolean isExists = false;
+        try{
+            Connection connection = sqlConnect.connectToDB();
+            
+            String sql = "SELECT * FROM account where email = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                isExists = true;
+            }
+            statement.close();
+            connection.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return isExists;
+    }
+
+    public static boolean isUsernameExists (String username){
+        boolean isExists = false;
+        try{
+            Connection connection = sqlConnect.connectToDB();
+            
+            String sql = "SELECT * FROM account where username = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, username);
+            
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                isExists = true;
+            }
+            statement.close();
+            connection.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return isExists;
+    }
+
+    public static boolean checkPassword(String userID, String password){
+        boolean isExists = false;
+        try{
+            Connection connection = sqlConnect.connectToDB();
+            
+            String sql = "SELECT * FROM account where userID = ? AND password = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, userID);
+            statement.setString(2, password);
+
+            
+            ResultSet rs = statement.executeQuery(sql);
+            if(rs.next()){
+                isExists = true;
+            }
+            statement.close();
+            connection.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return isExists;
+    }
+
+    public static void updatePassword(String userID, String newPassword){
+        try{
+            Connection connection = sqlConnect.connectToDB();
+            
+            String sql = "UPDATE FROM account SET password = ? WHERE userID = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, newPassword);
+            statement.setString(2, userID);
+
+            
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
