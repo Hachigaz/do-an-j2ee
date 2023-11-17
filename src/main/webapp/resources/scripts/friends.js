@@ -109,8 +109,14 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
 const confirm_wrapper = document.createElement("div");
 confirm_wrapper.classList.add("confirm-wrapper");
 confirm_wrapper.classList.add("hide");
+confirm_wrapper.addEventListener("click", function(){
+    confirm_wrapper.classList.add("hide");
+});
 const confirm_content = document.createElement("div");
 confirm_content.classList.add("confirm-content");
+confirm_content.addEventListener("click",function(e){
+    e.stopPropagation();
+}); 
 const confirm_text = document.createElement("div");
 confirm_text.classList.add("confirm-text");     
 
@@ -146,6 +152,11 @@ function removeFriend(userID) {
     location.reload(true);
     // window.location.href = "/mxh/friend-page";
 }
+function sendFriend(userID){
+    var sendfriendID = document.getElementById(userID);
+    var url = "/mxh/DataRequest/SendRequest?sendFriendID="+sendfriendID.id;
+    fetch(url);
+}
 
 function showDialog(fullname){
     confirm_wrapper.classList.remove("hide");
@@ -169,8 +180,8 @@ function renderItem(item){
         />
     </div>
     <div class="user-name">${item.firstName} ${item.lastName}</div>
-    <div class="status-wrapper">
-        <div class="status">Thêm bạn bè</div>
+    <div class="status-wrapper"">
+        <div class="status" id='${item.userID}'>Thêm bạn bè</div>
     </div>
 </div>`;
     wrapper_item_suggest.insertAdjacentHTML("beforeend", template);
@@ -181,6 +192,30 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
         for(user in data){
             renderItem(data[user]);
         }
-        const 
+        const add_friend_btns = document.querySelectorAll(".friend-suggest .status-wrapper .status");
+        Array.from(add_friend_btns).forEach(function(item){
+            item.addEventListener("click",function(){
+                if(item.textContent == "Thêm bạn bè"){
+                    item.style.backgroundColor = "#808080";
+                    item.textContent = "Hủy yêu cầu";
+                    sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
+                }else if(item.textContent == "Hủy yêu cầu"){
+                    item.style.backgroundColor = "#10d876";
+                    item.textContent = "Thêm bạn bè";
+                    sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
+                }
+            });
+            const savedState = localStorage.getItem(item.id);
+            if (savedState === "Hủy yêu cầu") {
+                item.style.backgroundColor = "#808080";
+                item.textContent = "Hủy yêu cầu";
+            } else if (savedState === "Thêm bạn bè") {
+                item.style.backgroundColor = "#10d876";
+                item.textContent = "Thêm bạn bè";
+            }
+
+        });
     })
     .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));

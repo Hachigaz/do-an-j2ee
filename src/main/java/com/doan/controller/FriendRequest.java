@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers"})
+@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers","/DataRequest/SendRequest"})
 public class FriendRequest extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +33,8 @@ public class FriendRequest extends HttpServlet{
             removeFriend(req, resp);
         }else if(uri.contains("Strangers")){
             getStrangerDetails(req,resp);
+        }else if(uri.contains("SendRequest")){
+            SendRequest(req, resp);
         }
         
     }
@@ -65,6 +67,23 @@ public class FriendRequest extends HttpServlet{
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         out.println(list);
+    }
+    private void SendRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        String friendID = req.getParameter("sendFriendID");
+
+        if (friendID != null && !friendID.isEmpty()) {
+            // Gọi phương thức remove từ lớp sqlFriend
+            sqlFriend.sendFriendRequest(userID, friendID);
+
+            // Phản hồi cho client
+            resp.getWriter().println(friendID);
+        } else {
+            resp.getWriter().println("Không có friendID được cung cấp.");
+            // Xử lý lỗi hoặc cung cấp thông báo khác tùy thuộc vào yêu cầu của bạn.
+        }
     }
     private void removeFriend(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();

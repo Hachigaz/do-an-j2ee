@@ -302,8 +302,10 @@ public class sqlFriend{
 
     public static void sendFriendRequest(String sendUserID,String receiveUserID){
         try{
+            System.out.println(sendUserID);
+            System.out.println(receiveUserID);
             Connection connection = sqlConnect.connectToDB();
-            String sql = "call sendFriendRequest(?,?)";
+            String sql = "call processFriendRequest(?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, sendUserID);
             preparedStatement.setString(2, receiveUserID);

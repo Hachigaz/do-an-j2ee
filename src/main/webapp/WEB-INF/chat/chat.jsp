@@ -62,7 +62,7 @@
           </div>
           <div class="chat-box">
             <input type="text" class="text-input" placeholder="Nhập tin nhắn"></input>
-            <button onclick="sendMessage()" class="submit">Gửi</button>
+            <button onclick="sendMessage()" class="submit"><i class="fa-solid fa-arrow-right"></i></button>
           </div>
         </div>
       </div>

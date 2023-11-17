@@ -83,23 +83,28 @@
   height: 100px;
   top: calc(100% - 100px);
   left: 0;
-  background-color: #47567e;
+  background-color: #98CAFF;
 }
 .chat .text-input {
   position: absolute;
-  width: calc(70%);
-  height: 50px;
+  width: calc(83%);
+  height: 45px;
   top: 25px;
   left: 24px;
-  background-color: #e7e7e7;
+  background-color: #fff;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 25px;
 }
 .chat .submit {
   position: absolute;
-  width: 15%;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   top: 25px;
-  right: 30px;
-  background-color: #e7e7e7;
+  right: 105px;
+  background-color: #5454d2;
+  color: white;
+  border-radius: 50%;
 }
 .chat .chat-display {
   position: absolute;
