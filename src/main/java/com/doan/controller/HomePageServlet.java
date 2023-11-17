@@ -112,7 +112,6 @@ public class HomePageServlet extends HttpServlet{
             postDatas.add(new PostData(post, formattedDate, attachedImages, isLiked));
         }
         request.setAttribute("postItems", postDatas);
-
         response.setContentType("text/html");
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home-page/components/user-post.jsp");
         dispatcher.forward(request, response);

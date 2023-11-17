@@ -15,7 +15,6 @@ function setupPostFeed(){
         .then(response=>response.json())
         .then(jsonObject => {
             loggedInUserDetails = jsonObject;
-            console.log(loggedInUserDetails)
         })
 }
 
@@ -37,6 +36,7 @@ function getPosts(end,count){
             if(findOccurences(text,"<div class=\"comment-item\">")<postCount){
                 postFrameElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
             }
+            console.log(text)
         })
 }
 
@@ -95,11 +95,7 @@ function showComment(postID){
         commentSectionElement.style.display="block"
         let commentListElement = document.querySelector(`#comment-section-${postID} .comment-list`)
         if(commentListElement.innerHTML.trim() === ""){
-            let returnedCommentCount = getComment(postID)
-            
-            if(returnedCommentCount<commentCount){
-                commentListElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
-            }
+            getComment(postID)
         }
     }
     else{
@@ -107,42 +103,40 @@ function showComment(postID){
     }
 }
 
-function onPostScroll(){
-    
-}
-
-function onCommentScroll(postID){
-
-}
-
-let commentCount = 10;
+let commentCount = 20;
 function getComment(postID){
     let commentSectionElement = document.querySelector(`#comment-section-${postID}`)
-    if(commentSectionElement.lastUpdated === undefined){
-        commentSectionElement.lastUpdated = getCurrentDate();
+    if(!commentSectionElement.isLastComment){
+        if(commentSectionElement.lastUpdated === undefined){
+            commentSectionElement.lastUpdated = getCurrentDate();
+        }
+        let newUpdated = convertToSQLDate(new Date(convertToJSDate(commentSectionElement.lastUpdated).getTime()));
+
+        let params = new URLSearchParams();
+        params.append('lastDate',newUpdated)
+        params.append('commentCount',commentCount)
+        params.append('postID',postID)
+
+        let getCommentURL = `Post/GetComments?${params.toString()}`
+        fetch(getCommentURL)
+            .then(response => response.text())
+            .then(text => {
+                let commentListElement = document.querySelector(`#comment-section-${postID} .comment-list`)
+                commentListElement.insertAdjacentHTML("beforeend",text);
+                
+                let comments = commentListElement.querySelectorAll(".comment-item")
+                console.log(comments)
+                let lastComment = comments[comments.length-1]
+                
+                commentSectionElement.lastUpdated = convertToSQLDate(new Date(lastComment.querySelector(".comment-date").innerText));;1
+
+                let returnedCommentCount = findOccurences(text,"<div class=\"comment-item\">")
+                if(returnedCommentCount<commentCount){
+                    commentSectionElement.isLastComment=true;
+                    commentListElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
+                }
+            })
     }
-    let newUpdated = convertToSQLDate(new Date(convertToJSDate(commentSectionElement.lastUpdated).getTime()));
-    
-    let returnedCommentCount = -1;
-
-    let params = new URLSearchParams();
-    params.append('lastDate',newUpdated)
-    params.append('commentCount',commentCount)
-    params.append('postID',postID)
-
-    let getCommentURL = `Post/GetComments?${params.toString()}`
-    fetch(getCommentURL)
-        .then(response => response.text())
-        .then(text => {
-            let commentListElement = document.querySelector(`#comment-section-${postID} .comment-list`)
-            commentListElement.insertAdjacentHTML("beforeend",text);
-            returnedCommentCount = findOccurences(text,"<div class=\"comment-item\">")
-
-            if(returnedCommentCount==-1){
-                console.log("lỗi không xác định ở getComment")
-            }
-            return returnedCommentCount;
-        })
 }
 
 function processSubmitComment(postID){
@@ -174,12 +168,12 @@ function processSubmitComment(postID){
             let newCommentHTML = `
             <div class="comment-item">
                 <div class="comment-avatar-icon-wrapper">
-                    <img src="resources/img/userdata/${"ABC"}">
+                    <img src="resources/img/userdata/${loggedInUserDetails.avatar}">
                 </div>
                 <div class="comment-content">
                 <div class="comment-bubble">
                     <div class="comment-username">
-                        ${"AV"} ${"ASD"}
+                        ${loggedInUserDetails.firstName} ${loggedInUserDetails.lastName}
                     </div>
                     <div class="comment-text">
                         ${commentText}
@@ -203,4 +197,16 @@ function reloadPageAndScrollToPost(postID){
     let params = new URLSearchParams();
     params.append("postID",postID);
     let = newUrl = `${window.location.origin + window.location.pathname}?${params.toString()}`
+}
+
+
+function checkCommentScroll(postID){
+    let commentListElement = document.querySelector(`#comment-section-${postID}`);
+
+    let isScrolledToBottom = commentListElement.scrollTop + commentListElement.clientHeight === commentListElement.scrollHeight;
+
+    if (isScrolledToBottom) {
+      console.log('Scrolled to bottom!');
+      getComment(postID)
+    }
 }

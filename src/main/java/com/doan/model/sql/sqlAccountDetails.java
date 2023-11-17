@@ -64,4 +64,5 @@ public class sqlAccountDetails{
         }
         return details;
     }
+
 }
