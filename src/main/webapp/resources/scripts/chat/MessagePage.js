@@ -45,7 +45,13 @@ function setupPage(){
             messageSocket.onmessage=processIncomingMessage
         })
         .catch(error => console.error(error))
-    
+        const text_input = document.querySelector(".chat-box .text-input");
+        text_input.addEventListener("keydown", function(e){
+            if(e.code === 'Enter'){
+                e.preventDefault();
+                sendMessage();
+            }
+        });
 }
 
 let currentOpenChatID = null;
@@ -97,5 +103,4 @@ function processIncomingMessage(event){
     if(currentOpenChatID==messageObject.chatID){
         chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
     }
-
 }

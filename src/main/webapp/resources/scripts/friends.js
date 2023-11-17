@@ -109,8 +109,14 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
 const confirm_wrapper = document.createElement("div");
 confirm_wrapper.classList.add("confirm-wrapper");
 confirm_wrapper.classList.add("hide");
+confirm_wrapper.addEventListener("click", function(){
+    confirm_wrapper.classList.add("hide");
+});
 const confirm_content = document.createElement("div");
 confirm_content.classList.add("confirm-content");
+confirm_content.addEventListener("click",function(e){
+    e.stopPropagation();
+}); 
 const confirm_text = document.createElement("div");
 confirm_text.classList.add("confirm-text");     
 
@@ -193,12 +199,22 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
                     item.style.backgroundColor = "#808080";
                     item.textContent = "Hủy yêu cầu";
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
                 }else if(item.textContent == "Hủy yêu cầu"){
                     item.style.backgroundColor = "#10d876";
                     item.textContent = "Thêm bạn bè";
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
                 }
             });
+            const savedState = localStorage.getItem(item.id);
+            if (savedState === "Hủy yêu cầu") {
+                item.style.backgroundColor = "#808080";
+                item.textContent = "Hủy yêu cầu";
+            } else if (savedState === "Thêm bạn bè") {
+                item.style.backgroundColor = "#10d876";
+                item.textContent = "Thêm bạn bè";
+            }
 
         });
     })
