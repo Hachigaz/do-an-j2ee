@@ -78,10 +78,12 @@ public class ChatRedirectServlet extends HttpServlet{
     
     private void sendMessagesData(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String chatIDGet = req.getParameter("chatID");
+        Timestamp endDate = Timestamp.valueOf(req.getParameter("lastDate"));
+        int messageCount = Integer.parseInt(req.getParameter("count"));
         
         List<Message> messages = sqlChatObject.getMessages(
-            Timestamp.valueOf("1000-01-01 00:00:00"),
-            Timestamp.valueOf("9999-01-01 12:59:59") ,
+            endDate,
+            messageCount,
             chatIDGet
         );
         

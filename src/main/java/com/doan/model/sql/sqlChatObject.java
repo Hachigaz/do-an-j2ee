@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import com.doan.model.ChatObject.Message;
 
 public class sqlChatObject {
-    public static ArrayList<Message> getMessages(Timestamp start,Timestamp end,String chatID){
+    public static ArrayList<Message> getMessages(Timestamp end,int count,String chatID){
         ArrayList<Message> messages = new ArrayList<Message>();
         try{
             Connection connection = sqlConnect.connectToDB();
-            String sql = "select * from message where message.chatID = ? AND date_sent >= ? AND date_sent<=? order by date_sent AND deleted = 0";
+            String sql = "select * from message where message.chatID = ? AND date_sent<=? AND deleted = 0 order by date_sent DESC LIMIT ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, chatID);
-            statement.setTimestamp(2, start);
-            statement.setTimestamp(3, end);
+            statement.setTimestamp(2, end);
+            statement.setInt(3,count);
 
             ResultSet rs = statement.executeQuery();
 

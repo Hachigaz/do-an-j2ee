@@ -35,7 +35,7 @@ class MessageBox{
     }
     messages =[];
     
-    addMessage(message){
+    addMessage(message,location){
         this.messages.push(message)
 
         if(message.userID==this.friendAccountDetails.userID){
@@ -54,7 +54,7 @@ class MessageBox{
                         </div>
                     </div>
                 </div>`
-            this.chatFrameElement.insertAdjacentHTML("beforeend",fromMessageHTML)
+            this.chatFrameElement.insertAdjacentHTML(location,fromMessageHTML)
         }
         else{
             let toMessageHTML = `
@@ -72,7 +72,7 @@ class MessageBox{
                         </div>
                     </div>
                 </div>`
-            this.chatFrameElement.insertAdjacentHTML("beforeend",toMessageHTML)
+            this.chatFrameElement.insertAdjacentHTML(location,toMessageHTML)
         }
     }
 }

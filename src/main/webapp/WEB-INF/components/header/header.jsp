@@ -5,7 +5,7 @@
         <div class="logo">
             <a href="#" class="logo-button">
                 <i class="fa-solid fa-bolt"></i>
-                <span class="logo-title">Sociala</span>
+                <span class="logo-title">Social Live OK</span>
             </a>
         </div>
         <div class="middle-components">

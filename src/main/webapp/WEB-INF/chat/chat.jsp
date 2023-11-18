@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="resources/css/components/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script src="resources/scripts/utils/utils.js"></script>
     <script src="resources/scripts/chat/MessageBox.js"></script>
     <script src="resources/scripts/chat/MessagePage.js"></script>
-    <script src="resources/scripts/utils/utils.js"></script>
     <script type="text/javascript">
       window.addEventListener('load',setupPage)
     </script>
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="chat-panel">
-          <div class="chat-display">
+          <div class="chat-display" onscroll="isScrolledTop(this)">
             <!-- <div class="chat-frame">
               <div class="message-frame">
                 <div class="to-message">

@@ -19,26 +19,12 @@ function setupPage(){
 
             for(friendIndex in friendData){
                 const currentFriendData = friendData[friendIndex]
-
-                messageBoxes[currentFriendData.chatID]=new MessageBox(currentFriendData.chatID,currentFriendData.friendDetails)
-
-                const params = new URLSearchParams();
-                params.append('chatID', currentFriendData.chatID);
-                const messageChatRequestURL = `ChatRequest/Messages?${params.toString()}`;
-
-
-                fetch(messageChatRequestURL)
-                    .then(response => response.json())
-                    .then(fetchedMessageData => {
-                        for(messageIndex in fetchedMessageData){
-                            messageBoxes[currentFriendData.chatID].addMessage(fetchedMessageData[messageIndex])
-                        }
-                    })
-                
-                messageBoxes[friendData[friendIndex].chatID].chatFrameElement.style.display = "none"
+                messageBoxes[currentFriendData.chatID]=new MessageBox(currentFriendData.chatID,currentFriendData.friendDetails)                
+                messageBoxes[currentFriendData.chatID].chatFrameElement.style.display = "none"
+                messageBoxes[currentFriendData.chatID].lastUpdated = getCurrentDate()
+                getMessage(currentFriendData.chatID)
             }
 
-            //temp
             let webSocketProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             const messageSocketUrl = `${webSocketProtocol}//${location.host}/mxh/messageSocket?userID=${userAccountDetails.userID}`
             messageSocket = new WebSocket(messageSocketUrl)
@@ -84,7 +70,7 @@ function sendMessage(){
 
         textInputElement.value = ""
 
-        messageBoxes[currentOpenChatID].addMessage(message)
+        messageBoxes[currentOpenChatID].addMessage(message,"beforeend")
         
         chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
 
@@ -98,9 +84,62 @@ function processIncomingMessage(event){
     console.log(receivedMessage)
     let messageObject = JSON.parse(receivedMessage)
 
-    messageBoxes[messageObject.chatID].addMessage(messageObject)
+    messageBoxes[messageObject.chatID].addMessage(messageObject,"beforeend")
     
     if(currentOpenChatID==messageObject.chatID){
         chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
     }
+}
+
+let messageCount = 10
+function getMessage(chatID){
+    let getChatID = chatID==undefined?currentOpenChatID:chatID
+
+    if(!messageBoxes[getChatID].isLastMessage && getChatID != undefined){
+
+        const params = new URLSearchParams();
+        params.append('chatID', getChatID);
+        params.append('lastDate',messageBoxes[getChatID].lastUpdated)
+        params.append('count',messageCount)
+        const messageChatRequestURL = `ChatRequest/Messages?${params.toString()}`;
+    
+    
+        fetch(messageChatRequestURL)
+            .then(response => response.json())
+            .then(fetchedMessageData => {
+                let currentMessages = messageBoxes[getChatID].messages
+                let lastMessage = currentMessages[currentMessages.length-10]
+                for(messageIndex in fetchedMessageData){
+                    messageBoxes[getChatID].addMessage(fetchedMessageData[messageIndex],'afterbegin')
+                }
+                
+                if(fetchedMessageData.length<messageCount){
+                    messageBoxes[getChatID].isLastMessage=true;
+                }
+                else{
+                    messageBoxes[getChatID].lastUpdated = convertToSQLDate(new Date(new Date(fetchedMessageData[fetchedMessageData.length-1].dateSent).getTime()-1))
+                }
+                if(lastMessage!=undefined){
+                    let messageElements = chatDisplayElement.querySelectorAll(`#chat-frame-${getChatID} .message-frame .message-text`)
+                    for(index in messageElements){
+                        console.log(messageElements[index].innerText)
+                        if(messageElements[index].innerText == lastMessage.message){
+                            let scrollPosition = messageElements[index].offsetTop;
+                            chatDisplayElement.scrollTop = scrollPosition;
+                        }
+                    }
+                }
+            })
+    }
+}
+
+function isScrolledTop(element){
+    // Check if the element is scrolled to the top
+        if(element.scrollTop === 0){
+            if(!element.isLocked){
+                element.isLocked=true;
+                getMessage()
+                element.isLocked=false;
+            }
+        }
 }
