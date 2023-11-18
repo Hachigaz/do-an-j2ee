@@ -195,16 +195,16 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
         const add_friend_btns = document.querySelectorAll(".friend-suggest .status-wrapper .status");
         Array.from(add_friend_btns).forEach(function(item){
             item.addEventListener("click",function(){
-                if(item.textContent == "Thêm bạn bè"){
+                if(item.textContent === "Thêm bạn bè"){
                     item.style.backgroundColor = "#808080";
                     item.textContent = "Hủy yêu cầu";
-                    sendFriend(item.id);
                     localStorage.setItem(item.id,"Hủy yêu cầu");
-                }else if(item.textContent == "Hủy yêu cầu"){
+                    sendFriend(item.id);
+                }else if(item.textContent === "Hủy yêu cầu"){
                     item.style.backgroundColor = "#10d876";
                     item.textContent = "Thêm bạn bè";
+                    localStorage.setItem(item.id,"Thêm bạn bè");
                     sendFriend(item.id);
-                    localStorage.setItem(item.id,"Hủy yêu cầu");
                 }
             });
             const savedState = localStorage.getItem(item.id);
