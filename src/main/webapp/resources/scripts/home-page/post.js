@@ -2,13 +2,13 @@ let postFrameElement
 
 let loggedInUserDetails;
 
-let postCount = 10;
+let postCount = 5;
 function setupPostFeed(){
     postFrameElement = document.querySelector("div.user-feed-panel div.posts-frame");
     
     let currentDate = getCurrentDate();
 
-    getPosts(currentDate,postCount)
+    getPosts()
 
     let requestUSerDetailParams = new URLSearchParams()
     fetch(`UserServlet/GetUserDetails`)
@@ -19,25 +19,36 @@ function setupPostFeed(){
 }
 
 let lastUpdatedPost;
-function loadMorePosts(){
+function getPosts(){
+    if(!postFrameElement.isLastPost){
+        if(postFrameElement.lastUpdated === undefined){
+            postFrameElement.lastUpdated = getCurrentDate();
+        }
+        let params = new URLSearchParams();
+        params.append('postCount',postCount)
+        params.append('endDate',postFrameElement.lastUpdated)
+        const postRequestURL = `Post/GetPosts?${params.toString()}`
+    
+        fetch(postRequestURL)
+            .then(response => response.text())
+            .then(text => {
+                postFrameElement.insertAdjacentHTML("beforeend",text);
 
-}
+                let posts = postFrameElement.querySelectorAll(".post-item")
 
-function getPosts(end,count){
-    let params = new URLSearchParams();
-    params.append('postCount',count)
-    params.append('endDate',end)
-    const postRequestURL = `Post/GetPosts?${params.toString()}`
+                let lastPost = posts[posts.length-1]
 
-    fetch(postRequestURL)
-        .then(response => response.text())
-        .then(text => {
-            postFrameElement.insertAdjacentHTML("beforeend",text);
-            if(findOccurences(text,"<div class=\"comment-item\">")<postCount){
-                postFrameElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
-            }
-            console.log(text)
-        })
+                
+                postFrameElement.lastUpdated = convertToSQLDate(new Date(new Date(lastPost.querySelector(".post-date").innerText).getTime()-1));
+
+                let returnPostCount = findOccurences(text,"<div class=\"post-item\"")
+                
+                if(returnPostCount<postCount){
+                    postFrameElement.isLastPost=true;
+                    postFrameElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
+                }
+            })
+    }
 }
 
 function processLike(postID, element){
@@ -110,7 +121,7 @@ function getComment(postID){
         if(commentSectionElement.lastUpdated === undefined){
             commentSectionElement.lastUpdated = getCurrentDate();
         }
-        let newUpdated = convertToSQLDate(new Date(convertToJSDate(commentSectionElement.lastUpdated).getTime()));
+        let newUpdated = convertToSQLDate(new Date(convertToJSDate(commentSectionElement.lastUpdated).getTime()-1));
 
         let params = new URLSearchParams();
         params.append('lastDate',newUpdated)
@@ -125,10 +136,9 @@ function getComment(postID){
                 commentListElement.insertAdjacentHTML("beforeend",text);
                 
                 let comments = commentListElement.querySelectorAll(".comment-item")
-                console.log(comments)
                 let lastComment = comments[comments.length-1]
                 
-                commentSectionElement.lastUpdated = convertToSQLDate(new Date(lastComment.querySelector(".comment-date").innerText));;1
+                commentSectionElement.lastUpdated = convertToSQLDate(new Date(lastComment.querySelector(".comment-date").innerText));
 
                 let returnedCommentCount = findOccurences(text,"<div class=\"comment-item\">")
                 if(returnedCommentCount<commentCount){
@@ -206,7 +216,16 @@ function checkCommentScroll(postID){
     let isScrolledToBottom = commentListElement.scrollTop + commentListElement.clientHeight === commentListElement.scrollHeight;
 
     if (isScrolledToBottom) {
-      console.log('Scrolled to bottom!');
       getComment(postID)
+    }
+}
+
+function checkPostScroll(element){
+    var scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+    var totalHeight = document.body.scrollHeight;
+    var viewportHeight = window.innerHeight;
+
+    if (scrollPosition + viewportHeight >= totalHeight) {
+        getPosts()
     }
 }
