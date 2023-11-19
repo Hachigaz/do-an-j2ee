@@ -198,13 +198,13 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
                 if(item.textContent === "Thêm bạn bè"){
                     item.style.backgroundColor = "#808080";
                     item.textContent = "Hủy yêu cầu";
-                    localStorage.setItem(item.id,"Hủy yêu cầu");
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
                 }else if(item.textContent === "Hủy yêu cầu"){
                     item.style.backgroundColor = "#10d876";
                     item.textContent = "Thêm bạn bè";
-                    localStorage.setItem(item.id,"Thêm bạn bè");
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Thêm bạn bè");
                 }
             });
             const savedState = localStorage.getItem(item.id);
