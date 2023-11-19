@@ -12,7 +12,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 avatar.classList.add("avatar");
                 item.appendChild(avatar);
                 var image = document.createElement("img");
-                image.setAttribute("src","resources/img/userdata/"+data[user].avatar);
+                image.setAttribute("src","/stored-user-images/"+data[user].avatar);
                 avatar.appendChild(image);
                 var userFullname = document.createElement("div");
                 userFullname.classList.add("user-name");
@@ -176,7 +176,7 @@ function renderItem(item){
     const template = `<div class="col-md-3 item">
     <div class="avatar">
         <img
-            src="resources/img/userdata/${item.avatar}"
+            src="/stored-user-images/${item.avatar}"
         />
     </div>
     <div class="user-name">${item.firstName} ${item.lastName}</div>

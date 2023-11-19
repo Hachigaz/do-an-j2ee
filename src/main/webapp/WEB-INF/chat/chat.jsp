@@ -34,7 +34,7 @@
               <div class="message-frame">
                 <div class="to-message">
                   <div class="user-avatar-wrapper">
-                    <img class="img" src="resources/img/userdata/jim_avt.png">
+                    <img class="img" src="/stored-user-images/jim_avt.png">
                   </div>
                   <div class="message-box">
                     <div class="message-user-wrapper">

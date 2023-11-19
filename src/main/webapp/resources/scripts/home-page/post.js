@@ -178,7 +178,7 @@ function processSubmitComment(postID){
             let newCommentHTML = `
             <div class="comment-item">
                 <div class="comment-avatar-icon-wrapper">
-                    <img src="resources/img/userdata/${loggedInUserDetails.avatar}">
+                    <img src="/stored-user-images/${loggedInUserDetails.avatar}">
                 </div>
                 <div class="comment-content">
                 <div class="comment-bubble">

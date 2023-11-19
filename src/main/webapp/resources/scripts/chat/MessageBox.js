@@ -1,7 +1,7 @@
 let chatFrameIDStr = "chat-frame-"
 let chatUserItemIDStr = "friend-item-"
 
-let imageSrc = "resources/img/userdata/"
+let imageSrc = "/stored-user-images/"
 
 class MessageBox{
     chatID;
@@ -22,7 +22,7 @@ class MessageBox{
                         <div class="username">${friendAccountDetails.firstName+" "+friendAccountDetails.lastName}</div>
                     </div>
                     <div class="avatar">
-                        <img class="user-avatar" src="resources/img/userdata/${friendAccountDetails.avatar}" />
+                        <img class="user-avatar" src="/stored-user-images/${friendAccountDetails.avatar}" />
                     </div>
                 </div> 
             `
