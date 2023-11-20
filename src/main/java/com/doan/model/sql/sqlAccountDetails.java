@@ -1,6 +1,7 @@
 package com.doan.model.sql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class sqlAccountDetails{
             statement.setString(1, details.getUserID());
             statement.setString(2, details.getFirstName());
             statement.setString(3, details.getLastName());
-            statement.setDate(4, details.getBirthDate());
+            //statement.setDate(4, details.getBirthDate());
 
             // Execute s INSERT statement
             int rowsInserted = statement.executeUpdate();
@@ -64,5 +65,37 @@ public class sqlAccountDetails{
         }
         return details;
     }
-
+    public static void updateAccountdetails(String userID, String firstName, String lastName, String address) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(sqlConnect.dbURL, sqlConnect.dbUser, sqlConnect.dbPassword);
+    
+            // Sử dụng PreparedStatement để tránh tình trạng SQL injection
+            String sql = "UPDATE account_details SET firstName=?, lastName=?, address=? WHERE userID=?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+    
+            // Đặt giá trị cho các tham số trong câu truy vấn
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, userID);
+    
+            // Thực hiện câu truy vấn
+            int rowsAffected = preparedStatement.executeUpdate();
+    
+            // Kiểm tra xem có dòng nào bị ảnh hưởng không
+            if (rowsAffected > 0) {
+                System.out.println("Update thành công.");
+            } else {
+                System.out.println("Không tìm thấy bản ghi với userID = " + userID);
+            }
+    
+            // Đóng các tài nguyên
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Exception occurred: " + e.getMessage());
+        }
+    }
+    
 }

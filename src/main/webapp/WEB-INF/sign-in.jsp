@@ -33,7 +33,7 @@
                             <a href="reset">Forgot your Password?</a>
                         </div>
                         <input type="submit" class="submit-login" value="Login">
-                        <span class="register-desc">Don't have account <a href="#" class="register-link">Register</a></span>
+                        <span class="register-desc">Don't have account <a href="register" class="register-link">Register</a></span>
                     </form>
                 </div>
             </div>

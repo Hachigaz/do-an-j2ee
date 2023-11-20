@@ -70,7 +70,7 @@ public class sqlAccount{
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             Connection connection = DriverManager.getConnection(sqlConnect.dbURL,sqlConnect.dbUser,sqlConnect.dbPassword);
 
-            String sql = "CALL addAccount(?,?,?,?,?,?,?,?,?)";
+            String sql = "CALL createUser(?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement statement  = connection.prepareStatement(sql);
             
@@ -81,7 +81,7 @@ public class sqlAccount{
             statement.setString(4, firstName);
             statement.setString(5, lastName);
             statement.setString(6, address);
-            statement.setDate(7, birthDate);
+            statement.setDate(7,  birthDate);
             statement.setString(8, avatarName);
             statement.setString(9, backgroundName);
 
@@ -111,8 +111,7 @@ public class sqlAccount{
             String sql = "SELECT * FROM account where email = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
-            
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery();
             if(rs.next()){
                 isExists = true;
             }
@@ -134,7 +133,7 @@ public class sqlAccount{
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, username);
             
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery();
             if(rs.next()){
                 isExists = true;
             }
@@ -158,7 +157,7 @@ public class sqlAccount{
             statement.setString(2, password);
 
             
-            ResultSet rs = statement.executeQuery(sql);
+            ResultSet rs = statement.executeQuery();
             if(rs.next()){
                 isExists = true;
             }
@@ -171,22 +170,21 @@ public class sqlAccount{
         return isExists;
     }
 
-    public static void updatePassword(String userID, String newPassword){
-        try{
+    public static void updatePassword(String userID, String newPassword) {
+        try {
             Connection connection = sqlConnect.connectToDB();
-            
-            String sql = "UPDATE FROM account SET password = ? WHERE userID = ?";
+    
+            String sql = "UPDATE account SET password = ? WHERE userID = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, newPassword);
             statement.setString(2, userID);
-
-            
+    
             statement.executeUpdate();
             statement.close();
             connection.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+    
 }

@@ -8,5 +8,6 @@
 
 <br/>
 <a href="sign-in">nhảy tới đăng nhập</a>
+<a href="register">dang ky</a>
 </body>
 </html>

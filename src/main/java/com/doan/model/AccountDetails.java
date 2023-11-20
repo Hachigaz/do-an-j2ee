@@ -1,20 +1,21 @@
 package com.doan.model;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 public class AccountDetails {
     private String userID;
     private String firstName;
     private String lastName;
     private String address;
-    private Date birthDate;
+    private java.sql.Date birthDate;
     private String avatar;
     private String background;
     
     public AccountDetails(){
         
     }
-    public AccountDetails(String userID, String firstName, String lastName, String address, Date birthDate,
+    public AccountDetails(String userID, String firstName, String lastName, String address, java.sql.Date birthDate,
             String avatar, String background) {
         this.userID = userID;
         this.firstName = firstName;
@@ -60,10 +61,10 @@ public class AccountDetails {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public Date getBirthDate() {
+    public java.sql.Date getBirthDate() {
         return birthDate;
     }
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(java.sql.Date birthDate) {
         this.birthDate = birthDate;
     }
 }

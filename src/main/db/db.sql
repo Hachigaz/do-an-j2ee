@@ -861,6 +861,7 @@ BEGIN
 	insert into message values(sChatID,sUserID,msgIdx,sMessage,sDateSent,0);
 END ;;
 DELIMITER ;
+
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;

@@ -19,8 +19,11 @@
                 <a href="home-page" class="home"><i class="fa-solid fa-house"></i></a>
                 <a href="#" class="stories"><i class="fa-solid fa-bolt"></i></a>
                 <a href="#" class="video"><i class="fa-solid fa-video"></i></a>
-                <a href="friend-page" class="user"><i class="fa-regular fa-user"></i></a>
+                <a href="friend-page" class="user"><i class="fa-solid fa-users"></i></a>
                 <a href="#" class="shop"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href="changepassword" ><i class="fa-solid fa-lock"></i></a>
+                <a href="userpage" ><i class="fa-solid fa-user"></i></a>
+
             </div>
         </div>
         <div class="right-components">
