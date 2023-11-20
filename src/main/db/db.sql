@@ -29,7 +29,7 @@ CREATE TABLE `account` (
   `password` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `account_details` (
   `friendCount` int DEFAULT NULL,
   PRIMARY KEY (`userID`),
   CONSTRAINT `userID_ACCDE_ACC` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +84,7 @@ CREATE TABLE `chat` (
   `chatID` int NOT NULL,
   `message_count` bigint DEFAULT NULL,
   PRIMARY KEY (`chatID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `chat` (
 
 LOCK TABLES `chat` WRITE;
 /*!40000 ALTER TABLE `chat` DISABLE KEYS */;
-INSERT INTO `chat` VALUES (0,21),(1,2),(2,1),(3,0),(4,0),(5,0),(6,0),(7,0),(8,0),(9,0),(10,0),(11,0),(12,0),(13,0),(14,0),(15,0),(16,0),(17,0),(18,0),(19,0),(20,0),(21,0),(22,0);
+INSERT INTO `chat` VALUES (0,23),(1,2),(2,1),(3,0),(4,44),(5,0),(6,0),(7,0),(8,0),(9,0),(10,0),(11,0),(12,0),(13,0),(14,0),(15,0),(16,0),(17,0),(18,0),(19,0),(20,0),(21,0),(22,0);
 /*!40000 ALTER TABLE `chat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +111,7 @@ CREATE TABLE `chat_users` (
   KEY `2_idx` (`userID`),
   CONSTRAINT `1` FOREIGN KEY (`chatID`) REFERENCES `chat` (`chatID`),
   CONSTRAINT `2` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +140,7 @@ CREATE TABLE `comment_like` (
   KEY `post_comment_like` (`commentID`,`postID`),
   CONSTRAINT `account_comment_like` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`),
   CONSTRAINT `post_comment_like` FOREIGN KEY (`postID`, `commentID`) REFERENCES `post_comment` (`postID`, `commentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +170,7 @@ CREATE TABLE `friend` (
   KEY `132_idx` (`chatID`),
   CONSTRAINT `friend_user` FOREIGN KEY (`userID1`) REFERENCES `account` (`userID`),
   CONSTRAINT `friend_user2` FOREIGN KEY (`userID2`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +197,7 @@ CREATE TABLE `friend_request` (
   KEY `receiveidaccount_idx` (`receiveUserID`),
   CONSTRAINT `receiveidaccount` FOREIGN KEY (`receiveUserID`) REFERENCES `account` (`userID`),
   CONSTRAINT `sendidaccount` FOREIGN KEY (`sendUserID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +206,7 @@ CREATE TABLE `friend_request` (
 
 LOCK TABLES `friend_request` WRITE;
 /*!40000 ALTER TABLE `friend_request` DISABLE KEYS */;
+INSERT INTO `friend_request` VALUES ('18','1'),('19','1'),('24','1'),('1','23');
 /*!40000 ALTER TABLE `friend_request` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +228,7 @@ CREATE TABLE `message` (
   KEY `1_idx` (`userID`),
   CONSTRAINT `1123` FOREIGN KEY (`chatID`) REFERENCES `chat` (`chatID`),
   CONSTRAINT `1324` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +237,7 @@ CREATE TABLE `message` (
 
 LOCK TABLES `message` WRITE;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',3,'123','2023-11-01 23:14:19',0),(0,'2',4,'123','2023-11-01 23:15:32',0),(0,'1',5,'ok','2023-11-01 23:18:08',0),(0,'2',6,'ok ko','2023-11-01 23:18:30',0),(0,'2',7,'ok','2023-11-01 23:18:42',0),(0,'2',8,'ok','2023-11-01 23:19:44',0),(0,'2',9,'đẹp','2023-11-01 23:19:52',0),(0,'1',10,'đẹp z','2023-11-01 23:20:44',0),(0,'2',11,'đu đủ','2023-11-01 23:20:53',0),(0,'2',12,'what','2023-11-02 16:52:30',0),(0,'2',13,'ok','2023-11-02 16:53:51',0),(0,'2',14,'ok','2023-11-02 16:55:58',0),(0,'1',15,'helo','2023-11-02 16:56:05',0),(0,'1',16,'asd','2023-11-13 07:54:09',0),(0,'1',17,'asd','2023-11-13 07:54:14',0),(0,'1',18,'qwre','2023-11-13 07:54:19',0),(0,'1',19,'asdasdsaodkasodkasokdoaksdkaokdaoskdoaskdoaskdoaskdokasodkasodkaso','2023-11-13 07:55:46',0),(0,'2',20,'Xin chao','2023-11-15 17:11:14',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(2,'3',0,'123','2023-10-17 14:10:11',0);
+INSERT INTO `message` VALUES (0,'1',0,'abc','2023-10-15 14:30:00',0),(0,'1',1,'xin chào','2023-10-15 14:31:00',0),(0,'2',2,'100 ok','2023-10-17 14:10:11',0),(0,'1',3,'123','2023-11-01 23:14:19',0),(0,'2',4,'123','2023-11-01 23:15:32',0),(0,'1',5,'ok','2023-11-01 23:18:08',0),(0,'2',6,'ok ko','2023-11-01 23:18:30',0),(0,'2',7,'ok','2023-11-01 23:18:42',0),(0,'2',8,'ok','2023-11-01 23:19:44',0),(0,'2',9,'đẹp','2023-11-01 23:19:52',0),(0,'1',10,'đẹp z','2023-11-01 23:20:44',0),(0,'2',11,'đu đủ','2023-11-01 23:20:53',0),(0,'2',12,'what','2023-11-02 16:52:30',0),(0,'2',13,'ok','2023-11-02 16:53:51',0),(0,'2',14,'ok','2023-11-02 16:55:58',0),(0,'1',15,'helo','2023-11-02 16:56:05',0),(0,'1',16,'asd','2023-11-13 07:54:09',0),(0,'1',17,'asd','2023-11-13 07:54:14',0),(0,'1',18,'qwre','2023-11-13 07:54:19',0),(0,'1',19,'asdasdsaodkasodkasokdoaksdkaokdaoskdoaskdoaskdoaskdokasodkasodkaso','2023-11-13 07:55:46',0),(0,'2',20,'Xin chao','2023-11-15 17:11:14',0),(0,'1',21,'asd\\','2023-11-18 10:46:33',0),(0,'1',22,'helo','2023-11-18 10:46:36',0),(1,'3',0,'asd','2023-10-17 14:10:11',0),(1,'1',1,'yôi ko có tiền','2023-10-17 14:10:11',0),(2,'3',0,'123','2023-10-17 14:10:11',0),(4,'1',0,'xin chào 1','2023-11-18 12:03:54',0),(4,'1',1,'xin chào 2','2023-11-18 12:03:57',0),(4,'1',2,'xin chào 3','2023-11-18 12:03:59',0),(4,'1',3,'xin chào 4','2023-11-18 12:04:02',0),(4,'1',4,'xin chào 5','2023-11-18 12:04:04',0),(4,'1',5,'xin chào 6','2023-11-18 12:04:07',0),(4,'1',6,'xin chào 7','2023-11-18 12:04:09',0),(4,'1',7,'xin chào 8 ','2023-11-18 12:04:12',0),(4,'1',8,'xin chào 9','2023-11-18 12:04:14',0),(4,'1',9,'xin chào 10','2023-11-18 12:04:16',0),(4,'1',10,'xin chào 11','2023-11-18 12:04:17',0),(4,'1',11,'xin chào 12','2023-11-18 12:04:20',0),(4,'1',12,'xin chào 13','2023-11-18 12:04:22',0),(4,'1',13,'xin chào 14','2023-11-18 12:04:25',0),(4,'1',14,'xin chào 15','2023-11-18 12:04:27',0),(4,'1',15,'xin chào 16','2023-11-18 12:04:29',0),(4,'1',16,'xin chào 17','2023-11-18 12:04:31',0),(4,'1',17,'xin chào 18','2023-11-18 12:04:33',0),(4,'1',18,'xin chào 19','2023-11-18 12:04:35',0),(4,'1',19,'xin chào 20 ','2023-11-18 12:04:36',0),(4,'1',20,'xin chào 21','2023-11-18 12:04:40',0),(4,'1',21,'xin chào 22','2023-11-18 12:04:41',0),(4,'1',22,'xin chào 23','2023-11-18 12:04:44',0),(4,'1',23,'xin chào 24','2023-11-18 12:04:46',0),(4,'1',24,'xin chào 25','2023-11-18 12:04:49',0),(4,'1',25,'xin chào 26','2023-11-18 12:04:50',0),(4,'1',26,'xin chào 27','2023-11-18 12:04:53',0),(4,'1',27,'xin chào 28','2023-11-18 12:04:55',0),(4,'1',28,'xin chào 29','2023-11-18 12:04:57',0),(4,'1',29,'xin chào 30','2023-11-18 12:04:59',0),(4,'1',30,'xin chào 31','2023-11-18 12:05:00',0),(4,'1',31,'xin chào 32','2023-11-18 12:05:02',0),(4,'1',32,'xin chào 33','2023-11-18 12:05:04',0),(4,'1',33,'xin chào 34','2023-11-18 12:05:06',0),(4,'1',34,'xin chào 35','2023-11-18 12:05:09',0),(4,'1',35,'xin chào 36','2023-11-18 12:05:12',0),(4,'1',36,'xin chào 37','2023-11-18 12:05:17',0),(4,'1',37,'xin chào 38','2023-11-18 12:05:20',0),(4,'1',38,'xin chào 39','2023-11-18 12:05:23',0),(4,'1',39,'xin chào 40','2023-11-18 12:05:26',0),(4,'1',40,'xin chào 41','2023-11-18 12:05:27',0),(4,'1',41,'xin chào 42','2023-11-18 12:05:30',0),(4,'1',42,'xin chào 43','2023-11-18 12:05:36',0),(4,'1',43,'xin chào 44','2023-11-18 12:05:38',0);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -244,7 +245,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -261,7 +262,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -291,7 +292,7 @@ CREATE TABLE `post_comment` (
   `deleted` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`postID`,`commentID`),
   CONSTRAINT `post_comment` FOREIGN KEY (`postID`) REFERENCES `user_post` (`postID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +301,7 @@ CREATE TABLE `post_comment` (
 
 LOCK TABLES `post_comment` WRITE;
 /*!40000 ALTER TABLE `post_comment` DISABLE KEYS */;
-INSERT INTO `post_comment` VALUES ('0',0,'1','Hàng này còn giá không?','2023-11-14 20:19:13',0,0),('1',0,'1','Bạn thật xinh đẹp','2023-11-07 15:24:07',0,0),('1',1,'1','Cái này mua ở đâu vậy','2023-11-14 23:42:23',0,0),('1',2,'1','Bãi biển thật mộng mơ','2023-11-14 23:43:31',0,0),('1',3,'1','Mặt trời đẹp quá','2023-11-14 23:43:53',0,0),('2',0,'1','Thật là tuyệt vời!','2023-11-14 20:16:01',0,0),('2',1,'1','Màu gì đẹp thế','2023-11-14 23:15:47',0,0),('2',2,'1','Nói hay lắm','2023-11-14 23:46:50',0,0),('2',3,'1','Chúc bạn may mắn','2023-11-14 23:49:24',0,0),('2',4,'1','Thật ý nghĩa','2023-11-15 00:01:47',0,0),('2',5,'2','Thật là dễ thương','2023-11-15 00:04:24',0,0),('2',6,'2','Lần tới nhớ rủ tôi nhé!','2023-11-15 00:04:41',0,0),('2',7,'3','Sao mà mắc cười quá','2023-11-15 00:05:26',0,0),('2',8,'3','Bạn thật là có khiếu hài hước!','2023-11-15 00:05:40',0,0),('2',9,'3','Tôi rất ấn tượng','2023-11-15 00:05:52',0,0),('2',10,'3','Bạn cố lên nhé!','2023-11-15 00:07:06',0,0),('2',11,'1','Thật là hay!','2023-11-15 09:48:57',0,0),('4',0,'3','Bạn thật xinh đẹp!','2023-11-16 11:15:48',0,0);
+INSERT INTO `post_comment` VALUES ('0',0,'1','Hàng này còn giá không?','2023-11-14 20:19:13',0,0),('1',0,'1','Bạn thật xinh đẹp','2023-11-07 15:24:07',0,0),('1',1,'1','Cái này mua ở đâu vậy','2023-11-14 23:42:23',0,0),('1',2,'1','Bãi biển thật mộng mơ','2023-11-14 23:43:31',0,0),('1',3,'1','Mặt trời đẹp quá','2023-11-14 23:43:53',0,0),('1',4,'2','Bài viết rất tuyệt vời!','2023-03-04 09:27:15',0,0),('1',5,'3','Rất ấn tượng!','2023-05-12 14:58:37',0,0),('1',6,'4','Cảm ơn bạn đã chia sẻ!','2023-07-18 20:21:45',0,0),('1',7,'5','Hay quá!','2023-09-25 02:43:56',0,0),('1',8,'6','Chúc mừng!','2023-11-01 07:12:28',0,0),('1',9,'7','Tôi thích điều này!','2023-02-14 11:35:39',0,0),('1',10,'8','Bài viết có ý nghĩa!','2023-04-23 16:04:51',0,0),('1',11,'9','Tuyệt vời nhé!','2023-06-30 21:29:03',0,0),('1',12,'10','Chúc mừng bạn!','2023-09-06 01:53:14',0,0),('1',13,'11','Đáng khen ngợi!','2023-11-12 06:22:26',0,0),('1',14,'12','Bài viết đẹp quá!','2023-02-20 10:45:37',0,0),('1',15,'13','Cảm ơn bạn!','2023-04-29 15:14:48',0,0),('1',16,'14','Tuyệt vời!','2023-07-06 20:42:00',0,0),('1',17,'15','Chúc mừng!','2023-09-12 02:04:11',0,0),('1',18,'16','Bình luận xuất sắc!','2023-11-18 06:33:23',0,0),('1',19,'17','Bạn là nguồn động viên lớn!','2023-02-22 10:56:34',0,0),('1',20,'18','Thực sự ấn tượng!','2023-05-02 15:25:46',0,0),('1',21,'19','Bài viết có ý nghĩa!','2023-07-10 20:54:58',0,0),('1',22,'20','Rất tốt!','2023-09-16 01:19:09',0,0),('1',23,'2','Chúc mừng bạn!','2023-11-22 05:47:21',0,0),('1',24,'3','Cảm ơn bạn đã chia sẻ!','2023-03-01 11:10:32',0,0),('1',25,'4','Rất ấn tượng!','2023-05-09 16:39:43',0,0),('1',26,'5','Bài viết tuyệt vời!','2023-07-15 22:02:54',0,0),('1',27,'6','Chúc mừng!','2023-09-21 03:28:06',0,0),('1',28,'7','Bình luận tuyệt vời!','2023-11-27 07:57:18',0,0),('1',29,'8','Thực sự ấn tượng!','2023-03-05 13:20:29',0,0),('1',30,'9','Hay quá!','2023-05-13 18:49:41',0,0),('1',31,'10','Rất tốt!','2023-07-19 00:12:52',0,0),('1',32,'11','Bài viết rất ý nghĩa!','2023-09-26 05:38:04',0,0),('1',33,'12','Bạn là nguồn động viên lớn!','2023-11-02 11:01:15',0,0),('1',34,'13','Thực sự ấn tượng!','2023-02-09 16:30:27',0,0),('1',35,'14','Chúc mừng bạn!','2023-04-18 21:57:39',0,0),('1',36,'15','Rất tốt!','2023-06-26 03:20:50',0,0),('1',37,'16','Bài viết tuyệt vời!','2023-09-01 08:44:01',0,0),('1',38,'17','Cảm ơn bạn đã chia sẻ!','2023-11-07 14:07:13',0,0),('1',39,'18','Hay quá!','2023-02-13 19:36:25',0,0),('1',40,'19','Bình luận xuất sắc!','2023-04-22 01:58:36',0,0),('1',41,'20','Chúc mừng!','2023-06-28 07:23:48',0,0),('1',42,'2','Rất ấn tượng!','2023-09-03 12:46:59',0,0),('1',43,'3','Bài viết xuất sắc!','2023-11-09 18:10:11',0,0),('1',44,'4','Chúc mừng bạn!','2023-02-15 23:33:23',0,0),('1',45,'5','Hay quá!','2023-04-25 05:55:34',0,0),('1',46,'6','Rất tốt!','2023-07-02 11:18:45',0,0),('1',47,'7','Bài viết tuyệt vời!','2023-09-08 16:47:57',0,0),('1',48,'8','Cảm ơn bạn!','2023-11-14 22:11:09',0,0),('1',49,'9','Chúc mừng!','2023-02-20 03:34:20',0,0),('1',50,'10','Thực sự ấn tượng!','2023-04-29 08:57:32',0,0),('1',51,'11','Bình luận rất ý nghĩa!','2023-07-06 14:20:43',0,0),('1',52,'12','Bạn là nguồn động viên lớn!','2023-09-12 19:43:55',0,0),('1',53,'13','Thực sự ấn tượng!','2023-11-18 01:11:06',0,0),('1',54,'14','Chúc mừng bạn!','2023-02-23 06:34:18',0,0),('1',55,'15','Rất tốt!','2023-05-03 11:57:29',0,0),('1',56,'16','Bài viết xuất sắc!','2023-07-09 17:26:40',0,0),('1',57,'17','Cảm ơn bạn đã chia sẻ!','2023-09-15 22:49:51',0,0),('1',58,'18','Hay quá!','2023-11-22 04:13:03',0,0),('1',59,'19','Bình luận xuất sắc!','2023-02-28 09:36:14',0,0),('1',60,'20','Chúc mừng!','2023-05-08 14:59:26',0,0),('1',61,'2','Rất ấn tượng!','2023-07-14 20:22:38',0,0),('1',62,'3','Bài viết xuất sắc!','2023-09-20 01:47:49',0,0),('1',63,'4','Chúc mừng bạn!','2023-11-26 07:11:01',0,0),('1',64,'5','Hay quá!','2023-03-05 12:34:13',0,0),('1',65,'6','Rất tốt!','2023-05-13 17:57:24',0,0),('1',66,'7','Bài viết tuyệt vời!','2023-07-19 23:20:35',0,0),('1',67,'8','Cảm ơn bạn!','2023-09-25 04:43:47',0,0),('1',68,'9','Chúc mừng!','2023-11-01 10:06:58',0,0),('1',69,'10','Thực sự ấn tượng!','2023-02-07 15:36:10',0,0),('1',70,'11','Bình luận rất ý nghĩa!','2023-04-16 21:03:21',0,0),('1',71,'12','Bạn là nguồn động viên lớn!','2023-06-25 02:26:32',0,0),('1',72,'13','Thực sự ấn tượng!','2023-08-31 07:49:43',0,0),('1',73,'14','Chúc mừng bạn!','2023-11-06 13:12:55',0,0),('1',74,'15','Rất tốt!','2023-02-13 18:36:07',0,0),('2',0,'1','Thật là tuyệt vời!','2023-11-14 20:16:01',0,0),('2',1,'1','Màu gì đẹp thế','2023-11-14 23:15:47',0,0),('2',2,'1','Nói hay lắm','2023-11-14 23:46:50',0,0),('2',3,'1','Chúc bạn may mắn','2023-11-14 23:49:24',0,0),('2',4,'1','Thật ý nghĩa','2023-11-15 00:01:47',0,0),('2',5,'2','Thật là dễ thương','2023-11-15 00:04:24',0,0),('2',6,'2','Lần tới nhớ rủ tôi nhé!','2023-11-15 00:04:41',0,0),('2',7,'3','Sao mà mắc cười quá','2023-11-15 00:05:26',0,0),('2',8,'3','Bạn thật là có khiếu hài hước!','2023-11-15 00:05:40',0,0),('2',9,'3','Tôi rất ấn tượng','2023-11-15 00:05:52',0,0),('2',10,'3','Bạn cố lên nhé!','2023-11-15 00:07:06',0,0),('2',11,'1','Thật là hay!','2023-11-15 09:48:57',0,0),('4',0,'3','Bạn thật xinh đẹp!','2023-11-16 11:15:48',0,0);
 /*!40000 ALTER TABLE `post_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -308,7 +309,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -325,7 +326,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -351,7 +352,7 @@ CREATE TABLE `post_image` (
   `image` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`postID`,`index`),
   CONSTRAINT `post_image` FOREIGN KEY (`postID`) REFERENCES `user_post` (`postID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -378,7 +379,7 @@ CREATE TABLE `post_like` (
   KEY `1 2_idx` (`userID`),
   CONSTRAINT `1 1` FOREIGN KEY (`postID`) REFERENCES `user_post` (`postID`),
   CONSTRAINT `1 2` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,7 +388,7 @@ CREATE TABLE `post_like` (
 
 LOCK TABLES `post_like` WRITE;
 /*!40000 ALTER TABLE `post_like` DISABLE KEYS */;
-INSERT INTO `post_like` VALUES ('0','1'),('1','1'),('2','1'),('3','1'),('4','1'),('5','1'),('4','3'),('5','3');
+INSERT INTO `post_like` VALUES ('0','1'),('1','1'),('2','1'),('3','1'),('4','1'),('5','1'),('6','1'),('8','1'),('4','3'),('5','3');
 /*!40000 ALTER TABLE `post_like` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -395,7 +396,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -412,7 +413,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -443,7 +444,7 @@ CREATE TABLE `user_post` (
   PRIMARY KEY (`postID`),
   KEY `acc-post_idx` (`userID`),
   CONSTRAINT `acc-post` FOREIGN KEY (`userID`) REFERENCES `account` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -452,7 +453,7 @@ CREATE TABLE `user_post` (
 
 LOCK TABLES `user_post` WRITE;
 /*!40000 ALTER TABLE `user_post` DISABLE KEYS */;
-INSERT INTO `user_post` VALUES ('0','1','Dưới nắng rọi, hoa nở rộ đầy sân,\nGió nhẹ lay, cây lá xanh tươi thắm.\nTrong tĩnh lặng, lòng hòa mình với thiên nhiên,\nNhững đam mê, hạnh phúc như đang vẽ nên.\n\nSông rì rào, tiếng chim hát ca vui,\nTrải qua ngày, tâm hồn thêm sáng ngời.\nThế giới này, tuy nhỏ bé trong tay,\nNhưng nắng vàng, luôn ấm lòng mỗi ngày.','2023-11-07 14:45:51',1,1,0),('1','2','\nDưới bầu trời xanh vờn mây trắng\nLời thơ rơi nhẹ như hạt sương\nNgọn gió nhẹ, lá cây xanh tươi\nCảm xúc tràn đầy, lòng không buồn\n\nSông rì rào, tiếng sóng reo vui\nDưới bóng cây, tình yêu đẹp như tranh\nCuộc đời ngắn, hãy sống trọn vẹn\nBài thơ này, trái tim chúng ta tặng.','2023-11-07 14:47:42',1,4,0),('2','2','\"Chia sẻ với mọi người một ngày đẹp trời hôm nay! ? Thời tiết tại đây rất tốt, và tôi đang cảm thấy tràn đầy năng lượng. ? Cuối tuần này, tôi đã lên kế hoạch tham gia một cuộc dã ngoại với bạn bè, và tôi không thể đợi để thư giãn và tận hưởng thiên nhiên.\n\nNgoài ra, tôi đã bắt đầu đọc một cuốn sách tuyệt vời mới và tôi muốn chia sẻ nó với bạn. ? Cuốn này thật sự sâu sắc và thú vị!\n\nHy vọng mọi người cũng có một ngày tuyệt vời và chia sẻ những khoảnh khắc tươi đẹp trong cuộc sống của bạn. ❤️ #HạnhPhúc #CuộcSống #ThưGiãn #ĐọcSách\"','2023-11-07 14:48:17',1,12,0),('3','1','Ngày trôi qua như những đám mây trên bầu trời, không ngừng chuyển động và biến hóa. Nhìn lại, tôi nhận ra rằng mỗi cơn mưa, mỗi ánh nắng mặt trời, đều góp phần làm nên vẻ đẹp riêng biệt của cuộc sống. Đôi khi, đơn giản là cần một trái tim mở rộng và một tâm trạng lạc quan để thấy rõ những điều tuyệt vời xung quanh.','2010-05-01 12:10:10',1,0,0),('4','4','Cuộc sống như một cuộc phiêu lưu, và mỗi một chặng đường đều đầy ắp những câu chuyện đáng nhớ. Đôi khi, ta có thể bị lạc lõng giữa những lựa chọn và quyết định, nhưng đó chính là lúc ta phải tin rằng mỗi bước đi đều đưa ta đến nơi ta muốn đến. Hãy dừng lại, nhìn về quá khứ với lòng biết ơn và hãy hướng về tương lai với lòng tin tưởng.','2010-05-01 12:10:10',2,1,0),('5','4','Khi đêm buông xuống, ta nhìn lên bầu trời đầy sao và tự hỏi về ý nghĩa của cuộc sống. Mỗi ngôi sao đều là ước mơ, là khát khao, là một phần của chúng ta. Đôi khi, cuộc sống trở nên hỗn loạn, nhưng trong những khoảnh khắc yên bình, chúng ta có cơ hội nhìn thấy những điều quan trọng nhất trong cuộc sống.','2010-05-01 12:10:10',2,0,0);
+INSERT INTO `user_post` VALUES ('0','1','Dưới nắng rọi, hoa nở rộ đầy sân,\nGió nhẹ lay, cây lá xanh tươi thắm.\nTrong tĩnh lặng, lòng hòa mình với thiên nhiên,\nNhững đam mê, hạnh phúc như đang vẽ nên.\n\nSông rì rào, tiếng chim hát ca vui,\nTrải qua ngày, tâm hồn thêm sáng ngời.\nThế giới này, tuy nhỏ bé trong tay,\nNhưng nắng vàng, luôn ấm lòng mỗi ngày.','2023-11-07 14:45:51',1,1,0),('1','2','\nDưới bầu trời xanh vờn mây trắng\nLời thơ rơi nhẹ như hạt sương\nNgọn gió nhẹ, lá cây xanh tươi\nCảm xúc tràn đầy, lòng không buồn\n\nSông rì rào, tiếng sóng reo vui\nDưới bóng cây, tình yêu đẹp như tranh\nCuộc đời ngắn, hãy sống trọn vẹn\nBài thơ này, trái tim chúng ta tặng.','2023-11-07 14:47:42',1,75,0),('2','2','\"Chia sẻ với mọi người một ngày đẹp trời hôm nay! ? Thời tiết tại đây rất tốt, và tôi đang cảm thấy tràn đầy năng lượng. ? Cuối tuần này, tôi đã lên kế hoạch tham gia một cuộc dã ngoại với bạn bè, và tôi không thể đợi để thư giãn và tận hưởng thiên nhiên.\n\nNgoài ra, tôi đã bắt đầu đọc một cuốn sách tuyệt vời mới và tôi muốn chia sẻ nó với bạn. ? Cuốn này thật sự sâu sắc và thú vị!\n\nHy vọng mọi người cũng có một ngày tuyệt vời và chia sẻ những khoảnh khắc tươi đẹp trong cuộc sống của bạn. ❤️ #HạnhPhúc #CuộcSống #ThưGiãn #ĐọcSách\"','2023-11-07 14:48:17',1,12,0),('3','1','Ngày trôi qua như những đám mây trên bầu trời, không ngừng chuyển động và biến hóa. Nhìn lại, tôi nhận ra rằng mỗi cơn mưa, mỗi ánh nắng mặt trời, đều góp phần làm nên vẻ đẹp riêng biệt của cuộc sống. Đôi khi, đơn giản là cần một trái tim mở rộng và một tâm trạng lạc quan để thấy rõ những điều tuyệt vời xung quanh.','2010-05-01 12:10:10',1,0,0),('4','4','Cuộc sống như một cuộc phiêu lưu, và mỗi một chặng đường đều đầy ắp những câu chuyện đáng nhớ. Đôi khi, ta có thể bị lạc lõng giữa những lựa chọn và quyết định, nhưng đó chính là lúc ta phải tin rằng mỗi bước đi đều đưa ta đến nơi ta muốn đến. Hãy dừng lại, nhìn về quá khứ với lòng biết ơn và hãy hướng về tương lai với lòng tin tưởng.','2010-05-01 12:10:10',2,1,0),('5','4','Khi đêm buông xuống, ta nhìn lên bầu trời đầy sao và tự hỏi về ý nghĩa của cuộc sống. Mỗi ngôi sao đều là ước mơ, là khát khao, là một phần của chúng ta. Đôi khi, cuộc sống trở nên hỗn loạn, nhưng trong những khoảnh khắc yên bình, chúng ta có cơ hội nhìn thấy những điều quan trọng nhất trong cuộc sống.','2010-05-01 12:10:10',2,0,0),('6','6','Hôm nay, tôi nhận ra rằng cuộc sống là một hành trình không ngừng nghỉ, với những thử thách và niềm vui đan xen. Mỗi ngày mang đến cho chúng ta cơ hội mới để học hỏi và phát triển. Đôi khi, những thất bại là bước đệm quan trọng hơn cả thành công, giúp chúng ta hiểu rõ hơn về bản thân.\n\nĐào sâu vào đám đông, tôi cảm nhận sức sống động từ những câu chuyện và trải nghiệm đa dạng của mọi người. Đó là một thế giới phong phú, nơi mà sự đa dạng tạo nên sức mạnh. Cuộc sống không phải lúc nào cũng dễ dàng, nhưng trong những thời khắc khó khăn, chúng ta học được lòng nhân ái và sự đồng cảm.\n\nHãy giữ cho trái tim mở rộng và tâm hồn nhạy bén. Mỗi người chúng ta đều là một câu chuyện độc đáo, và mỗi ngày là một trang sách mới được viết. Đừng ngần ngại đối mặt với những thách thức, vì chúng là những cơ hội để chúng ta trưởng thành và kiến thức để tiến xa hơn.\n\nCuộc sống có thể phức tạp, nhưng đôi khi, sự đơn giản chính là chìa khóa mở cánh cửa hạnh phúc. Hãy đánh giá những khoảnh khắc bình dị, và đôi khi, đằng sau những điều nhỏ bé nhất là những niềm vui lớn lao. Hãy sống với ý nghĩa, yêu thương và lòng biết ơn, và cuộc sống sẽ trở nên đẹp đẽ hơn nhiều.','2023-05-01 08:10:20',1,0,0),('7','8','Trong cuộc sống hối hả này, tôi nhận thức được rằng sức mạnh của tình bạn không có giới hạn. Những người bạn chân thành là những người kèm theo ta trên mọi bước đường, chia sẻ cả những khó khăn và niềm vui. Họ là những người luôn sẵn sàng lắng nghe khi chúng ta cần, và hỗ trợ khi chúng ta yếu đuối nhất.\n\nTrong những khoảnh khắc khó khăn, tình bạn là nguồn động viên mạnh mẽ. Họ không chỉ là những người chia sẻ niềm vui, mà còn là những người đồng hành trung thành trong những thời kỳ khó khăn. Cảm giác có sự ủng hộ của những người bạn thân yêu là như một bức tường vững chắc, giúp chúng ta vượt qua mọi khó khăn.\n\nTình bạn còn là nguồn động viên lớn để chúng ta trở thành phiên bản tốt nhất của chính mình. Khi có người tin tưởng và động viên, chúng ta cảm thấy có sức mạnh để vượt qua những rào cản và thách thức. Tình bạn không chỉ là một phần của cuộc sống, mà còn là nguồn động viên và năng lượng tích cực cho sự phát triển cá nhân.\n\nHãy trân trọng những mối quan hệ này, vì trong sự phù hợp và chia sẻ, chúng ta tìm thấy ý nghĩa thực sự của cuộc sống. Sức mạnh của tình bạn không chỉ là một yếu tố quan trọng trong hạnh phúc cá nhân mà còn là nguồn động viên để xây dựng một cộng đồng vững mạnh và hòa bình.','2023-06-21 09:30:20',0,0,0),('8','8','Dưới bóng nắng mặt trời ấm áp và cùng làn gió biển nhẹ nhàng, chuyến du lịch này đưa tôi đến những điểm đẹp tuyệt vời mà tôi chỉ có thể mơ ước trước đây. Hành trình này không chỉ là việc khám phá những địa danh mới mẻ mà còn là hành trình tìm kiếm những trải nghiệm tuyệt vời và kỷ niệm đáng nhớ.\n\nBắt đầu từ việc đắm chìm trong vẻ đẹp lịch sử của thành phố cổ, tôi nhìn thấy những công trình kiến trúc tuyệt vời, từ những ngôi đền cổ kính đến các di tích lịch sử. Mỗi tấm gương đá, mỗi cây cầu cổ, đều kể lên một câu chuyện riêng, khiến tôi cảm thấy mình như đang đi vào một cuốn sách lịch sử sống động.\n\nNhững ngày tiếp theo, chuyến phiêu lưu tiếp tục với việc đặt chân đến những bãi biển trắng mịn, nơi sóng biển xanh biếc vỗ nhẹ vào bờ cát trắng như tuyết. Bước chân trên bờ biển, tôi cảm nhận sự yên bình và hòa mình vào vẻ đẹp huyền bí của thiên nhiên.\n\nKhông chỉ dừng lại ở những địa điểm nổi tiếng, tôi còn khám phá những ngõ hẻm nhỏ, nơi đậm chất địa phương và văn hóa. Gặp gỡ những người dân thân thiện, thưởng thức đặc sản ẩm thực, tôi như bắt đầu hiểu rõ hơn về đất nước và con người nơi đây.\n\nCuộc phiêu lưu này không chỉ là một chuyến đi du lịch mà còn là hành trình tìm kiếm ý nghĩa. Tôi học được rằng, đằng sau mỗi khung cảnh tuyệt vời là những câu chuyện, đằng sau mỗi góc phố là những kỷ niệm. Du lịch không chỉ là việc thay đổi địa điểm, mà còn là cơ hội để ta tự khám phá và mở rộng tâm hồn.\n\nVới túi xách đầy những kỷ niệm đẹp, tôi rời khỏi nơi này với trái tim đầy ấm áp và tâm hồn tràn đầy ý nghĩa. Chuyến du lịch này không chỉ là một cuộc phiêu lưu, mà là một trải nghiệm tuyệt vời mà tôi sẽ nhớ mãi.','2023-06-21 09:30:20',1,0,0);
 /*!40000 ALTER TABLE `user_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -469,7 +470,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -490,7 +491,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -540,7 +541,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -561,7 +562,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -582,7 +583,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -609,7 +610,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -628,7 +629,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -651,7 +652,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -674,7 +675,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -732,7 +733,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -758,7 +759,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -784,7 +785,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -810,7 +811,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -850,7 +851,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -871,7 +872,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -900,4 +901,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-17 14:53:17
+-- Dump completed on 2023-11-20 13:05:35

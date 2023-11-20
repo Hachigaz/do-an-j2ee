@@ -141,6 +141,8 @@ function getComment(postID){
                 commentSectionElement.lastUpdated = convertToSQLDate(new Date(lastComment.querySelector(".comment-date").innerText));
 
                 let returnedCommentCount = findOccurences(text,"<div class=\"comment-item\">")
+                console.log(returnedCommentCount)
+                console.log(commentCount)
                 if(returnedCommentCount<commentCount){
                     commentSectionElement.isLastComment=true;
                     commentListElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
