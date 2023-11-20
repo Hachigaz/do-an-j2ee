@@ -178,3 +178,14 @@ function isScrolledTop(element){
             }
         }
 }
+
+// var friend_items = document.querySelectorAll(".friend-panel .friend-item");
+
+// friend_items.forEach(item => {
+//     item.addEventListener("click", function() {
+//         friend_items.forEach(item => {
+//             item.style.backgroundColor = "white";
+//         });
+//         this.style.backgroundColor = "#E0F4FF";
+//     });
+// });

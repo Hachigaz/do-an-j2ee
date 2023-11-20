@@ -52,6 +52,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 var dropdown_text_chat = document.createElement("a");
                 dropdown_text_chat.textContent = "Nhắn tin";
                 dropdown_text_chat.style.textDecoration = "None";
+                dropdown_text_chat.style.color = "#333";
                 dropdown_text_chat.setAttribute("href","chat-messenger?showChatID="+data[user].temporaryProperties.chatID);
                 var dropdown_icon_chat = document.createElement("img");
                 dropdown_icon_chat.classList.add("chat-icon");
