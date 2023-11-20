@@ -12,7 +12,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 avatar.classList.add("avatar");
                 item.appendChild(avatar);
                 var image = document.createElement("img");
-                image.setAttribute("src","resources/img/userdata/"+data[user].avatar);
+                image.setAttribute("src","/stored-user-images/"+data[user].avatar);
                 avatar.appendChild(image);
                 var userFullname = document.createElement("div");
                 userFullname.classList.add("user-name");
@@ -176,7 +176,7 @@ function renderItem(item){
     const template = `<div class="col-md-3 item">
     <div class="avatar">
         <img
-            src="resources/img/userdata/${item.avatar}"
+            src="/stored-user-images/${item.avatar}"
         />
     </div>
     <div class="user-name">${item.firstName} ${item.lastName}</div>
@@ -198,13 +198,13 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
                 if(item.textContent === "Thêm bạn bè"){
                     item.style.backgroundColor = "#808080";
                     item.textContent = "Hủy yêu cầu";
-                    localStorage.setItem(item.id,"Hủy yêu cầu");
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Hủy yêu cầu");
                 }else if(item.textContent === "Hủy yêu cầu"){
                     item.style.backgroundColor = "#10d876";
                     item.textContent = "Thêm bạn bè";
-                    localStorage.setItem(item.id,"Thêm bạn bè");
                     sendFriend(item.id);
+                    localStorage.setItem(item.id,"Thêm bạn bè");
                 }
             });
             const savedState = localStorage.getItem(item.id);

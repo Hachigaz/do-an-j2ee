@@ -11,7 +11,7 @@
     <c:forEach var="commentItem" items="${commentItems}">
       <div class="comment-item">
         <div class="comment-avatar-icon-wrapper">
-          <img src="resources/img/userdata/${commentItem.userDetails.avatar}">
+          <img src="/stored-user-images/${commentItem.userDetails.avatar}">
         </div>
         <div class="comment-content">
           <div class="comment-bubble">

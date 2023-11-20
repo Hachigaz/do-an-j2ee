@@ -15,7 +15,7 @@
         <div class="post-panel">
           <div class="post-head">
             <div class="user-icon-wrapper">
-              <img class="user-icon" src="resources/img/userdata/${userDetails[postItem.post.userID].avatar}">
+              <img class="user-icon" src="/stored-user-images/${userDetails[postItem.post.userID].avatar}">
             </div>
             <div class="user-info-wrapper">
               <div class="user-name">
@@ -43,42 +43,42 @@
                   <c:choose>
                     <c:when test="${fn:length(postItem.images)==1}">
                       <div class="post-image-item-large">
-                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
                       </div>
                     </c:when>
                     <c:when test="${fn:length(postItem.images)==2}">
                       <div class="post-image-item-small-wrapper">
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
                         </div>
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
                         </div>
                       </div>
                     </c:when>
                     <c:when test="${fn:length(postItem.images)==3}">
                       <div class="post-image-item-large">
-                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
                       </div>
                       <div class="post-image-item-small-wrapper">
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
                         </div>
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[2].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[2].image}">
                         </div>
                       </div>
                     </c:when>
                     <c:when test="${fn:length(postItem.images)>3}">
                       <div class="post-image-item-large">
-                        <img class="post-attached-image" src="resources/img/userdata/${postItem.images[0].image}">
+                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
                       </div>
                       <div class="post-image-item-small-wrapper">
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[1].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
                         </div>
                         <div class="post-image-item-small">
-                          <img class="post-attached-image" src="resources/img/userdata/${postItem.images[2].image}">
+                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[2].image}">
                           <div class="image-overlay">+${postItem.images.size() - 2}</div>
                         </div>
                       </div>
@@ -92,7 +92,7 @@
                         <div class="image-display-frame">
                           <c:forEach var="imageItem" items="${postItem.images}">
                             <div class="display-image-wrapper hover-item" id="image-item-${imageItem.index}">
-                              <img class="post-attached-image" src="resources/img/userdata/${imageItem.image}">
+                              <img class="post-attached-image" src="/stored-user-images/${imageItem.image}">
                             </div>
                           </c:forEach>
                         </div>
@@ -171,7 +171,7 @@
           <div class="comment-section-title">Bình luận</div>
           <div class="send-comment-form">
             <div class="comment-avatar-icon-wrapper">
-              <img src="resources/img/userdata/${userDetails[sessionScope.loggedInID].avatar}">
+              <img src="/stored-user-images/${userDetails[sessionScope.loggedInID].avatar}">
             </div>
             <div class="comment-input-wrapper">
               <textarea placeholder="Nhập bình luận" value=""

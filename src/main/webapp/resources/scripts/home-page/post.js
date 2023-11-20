@@ -141,6 +141,8 @@ function getComment(postID){
                 commentSectionElement.lastUpdated = convertToSQLDate(new Date(lastComment.querySelector(".comment-date").innerText));
 
                 let returnedCommentCount = findOccurences(text,"<div class=\"comment-item\">")
+                console.log(returnedCommentCount)
+                console.log(commentCount)
                 if(returnedCommentCount<commentCount){
                     commentSectionElement.isLastComment=true;
                     commentListElement.insertAdjacentHTML("beforeend",`<div class="end-of-list cross-effect">Hết</div>`);
@@ -178,7 +180,7 @@ function processSubmitComment(postID){
             let newCommentHTML = `
             <div class="comment-item">
                 <div class="comment-avatar-icon-wrapper">
-                    <img src="resources/img/userdata/${loggedInUserDetails.avatar}">
+                    <img src="/stored-user-images/${loggedInUserDetails.avatar}">
                 </div>
                 <div class="comment-content">
                 <div class="comment-bubble">
