@@ -29,6 +29,9 @@
           </div>
         </div>
         <div class="chat-panel">
+          <div class="no-chat-display">
+            Chưa có tin nhắn
+          </div>
           <div class="chat-display" onscroll="isScrolledTop(this)">
             <!-- <div class="chat-frame">
               <div class="message-frame">

@@ -38,16 +38,41 @@ function setupPage(){
                 sendMessage();
             }
         });
+
+    
+    
+
+    setTimeout(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const chatIDToShow = urlParams.get('showChatID');
+        if(chatIDToShow!=undefined){
+            showChatFrame(chatIDToShow)
+        }
+    }, 500);
 }
 
 let currentOpenChatID = null;
 function showChatFrame(chatID){
     for(index in messageBoxes){
+        console.log(chatID==index)
+        let chatBoxElement = document.querySelector(".chat-box")
+        let noChatElement = document.querySelector(".no-chat-display")
         if(index == chatID){
+            chatBoxElement.style.display='block'
+            
             messageBoxes[index].chatFrameElement.style.display = "flex"
             currentOpenChatID = messageBoxes[index].chatID
 
             chatDisplayElement.scrollTop = chatDisplayElement.scrollHeight;
+            
+            if(messageBoxes[index].hasMessages){
+                chatDisplayElement.style.display='block'
+                noChatElement.style.display='none'
+            }
+            else{
+                chatDisplayElement.style.display='none'
+                noChatElement.style.display='block'
+            }
         }
         else{
             messageBoxes[index].chatFrameElement.style.display = "none"
@@ -76,6 +101,13 @@ function sendMessage(){
 
         let messageStringJSON = JSON.stringify(message);
         messageSocket.send(messageStringJSON)
+
+        if(!messageBoxes[currentOpenChatID].hasMessages){
+            messageBoxes[currentOpenChatID].hasMessages=true;
+            let noChatElement = document.querySelector(".no-chat-display")
+            noChatElement.style.display='none'
+            chatDisplayElement.style.display='block'
+        }
     }
 }
 
@@ -107,6 +139,9 @@ function getMessage(chatID){
         fetch(messageChatRequestURL)
             .then(response => response.json())
             .then(fetchedMessageData => {
+                if(fetchedMessageData.length!=0){
+                    messageBoxes[getChatID].hasMessages=true;
+                }
                 let currentMessages = messageBoxes[getChatID].messages
                 let lastMessage = currentMessages[currentMessages.length-10]
                 for(messageIndex in fetchedMessageData){
