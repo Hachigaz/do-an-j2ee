@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers","/DataRequest/SendRequest"})
+@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers","/DataRequest/SendRequest","/DataRequest/ReceiveRequest","/DataRequest/getRequestList"})
 public class FriendRequest extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,6 +35,10 @@ public class FriendRequest extends HttpServlet{
             getStrangerDetails(req,resp);
         }else if(uri.contains("SendRequest")){
             SendRequest(req, resp);
+        }else if(uri.contains("ReceiveRequest")){
+            ReceiveRequest(req, resp);
+        }else if(uri.contains("getRequestList")){
+            getRequestList(req, resp);
         }
         
     }
@@ -67,6 +71,33 @@ public class FriendRequest extends HttpServlet{
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         out.println(list);
+    }
+    private void getRequestList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        List<AccountDetails> accountDetails = sqlFriend.getAllSendRequestAccountDetails(userID);
+        String list = new Gson().toJson(accountDetails);
+        resp.setContentType("application/json");
+        PrintWriter out = resp.getWriter();
+        out.println(list);
+    }
+    private void ReceiveRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        HttpSession session = req.getSession();
+        String userID = session.getAttribute("loggedInID").toString();
+
+        String friendID = req.getParameter("receiveFriendID");
+
+        if (friendID != null && !friendID.isEmpty()) {
+            // Gọi phương thức remove từ lớp sqlFriend
+            sqlFriend.sendFriendRequest(userID, friendID);
+
+            // Phản hồi cho client
+            resp.getWriter().println(friendID);
+        } else {
+            resp.getWriter().println("Không có friendID được cung cấp.");
+            // Xử lý lỗi hoặc cung cấp thông báo khác tùy thuộc vào yêu cầu của bạn.
+        }
     }
     private void SendRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();

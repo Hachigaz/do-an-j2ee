@@ -8,6 +8,7 @@
   justify-content: center;
   width: 100%;
   height: calc(100% - var(--header-height));
+  font-family: "Arial-Regular", Helvetica;
 }
 .chat .content {
   background-color: #ffffff;

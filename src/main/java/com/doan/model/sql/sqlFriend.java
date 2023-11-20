@@ -124,6 +124,39 @@ public class sqlFriend{
         }
         return friends;
     }
+    public static List<AccountDetails> getAllSendRequestAccountDetails(String userId){
+        List<AccountDetails> strangers = new ArrayList<AccountDetails>();
+        try {
+            Connection connection = sqlConnect.connectToDB();
+            String sql = "SELECT account_details.* FROM account_details INNER JOIN friend_request ON account_details.userID = friend_request.sendUserID WHERE friend_request.receiveUserID = ?;";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                AccountDetails stranger = new AccountDetails();
+                // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
+                stranger.setUserID(resultSet.getString("userID"));
+                stranger.setFirstName(resultSet.getString("firstName"));
+                stranger.setLastName(resultSet.getString("lastName"));
+                stranger.setAddress(resultSet.getString("address"));
+                stranger.setBirthDate(resultSet.getDate("birthDate"));
+                stranger.setAvatar(resultSet.getString("avatarName"));
+                stranger.setBackground(resultSet.getString("background"));
+                // Thêm friend vào danh sách
+                strangers.add(stranger);
+            }
+    
+            // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strangers;
+    }
     public static List<AccountDetails> getAllStrangerAccountDetails(String userId){
         List<AccountDetails> strangers = new ArrayList<AccountDetails>();
         try {
@@ -165,7 +198,7 @@ public class sqlFriend{
         List<AccountDetails> friends = new ArrayList<AccountDetails>();
         try {
             Connection connection = sqlConnect.connectToDB();
-            String sql = "SELECT ad.* FROM account_details ad JOIN friend f ON ad.userID = CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END WHERE (f.userID1 = ? OR f.userID2 = ?) AND f.deleted = 0";
+            String sql = "SELECT ad.*,chatID FROM account_details ad JOIN friend f ON ad.userID = (CASE WHEN f.userID1 = ? THEN f.userID2 WHEN f.userID2 = ? THEN f.userID1 ELSE NULL END) WHERE (f.userID1 = ? OR f.userID2 = ?) AND f.deleted = 0";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, userId);
             preparedStatement.setString(2, userId);
@@ -174,17 +207,20 @@ public class sqlFriend{
             ResultSet resultSet = preparedStatement.executeQuery();
     
             while (resultSet.next()) {
-                AccountDetails friend = new AccountDetails();
-                // Trích xuất thông tin về bạn bè từ ResultSet và thiết lập cho đối tượng friend
-                friend.setUserID(resultSet.getString("userID"));
-                friend.setFirstName(resultSet.getString("firstName"));
-                friend.setLastName(resultSet.getString("lastName"));
-                friend.setAddress(resultSet.getString("address"));
-                friend.setBirthDate(resultSet.getDate("birthDate"));
-                friend.setAvatar(resultSet.getString("avatarName"));
-                friend.setBackground(resultSet.getString("background"));
-                // Thêm friend vào danh sách
-                friends.add(friend);
+                AccountDetails friendDetails = new AccountDetails();
+                // Trích xuất thông tin từ account_details và thiết lập cho đối tượng friendDetails
+                friendDetails.setUserID(resultSet.getString("userID"));
+                friendDetails.setFirstName(resultSet.getString("firstName"));
+                friendDetails.setLastName(resultSet.getString("lastName"));
+                friendDetails.setAddress(resultSet.getString("address"));
+                friendDetails.setBirthDate(resultSet.getDate("birthDate"));
+                friendDetails.setAvatar(resultSet.getString("avatarName"));
+                friendDetails.setBackground(resultSet.getString("background"));
+                friendDetails.setTemporaryProperty("chatID",resultSet.getString("chatID"));
+
+                
+                // Thêm friendWithChatID vào danh sách
+                friends.add(friendDetails);
             }
     
             // Đảm bảo đóng ResultSet, PreparedStatement và kết nối sau khi hoàn thành
