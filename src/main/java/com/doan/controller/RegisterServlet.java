@@ -46,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
             } else {
                 // Thực hiện đăng ký và gửi phản hồi thành công về trình duyệt
 
-                String folderPathUserHome = "d:/tmp/resources/img/userdata/" + username;
+                String folderPathUserHome = "c:/tmp/resources/img/userdata/" + username;
                 File folderUserHome = new File(folderPathUserHome);
     
                 // Create folder using servlet context path

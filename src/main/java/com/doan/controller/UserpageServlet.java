@@ -76,7 +76,7 @@ public class UserpageServlet extends HttpServlet {
             }
                      String avatarFilePath =   avatarPath;
            if (avatarPath != null) {
-                String prefixToRemove = "d:/tmp/resources/img/userdata/";
+                String prefixToRemove = "c:/tmp/resources/img/userdata/";
                     if (avatarFilePath.startsWith(prefixToRemove)) {
                 avatarFilePath = avatarFilePath.substring(prefixToRemove.length());
                 }
@@ -84,7 +84,7 @@ public class UserpageServlet extends HttpServlet {
               
             String backgroundFilePath = backgroundPath;
              if (backgroundPath != null) {
-                         String prefixToRemove2 = "d:/tmp/resources/img/userdata/";
+                         String prefixToRemove2 = "c:/tmp/resources/img/userdata/";
                     if (backgroundFilePath.startsWith(prefixToRemove2)) {
                 backgroundFilePath = backgroundFilePath.substring(prefixToRemove2.length());
                 }
@@ -124,7 +124,7 @@ private String getValueFromPart(Part part) throws IOException {
         }
     
         // If a file is chosen, proceed to save it
-        String folderPath = "d:/tmp/resources/img/userdata/" + username + "/";
+        String folderPath = "c:/tmp/resources/img/userdata/" + username + "/";
         int fileCount = countFilesInFolder(folderPath);
     
         String fileName = folderPath + (fileCount + 1) + getFileExtension(part);
