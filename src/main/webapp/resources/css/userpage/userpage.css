@@ -51,8 +51,16 @@
 .right-buttons a i {
     margin-right: 5px;
 }
+.left-label {
+    margin-left: 400px;
+}
+.left-label label {
+    /* font-family: "Your Desired Font", sans-serif; Replace "Your Desired Font" with the actual font you want to use */
+    font-size: 28px; /* Adjust the font size as needed */
+    /* You can add more styling properties as needed, such as color, weight, etc. */
+}
 #settingForm {
-
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -76,8 +84,13 @@
 #userSettingsForm label {
     margin: 10px 0;
 }
-
-/* #userSettingsForm input {
+.toggle-btn {
+    position: fixed;
+    top: 600px;
+    right: 20px;
+    cursor: pointer;
+}
+#userSettingsForm input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -91,16 +104,20 @@
 
 #userSettingsForm input[type="submit"]:hover {
     background-color: #0056b3;
-} */
+}
 
-/* label.locked {
+#userSettingsForm input[type="submit"]:disabled {
+    background-color: #dddddd; /* Black color when disabled */
+    color: #fff; /* White text when disabled */
+}
+label.locked {
     color: #999;
-} */
+} 
 
-/* input:disabled {
+ input:disabled {
     background: #dddddd;
-} */
+} 
 
-/* input:disabled+label {
+ input:disabled+label {
     color: #ccc;
-} */
+}

@@ -30,6 +30,7 @@ public class PasswordServlet extends HttpServlet {
       String currentPassword = request.getParameter("currentPassword");
       String newPassword = request.getParameter("newPassword");
       String confirmNewPassword = request.getParameter("confirmNewPassword");
+      System.out.println(currentPassword + newPassword + confirmNewPassword);
       String errorMessage = null;
       String successMessage = null;
       if (userID != null && currentPassword != null && newPassword != null && confirmNewPassword != null) {

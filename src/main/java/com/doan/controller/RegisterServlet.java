@@ -39,46 +39,44 @@ public class RegisterServlet extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String address = request.getParameter("address");
-    
+            System.out.println(username+email+password+firstName+lastName+address);
             // Kiểm tra xem đã có tài khoản với email hoặc tên người dùng đã đăng ký chưa
             if (sqlAccount.isEmailExists(email) || sqlAccount.isUsernameExists(username)) {
                 sendErrorResponse(response, "Email hoặc tên người dùng đã được sử dụng.");
             } else {
                 // Thực hiện đăng ký và gửi phản hồi thành công về trình duyệt
 
-                String userHome = System.getProperty("user.home");
-                String folderPathUserHome = userHome + "/documents/GitHub/do-an-j2ee/src/main/webapp/resources/img/userdata/" + username;
+                String folderPathUserHome = "d:/tmp/resources/img/userdata/" + username;
                 File folderUserHome = new File(folderPathUserHome);
     
                 // Create folder using servlet context path
                                 // Navigate to the desired folder within the WEB-INF directory
-                String folderPathServletContext = getServletContext().getRealPath("/resources/img/userdata/" + username);
-                File folderServletContext = new File(folderPathServletContext);
+                
                 
                 if (folderUserHome.mkdirs()) {
                     System.out.println("User Home Folder created successfully: " + folderUserHome.getAbsolutePath());}
                 // Check and report the result for the first folder (user's home directory)
-                if (folderServletContext.mkdirs()) {
-                    System.out.println("Servlet Context Folder created successfully: " + folderServletContext.getAbsolutePath());}
-                else {
-                    System.out.println("Failed to create Servlet Context Folder.");
-                    sendErrorResponse(response, "Đã xảy ra lỗi khi tạo thư mục Servlet Context.");
-                }
+
                     // ... (code for file saving and database operation)
-                    Part avatarPart = request.getPart("avatarName");
-                    Part backgroundPart = request.getPart("background");
-                
-                    saveFile(avatarPart, folderPathUserHome, "avatar");
-                    saveFile(backgroundPart, folderPathUserHome, "background");
-                
-                    saveFile(avatarPart, folderPathServletContext, "avatar");
-                    saveFile(backgroundPart, folderPathServletContext, "background");
-                
-                    sqlAccount.addAccount(username, email, password, firstName, lastName, address, sqlBirthDate,
-                            "resources/img/userdata/" + username + "/0.png", "resources/img/userdata/" + username + "/1.jpg");
-                
-                    sendSuccessResponse(response, "Đăng ký thành công.");
-                  
+// ... (code for file saving and database operation)
+Part avatarPart = request.getPart("avatarName");
+Part backgroundPart = request.getPart("background");
+String avatarFileName = saveFile(avatarPart, folderPathUserHome, "avatar");
+String backgroundFileName = saveFile(backgroundPart, folderPathUserHome, "background");
+
+// Construct file paths for the avatar and background images
+String avatarFilePath = username + "/" + avatarFileName;
+String backgroundFilePath = username + "/" + backgroundFileName;
+
+// Add the account to the database with image file paths
+sqlAccount.addAccount(username, email, password, firstName, lastName, address, sqlBirthDate,
+        avatarFilePath, backgroundFilePath);
+        request.setAttribute("username", username);
+        request.setAttribute("avatarImagePath", avatarFilePath);
+        request.setAttribute("backgroundImagePath", backgroundFilePath);
+
+// Dispatch to the user page JSP
+                    sendSuccessResponse(response, "Đăng ký thành công.");  
             }
             } catch (Exception e) {
                 // Handle exception
@@ -102,8 +100,8 @@ public class RegisterServlet extends HttpServlet {
         out.write("{\"status\": \"error\", \"message\": \"" + message + "\"}");
         out.close();
     }
-private void saveFile(Part filePart, String folderPath, String type) throws IOException {
-    String fileName = getFileName(filePart, type);
+    private String saveFile(Part filePart, String folderPath, String type) throws IOException {
+        String fileName = getFileName(filePart, type);
 
     // Rename the file to "0" or "1"
     String newFileName = type.equals("avatar") ? "0" : "1";
@@ -125,6 +123,7 @@ private void saveFile(Part filePart, String folderPath, String type) throws IOEx
             outputStream.write(buffer, 0, bytesRead);
         }
     }
+    return newFileName;
 }
 
     private String getFileName(Part part, String type) {

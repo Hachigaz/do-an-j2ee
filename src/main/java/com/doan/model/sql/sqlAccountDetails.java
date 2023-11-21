@@ -65,20 +65,42 @@ public class sqlAccountDetails{
         }
         return details;
     }
-    public static void updateAccountdetails(String userID, String firstName, String lastName, String address) {
+    public static void updateAccountdetails(String userID, String firstName, String lastName, String address, Date birthDate, String avatarName, String backgroundName) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connection = DriverManager.getConnection(sqlConnect.dbURL, sqlConnect.dbUser, sqlConnect.dbPassword);
     
             // Sử dụng PreparedStatement để tránh tình trạng SQL injection
-            String sql = "UPDATE account_details SET firstName=?, lastName=?, address=? WHERE userID=?";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            StringBuilder sqlBuilder = new StringBuilder("UPDATE account_details SET firstName=?, lastName=?, address=?, birthDate=?");
+            
+            if (avatarName != null) {
+                sqlBuilder.append(", avatarName=?");
+            }
+    
+            if (backgroundName != null) {
+                sqlBuilder.append(", background=?");
+            }
+    
+            sqlBuilder.append(" WHERE userID=?");
+    
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlBuilder.toString());
     
             // Đặt giá trị cho các tham số trong câu truy vấn
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, address);
-            preparedStatement.setString(4, userID);
+            int paramIndex = 1;
+            preparedStatement.setString(paramIndex++, firstName);
+            preparedStatement.setString(paramIndex++, lastName);
+            preparedStatement.setString(paramIndex++, address);
+            preparedStatement.setDate(paramIndex++, birthDate);
+    
+            if (avatarName != null) {
+                preparedStatement.setString(paramIndex++, avatarName);
+            }
+    
+            if (backgroundName != null) {
+                preparedStatement.setString(paramIndex++, backgroundName);
+            }
+    
+            preparedStatement.setString(paramIndex, userID);
     
             // Thực hiện câu truy vấn
             int rowsAffected = preparedStatement.executeUpdate();

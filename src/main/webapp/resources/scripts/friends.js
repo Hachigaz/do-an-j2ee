@@ -58,8 +58,21 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 dropdown_item_chat.appendChild(dropdown_text_chat);
                 dropdown_item_chat.appendChild(dropdown_icon_chat);
                 dropdown_list.appendChild(dropdown_item_unfriend);
-
+                //
+                var dropdown_item_page = document.createElement("div");
+                dropdown_item_page.classList.add("dropdown-item");
+                var dropdown_text_page = document.createElement("span");
+                dropdown_text_page.textContent = "PAGE";
+                dropdown_text_page.setAttribute("onclick","page("+data[user].userID+")")
+                var dropdown_icon_page = document.createElement("img");
+                dropdown_icon_page.classList.add("chat-icon");
+                dropdown_icon_page.setAttribute("src","resources/img/icon/chat.png");
+                dropdown_item_page.appendChild(dropdown_text_page);
+                dropdown_item_page.appendChild(dropdown_icon_page);
+                dropdown_list.appendChild(dropdown_item_unfriend);
                 dropdown_list.appendChild(dropdown_item_chat);
+                dropdown_list.appendChild(dropdown_item_page);
+
                 statusWrapper.appendChild(dropdown_list);
             }   
             const dropdownSelects = document.querySelectorAll(".dropdown-select");
@@ -136,7 +149,10 @@ confirm_wrapper.appendChild(confirm_content);
 confirm_content.appendChild(confirm_text);
 confirm_content.appendChild(confirm_btns);
 
+function page(userID) {
+    window.location.href = 'userpage?userID=' +userID;
 
+}
 function removeFriend(userID) {
     // Lấy giá trị của friendID từ trường input
     var friendID = document.getElementById(userID);
