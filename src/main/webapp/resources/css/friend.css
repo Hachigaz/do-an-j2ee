@@ -38,6 +38,7 @@
 .wrapper .friend-wrapper{
     width: 80%;
 }
+.wrapper .friend-wrapper .friend-request,
 .wrapper .friend-wrapper .friend-suggest,
 .wrapper .friend-wrapper .friend-list{
     height: 100%;
@@ -51,6 +52,7 @@
     height: 90%;
     overflow-y: scroll;
 }
+.menu .title-friend-request,
 .menu .title-friend-suggest,
 .menu .title-friend-list{
     font-size: 25px;
@@ -104,6 +106,7 @@
     position: absolute;
     right: 35px;
 }
+.friend-wrapper .friend-request .item,
 .friend-wrapper .friend-suggest .item,
 .friend-wrapper .friend-list .item{
     background-color: #fff;
@@ -114,6 +117,7 @@
     border-radius: 6px;
     text-align: center;
 }
+.friend-request .item .avatar,
 .friend-suggest .item .avatar,
 .friend-list .item .avatar{
     margin-top: 10px;
@@ -121,6 +125,7 @@
     justify-content: center;
     padding: 10px 0;
 }
+.friend-request .item .avatar img,
 .friend-suggest .item .avatar img,
 .friend-list .item .avatar img{
     border-radius: 50%;
@@ -128,17 +133,20 @@
     height: 65px;
     object-fit: cover;
 }
+.friend-request .item .user-name,
 .friend-suggest .item .user-name,
 .friend-list .item .user-name{
     margin-top: 5px;
     font-weight: 800;
     font-size: 17px;
 }
+.friend-request .item .common-friend,
 .friend-suggest .item .common-friend,
 .friend-list .item .common-friend{
     font-size: 13px;
     padding: 5px 0;
 }
+.friend-request .wrapper-item .status-wrapper,
 .friend-suggest .wrapper-item .status-wrapper,
 .friend-list .wrapper-item .status-wrapper{
     width: 60%;
@@ -147,6 +155,7 @@
     transform: translateX(-50%);
     left: 50%;
 }
+.friend-request .wrapper-item .status-wrapper i,
 .friend-suggest .wrapper-item .status-wrapper i,
 .friend-list .wrapper-item .status-wrapper i{
     position: absolute;
@@ -154,6 +163,7 @@
     right: 10px;
     color: #fff;
 }
+.friend-request .wrapper-item .status,
 .friend-suggest .wrapper-item .status,
 .friend-list .wrapper-item .status{
     background-color: #10d876;

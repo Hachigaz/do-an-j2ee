@@ -1,6 +1,8 @@
 package com.doan.model;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AccountDetails {
@@ -66,5 +68,16 @@ public class AccountDetails {
     }
     public void setBirthDate(java.sql.Date birthDate) {
         this.birthDate = birthDate;
+    }
+    private Map<String, String> temporaryProperties = new HashMap<>();
+
+    // Phương thức để thêm một thuộc tính tạm thời
+    public void setTemporaryProperty(String propertyName, String value) {
+        temporaryProperties.put(propertyName, value);
+    }
+
+    // Phương thức để lấy giá trị của một thuộc tính tạm thời
+    public String getTemporaryProperty(String propertyName) {
+        return temporaryProperties.get(propertyName);
     }
 }

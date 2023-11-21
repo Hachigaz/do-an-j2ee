@@ -49,9 +49,11 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 // 
                 var dropdown_item_chat = document.createElement("div");
                 dropdown_item_chat.classList.add("dropdown-item");
-                var dropdown_text_chat = document.createElement("span");
+                var dropdown_text_chat = document.createElement("a");
                 dropdown_text_chat.textContent = "Nhắn tin";
-                dropdown_text_chat.setAttribute("onclick","showChatFrame()")
+                dropdown_text_chat.style.textDecoration = "None";
+                dropdown_text_chat.style.color = "#333";
+                dropdown_text_chat.setAttribute("href","chat-messenger?showChatID="+data[user].temporaryProperties.chatID);
                 var dropdown_icon_chat = document.createElement("img");
                 dropdown_icon_chat.classList.add("chat-icon");
                 dropdown_icon_chat.setAttribute("src","resources/img/icon/chat.png");
@@ -99,23 +101,36 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
             });
             const title_friend_list = document.querySelector(".title-friend-list");
             const title_friend_suggest = document.querySelector(".title-friend-suggest");
+            const title_friend_request = document.querySelector(".title-friend-request");
             const friend_list = document.querySelector(".friend-list");
             const friend_suggest = document.querySelector(".friend-suggest");
+            const friend_request = document.querySelector(".friend-request");
 
             title_friend_list.style.backgroundColor = "#fff";
             title_friend_list.addEventListener("click", function(){
                 title_friend_list.style.backgroundColor = "#fff";
                 title_friend_suggest.style.backgroundColor = "transparent";
+                title_friend_request.style.backgroundColor = "transparent";
                 friend_list.style.display = "flex";
                 friend_suggest.style.display = "none";
+                friend_request.style.display = "none";
             });
             title_friend_suggest.addEventListener("click", function(){
                 title_friend_suggest.style.backgroundColor = "#fff";
                 title_friend_list.style.backgroundColor = "transparent";
+                title_friend_request.style.backgroundColor = "transparent";
                 friend_suggest.style.display = "flex";
                 friend_list.style.display = "none";
+                friend_request.style.display = "none";
             });
-
+            title_friend_request.addEventListener("click", function(){
+                title_friend_request.style.backgroundColor = "#fff";
+                title_friend_list.style.backgroundColor = "transparent";
+                title_friend_suggest.style.backgroundColor = "transparent";
+                friend_request.style.display = "flex";
+                friend_list.style.display = "none";
+                friend_suggest.style.display = "none";
+            });
         })
         .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
 
@@ -232,6 +247,42 @@ fetch('DataRequest/Strangers') // Đặt URL đến API hoặc Servlet của b�
                 item.textContent = "Thêm bạn bè";
             }
 
+        });
+    })
+    .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
+
+const wrapper_item_request = document.querySelector(".friend-request .wrapper-item");
+function renderItemRequest(item){
+    const template = `<div class="col-md-3 item">
+    <div class="avatar">
+        <img
+            src="/stored-user-images/${item.avatar}"
+        />
+    </div>
+    <div class="user-name">${item.firstName} ${item.lastName}</div>
+    <div class="status-wrapper"">
+        <div class="status" id='${item.userID}'>Chấp nhận</div>
+    </div>
+</div>`;
+    wrapper_item_request.insertAdjacentHTML("beforeend", template);
+}
+fetch('DataRequest/getRequestList') // Đặt URL đến API hoặc Servlet của bạn    
+    .then(response => response.json())
+    .then(data => {
+        for(user in data){
+            renderItemRequest(data[user]);
+        }
+        const accept_friend_btns = document.querySelectorAll(".friend-request .status-wrapper .status");
+        Array.from(accept_friend_btns).forEach(function(item){
+            item.addEventListener("click",function(){
+                if(item.textContent === "Chấp nhận"){
+                    item.style.backgroundColor = "#808080";
+                    item.textContent = "Đã chấp nhận";
+                    sendFriend(item.id);
+                }else if(item.textContent === "Đã chấp nhận"){
+                    item.style.pointerEvent = "None";
+                }
+            });
         });
     })
     .catch(error => console.error('Lỗi khi lấy dữ liệu JSON:', error));
