@@ -73,7 +73,7 @@ fetch('DataRequest/FriendDetails') // Đặt URL đến API hoặc Servlet của
                 dropdown_item_page.appendChild(dropdown_icon_page);
                 dropdown_list.appendChild(dropdown_item_unfriend);
                 dropdown_list.appendChild(dropdown_item_chat);
-                dropdown_list.appendChild(dropdown_item_page);
+                //dropdown_list.appendChild(dropdown_item_page);
 
                 statusWrapper.appendChild(dropdown_list);
             }   

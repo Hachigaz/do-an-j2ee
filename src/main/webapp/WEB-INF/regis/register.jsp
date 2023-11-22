@@ -11,6 +11,10 @@
 <body>
     <div id="registerForm" class="clearfix">        
         <form id="userregisterForm" action="register" method="post" enctype="multipart/form-data">
+            <label style="font-weight: bold; font-size: 20px;">Đăng ký</label><br>
+            <label >Nhanh chóng và dễ dàng. </label><br>
+            <label >_____________________________________ </label><br>
+
             <label class="inline-label" for="username">Username:</label>
             <input class="inline-input" type="text" id="username" name="username" required>
     
@@ -20,10 +24,10 @@
             <label class="inline-label" for="password">Password:</label>
             <input class="inline-input" type="password" id="password" name="password" required>
     
-            <input class="inline-input1" type="text" id="address" name="address" required placeholder="address"> <br>
+            <input class="inline-input1" type="text" id="address" name="address" required placeholder="Địa chỉ"> <br>
 
-            <input class="inline-input2" type="text" id="firstName" name="firstName" required placeholder="FirstName">
-            <input class="inline-input2" type="text" id="lastName" name="lastName" required placeholder="lastName">
+            <input class="inline-input2" type="text" id="firstName" name="firstName" required placeholder="Tên">
+            <input class="inline-input2" type="text" id="lastName" name="lastName" required placeholder="Họ">
             
     
             <label  class="inline-label"  for="birthDate">Ngày sinh:</label>
@@ -35,7 +39,7 @@
             <label class="inline-label" for="background">Background:</label>
             <input  class="inline-input" type="file" id="background" name="background" accept="image/*">
     
-            <input type="submit" value="register">
+            <input type="submit" value="Đăng ký">
         </form>
     </div>
     

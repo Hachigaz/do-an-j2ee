@@ -13,21 +13,43 @@
 #userregisterForm .inline-label {
     margin: 5px 0;
     display: inline-block;
-    width: 72px; /* Set the width of the label according to your needs */
+    width: 82px; /* Set the width of the label according to your needs */
+    height:20px
 }
 
 #userregisterForm .inline-input {
-    width: calc(100% - 95px); /* Calculate the width of the input field */
+    width: calc(100% - 90px); /* Calculate the width of the input field */
     padding: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
+    margin-top:9px;
+    height:25px
 }
 #userregisterForm .inline-input1 {
-    width: 280px; /* Calculate the width of the input field */
+    width: 296px; /* Calculate the width of the input field */
     padding: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
+    margin-top:10px;
+    height:25px;
+    background-color: rgb(0 0 0 / 8%);
 }
 #userregisterForm .inline-input2 {
-    width: 136.5px; /* Calculate the width of the input field */
+    width: 144.5px; /* Calculate the width of the input field */
     padding: 0px;
     margin-bottom: 0px;
+    margin-top: 5px;
+    height:25px;
+    background-color: rgb(0 0 0 / 8%);
+}
+#userregisterForm input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    height:30px;
+    width:150px;
+    margin-top:10px;
+    margin-left:75px;
+}
+
+#userregisterForm input[type="submit"]:hover {
+    background-color: #0056b3;
 }
