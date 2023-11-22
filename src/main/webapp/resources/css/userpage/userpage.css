@@ -6,6 +6,9 @@
 .first-part {
     width: 100%; /* Set the width as needed */
     position: relative;
+    object-fit: cover;
+    margin-left:150px;
+    margin-right:150px;
 }
 
 #avatar {
@@ -15,8 +18,8 @@
     border: 10px solid #d7a7a792;
     background-color: rgba(255, 255, 255, 0.938); /* Set the background color to white */
     position: absolute;
-    top: 350px;
-    left: 100px;
+    top: 400px;
+    left: 200px;
     overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài hình tròn */
 }
 
@@ -37,6 +40,122 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
+    margin-right:150px
+}
+
+.right-buttons a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.right-buttons a i {
+    margin-right: 5px;
+}
+.left-label {
+    margin-left: 400px;
+}
+.left-label label {
+    /* font-family: "Your Desired Font", sans-serif; Replace "Your Desired Font" with the actual font you want to use */
+    font-size: 28px; /* Adjust the font size as needed */
+    /* You can add more styling properties as needed, such as color, weight, etc. */
+}
+#settingForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#settingForm h2 {
+    text-align: center;
+}
+
+#userSettingsForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#userSettingsForm label {
+    margin: 10px 0;
+}
+.toggle-btn {
+    position: fixed;
+    top: 600px;
+    right: 20px;
+    cursor: pointer;
+}
+#userSettingsForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+#userSettingsForm input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#userSettingsForm input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#userSettingsForm input[type="submit"]:disabled {
+    background-color: #dddddd; /* Black color when disabled */
+    color: #fff; /* White text when disabled */
+}.user-page-content {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+
+.first-part {
+    width: 100%; /* Set the width as needed */
+    position: relative;
+    object-fit: cover;
+    margin-left:150px;
+    margin-right:150px;
+}
+
+#avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid #d7a7a792;
+    background-color: rgba(255, 255, 255, 0.938); /* Set the background color to white */
+    position: absolute;
+    top: 400px;
+    left: 200px;
+    overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài hình tròn */
+}
+
+#avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill đầy hình tròn */
+    border-radius: 50%; /* Đảm bảo góc bo tròn khi object-fit được áp dụng */
+}
+
+.second-part {
+    width: 0; /* Set the width as needed */
+    padding-left: 20px; /* Adjust the padding as needed */
+}
+
+.right-buttons {
+    width: 100%; /* Occupy the full width */
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    margin-right:150px
 }
 
 .right-buttons a {
@@ -121,3 +240,54 @@ label.locked {
  input:disabled+label {
     color: #ccc;
 }
+.luachon   {
+    display: flex;
+    margin-top: 40px;
+    margin-left:140px;
+    margin-right:140px;
+    border-top: 1px solid #333;
+    
+}
+.luachon div {
+    display: flex;
+    align-items: center; /* Center text vertically */
+    font-size: 25px;
+    margin-right: 10px;
+    height: 70px;
+    transition: border 0.3s ease;
+}
+.luachon div:hover:not(.clicked) {
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #9999992b;
+
+
+}
+ .luachon div.clicked {
+    border-bottom: 3px solid blue;
+    color:blue;
+}
+label.locked {
+    color: #999;
+} 
+
+ input:disabled {
+    background: #dddddd;
+} 
+
+ input:disabled+label {
+    color: #ccc;
+}
+.head {
+    border-bottom: 2px solid #000;
+
+}
+.friend, .post {
+    display: none; /* Hide both sections by default */
+}
+.friend {
+    border: 1px solid #333;
+    background-color: #ddd;
+   
+}
+

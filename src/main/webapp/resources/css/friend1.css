@@ -1,0 +1,299 @@
+/* Scroll */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+      
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 20px;
+      
+  }
+.wrapper {
+    background-color: #a6a942;
+    position: relative;
+    margin-left: 140px;
+    margin-right: 100px;
+    margin-top: 10px;
+    height: 100vh;
+    
+    display: flex;
+    font-family: monospace;
+    padding-top: 20px;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Standard syntax */
+}
+
+.mt-20{
+    height: 20px;
+    
+    width: 100%;
+    background-color: #b6d8eb;
+}
+.wrapper .menu{
+    height: 100%;
+    width: 300px ;
+    
+    
+    background-color: transparent;
+}
+.wrapper .friend-wrapper{
+    width: 80%;
+    
+}
+.wrapper .friend-wrapper .friend-request,
+.wrapper .friend-wrapper .friend-suggest,
+.wrapper .friend-wrapper .friend-list{
+    height: 100%;
+    padding: 0 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper-item{
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+}
+.menu .title-friend-request,
+.menu .title-friend-suggest,
+.menu .title-friend-list{
+    display:none;
+    font-size: 25px;
+    font-weight: 800;
+    text-align: center;
+    transition: 0.25s;
+    cursor: pointer;
+    padding: 20px 0;
+    border-bottom: 1px solid #fff;
+}
+.wrapper .friend-wrapper .title{
+    width: calc(100% - 35px);
+    height: 60px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.wrapper .friend-wrapper .title span{
+    margin: 15px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: 800;
+}
+.wrapper .friend-wrapper .search-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 35px;
+    width: 250px;
+}
+.wrapper .friend-wrapper .search-section .search-friend{
+    border: none;
+    width: 100%;
+    height: 40px;
+    background-color: #d9edf7;
+    border-radius: 5px;
+    position: relative;
+    padding-left: 20px;
+    font-size: 15px;
+}
+.wrapper .friend-wrapper .search-section .search-button{
+    width: 30px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    position: absolute;
+    right: 35px;
+}
+.friend-wrapper .friend-request .item,
+.friend-wrapper .friend-suggest .item,
+.friend-wrapper .friend-list .item{
+    background-color: #fff;
+    width: 210px;
+    height: 210px;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+.friend-request .item .avatar,
+.friend-suggest .item .avatar,
+.friend-list .item .avatar{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+.friend-request .item .avatar img,
+.friend-suggest .item .avatar img,
+.friend-list .item .avatar img{
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+}
+.friend-request .item .user-name,
+.friend-suggest .item .user-name,
+.friend-list .item .user-name{
+    margin-top: 5px;
+    font-weight: 800;
+    font-size: 17px;
+}
+.friend-request .item .common-friend,
+.friend-suggest .item .common-friend,
+.friend-list .item .common-friend{
+    font-size: 13px;
+    padding: 5px 0;
+}
+.friend-request .wrapper-item .status-wrapper,
+.friend-suggest .wrapper-item .status-wrapper,
+.friend-list .wrapper-item .status-wrapper{
+    width: 60%;
+    height: 30px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.friend-request .wrapper-item .status-wrapper i,
+.friend-suggest .wrapper-item .status-wrapper i,
+.friend-list .wrapper-item .status-wrapper i{
+    position: absolute;
+    top: 90%;
+    right: 10px;
+    color: #fff;
+}
+.friend-request .wrapper-item .status,
+.friend-suggest .wrapper-item .status,
+.friend-list .wrapper-item .status{
+    background-color: #10d876;
+    color: #fff;
+    height: 30px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.dropdown-select{
+    position: relative;
+}
+.dropdown-list{
+    width: 126px;
+    position: absolute;
+    top: 50px;
+    display: none;
+}
+.show{
+    display: block;
+}
+.dropdown-list .dropdown-item{
+    width: 100%;
+    background-color: #fff;
+    padding: 5px 0;
+    border-bottom: 1px solid #ccc;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+.dropdown-list .dropdown-item:hover{
+    background-color: #e4e4e4;
+}
+.dropdown-list .dropdown-item .chat-icon,
+.dropdown-list .dropdown-item .unfriend-icon{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    display: inline;
+}
+
+/* Confirm */
+.hide{
+    display: none;
+}
+.confirm-wrapper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.confirm-content{
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    animation: showModal ease 0.5s;
+}
+.confirm-text{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+}
+.confirm-btns{
+    position: absolute;
+    width: 250px;
+    text-align: center;
+    line-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.confirm-btns .no-btn,
+.confirm-btns .yes-btn{
+    width: 80px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.2s;
+}
+.confirm-btns .yes-btn{
+    background-color: #10d876;
+}
+.confirm-btns .no-btn{
+    background-color: #F31559;
+}
+.confirm-btns .no-btn:hover,
+.confirm-btns .yes-btn:hover{
+    background-color: #D0D4CA;
+    color: #000;
+}
+@keyframes showModal{
+    from{
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

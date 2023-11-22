@@ -13,12 +13,13 @@ public class AccountDetails {
     private java.sql.Date birthDate;
     private String avatar;
     private String background;
+    private int friendCount;
     
     public AccountDetails(){
         
     }
     public AccountDetails(String userID, String firstName, String lastName, String address, java.sql.Date birthDate,
-            String avatar, String background) {
+            String avatar, String background,int friendCount) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,6 +27,7 @@ public class AccountDetails {
         this.birthDate = birthDate;
         this.avatar = avatar;
         this.background = background;
+        this.friendCount=friendCount;
     }
     public String getUserID() {
         return userID;
@@ -68,6 +70,12 @@ public class AccountDetails {
     }
     public void setBirthDate(java.sql.Date birthDate) {
         this.birthDate = birthDate;
+    }
+    public void setFriendCount(int friendCount){
+        this.friendCount=friendCount;
+    }
+    public int getFriendCount(){
+        return friendCount;
     }
     private Map<String, String> temporaryProperties = new HashMap<>();
 

@@ -52,7 +52,7 @@ public class sqlAccountDetails{
             ResultSet rs = statement.executeQuery(sql);
             
             if(rs.next()){
-                details = new AccountDetails(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7));
+                details = new AccountDetails(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getDate(5),rs.getString(6),rs.getString(7),rs.getInt(8));
             }
             else{
                 System.out.println("empty rs");

@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="resources/css/components/header.css">
     <link rel="stylesheet" href="resources/css/userpage/userpage.css">
+    <link rel="stylesheet" href="resources/css/friend1.css" />
+
 
     <title>User Page</title>
 </head>
@@ -40,7 +42,7 @@
         </form>
         
     </div>
-    <!-- New content below the header -->
+    <!-- New content below the header --><div class="head">
     <div class="user-page-content">
         <!-- First part of the content -->
         <div class="first-part">
@@ -64,10 +66,66 @@
             </a>        
         </div>
         <div class="left-label" >
-            <label for="name">${userDetails.firstName}  ${userDetails.lastName}</label>
+            <label for="name">${userDetails.firstName}  ${userDetails.lastName}  (${userDetails.friendCount} Bạn bè )</label>
+            <label for="friendcount">  ${userDetails.friendCount} Bạn bè </label>
         </div>
 
     </div>
+    <div class="luachon">
+        <div class="luachonbutton" onclick="toggleBorder(this); showContent('friend');">
+            Bạn bè
+        </div>
+        <div class="luachonbutton" onclick="toggleBorder(this); showContent('post');">
+            Bài viết
+        </div>
+    </div>
+</div>
+<div class="friend">
+    <div class="wrapper">
+        <div class="menu">
+            <div class="title-friend-list">Danh sách bạn bè</div>
+            <div class="title-friend-suggest">Gợi ý kết bạn</div>
+            <div class="title-friend-request">Lời mời kết bạn</div>
+        </div>
+        <div class="friend-wrapper">
+            <div class="friend-list">
+                <div class="title col-md-12">
+                    <span>Danh sách bạn bè</span>
+                    <!-- <form action="" class="search-section">
+                        <input type="text" class="search-friend" placeholder="Tìm kiếm bạn bè...">
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form> -->
+                </div>
+                <div class="wrapper-item">
+                
+                </div>
+            </div>
+            <div class="friend-suggest" style="display: none;">
+                <div class="title col-md-12">
+                    <span>Gợi ý kết bạn</span>
+                    <!-- <form action="" class="search-section">
+                        <input type="text" class="search-friend" placeholder="Tìm kiếm bạn bè...">
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form> -->
+                </div>
+                <div class="wrapper-item"></div>
+            </div>
+            <div class="friend-request" style="display: none;">
+                <div class="title col-md-12">
+                    <span>Lời mời kết bạn</span>
+                    <!-- <form action="" class="search-section">
+                        <input type="text" class="search-friend" placeholder="Tìm kiếm bạn bè...">
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form> -->
+                </div>
+                <div class="wrapper-item"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="post">
+bài viết
+</div>
     <script>
 $(document).ready(function () {
     $('#settingForm').submit(function (event) {
@@ -137,6 +195,25 @@ function toggleSettingsForm() {
             inputs[i].disabled = !inputs[i].disabled;
         }
     }
+    function toggleBorder(element) {
+            // Remove 'clicked' class from all divs
+            document.querySelectorAll('.luachon div').forEach(function (div) {
+                div.classList.remove('clicked');
+            });
+
+            // Add 'clicked' class to the clicked div
+            element.classList.add('clicked');
+        }
+        function showContent(contentType) {
+            // Hide all content sections
+            document.querySelector('.friend').style.display = 'none';
+            document.querySelector('.post').style.display = 'none';
+
+            // Show the selected content section
+            document.querySelector('.' + contentType).style.display = 'block';
+        }
             </script>
 </body>
+<script src="resources/scripts/friends1.js"></script>
+
 </html>
