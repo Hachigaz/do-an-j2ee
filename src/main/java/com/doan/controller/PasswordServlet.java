@@ -21,41 +21,47 @@ public class PasswordServlet extends HttpServlet {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      request.getRequestDispatcher("WEB-INF/changepass/password.jsp").forward(request, response);
+      request.getRequestDispatcher("WEB-INF/changespassword/password.jsp").forward(request, response);
    }
 
-   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      HttpSession session = request.getSession();
-      String userID = (String)session.getAttribute("loggedInID");
-      String currentPassword = request.getParameter("currentPassword");
-      String newPassword = request.getParameter("newPassword");
-      String confirmNewPassword = request.getParameter("confirmNewPassword");
-      System.out.println(currentPassword + newPassword + confirmNewPassword);
-      String errorMessage = null;
-      String successMessage = null;
-      if (userID != null && currentPassword != null && newPassword != null && confirmNewPassword != null) {
-         Account account = sqlAccount.getAccountByID(userID);
-         if (account != null && account.getPassword().equals(currentPassword)) {
-            if (newPassword.equals(confirmNewPassword)) {
-                // Mật khẩu mới đã được xác nhận đúng
-                account.setPassword(newPassword);
-                sqlAccount.updatePassword(userID, newPassword);
-                successMessage = "Password changed successfully.";
-                response.sendRedirect(request.getContextPath() + "/home-page");
-                return;
+ protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    String userID = (String) session.getAttribute("loggedInID");
+    String currentPassword = request.getParameter("currentPassword");
+    String newPassword = request.getParameter("newPassword");
+    String confirmNewPassword = request.getParameter("confirmNewPassword");
+    System.out.println(currentPassword + newPassword + confirmNewPassword);
+
+    String errorMessage = null;
+    String successMessage = null;
+
+    if (userID != null && currentPassword != null && newPassword != null && confirmNewPassword != null) {
+        Account account = sqlAccount.getAccountByID(userID);
+
+        if (account != null) {
+            if (currentPassword.equals(account.getPassword())) {
+                if (newPassword.equals(confirmNewPassword)) {
+                    // Mật khẩu mới đã được xác nhận đúng
+                    account.setPassword(newPassword);
+                    sqlAccount.updatePassword(userID, newPassword);
+                    successMessage = "Password changed successfully.";
+                    response.getWriter().write("success");
+                    return;
+                } else {
+                    // Mật khẩu mới không khớp với xác nhận mật khẩu
+                    errorMessage = "New password and confirm password do not match.";
+                }
             } else {
-                // Mật khẩu mới không khớp với xác nhận mật khẩu
-                errorMessage = "New password and confirm password do not match.";
+                // Mật khẩu hiện tại không chính xác
+                errorMessage = "Mật khẩu hiện tại không đúng.";
             }
         } else {
-            // Tài khoản không tồn tại hoặc mật khẩu hiện tại không chính xác
-            errorMessage = "Invalid user or password.";
+            // Tài khoản không tồn tại
+            errorMessage = "Invalid user.";
         }
-        
+    }
 
-      request.setAttribute("errorMessage", errorMessage);
-      request.setAttribute("successMessage", successMessage);
-      RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/changepass/password.jsp");
-      dispatcher.forward(request, response);
-   }
-   }}
+    response.getWriter().write(errorMessage);
+}
+
+}

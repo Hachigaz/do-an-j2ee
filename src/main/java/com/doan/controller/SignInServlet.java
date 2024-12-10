@@ -4,6 +4,7 @@ import java.io.*;
 
 import com.doan.model.Account;
 import com.doan.model.sql.sqlAccount;
+import com.doan.model.sql.sqlAccountDetails;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -13,7 +14,7 @@ import jakarta.servlet.annotation.*;
 @WebServlet(name = "sign-in", value = "/sign-in")
 public class SignInServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/sign-in.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/sign-in.jsp");
                     dispatcher.forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -29,7 +30,7 @@ public class SignInServlet extends HttpServlet {
                         HttpSession session = request.getSession();
                         //luu user id da dang nhap
                         session.setAttribute("loggedInID", account.getAccountID());
-                        
+                        session.setAttribute("loggedInDetails", sqlAccountDetails.getDetails(account.getAccountID()));
                         //nhay sang trang chu
                         String redirectURL = request.getContextPath() + "/home-page";
                         // Perform the redirection

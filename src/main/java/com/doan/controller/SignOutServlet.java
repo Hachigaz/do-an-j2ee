@@ -12,6 +12,6 @@ public class SignOutServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        request.getRequestDispatcher("sign-in.jsp").forward(request, response);;   
+        request.getRequestDispatcher("WEB-INF/sign-in.jsp").forward(request, response);;   
     }
 }

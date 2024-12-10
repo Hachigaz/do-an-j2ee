@@ -1,191 +1,317 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="resources/css/home/components/user-post/style.css" />
-    <link rel="stylesheet" href="resources/css/globals.css" />
-    <% pageContext.setAttribute("newLineChar", "\n"); %> 
-  </head>
-  <body>
-    <c:forEach var="postItem" items="${postItems}">
-      <div class="post-item" id="post-item-${postItem.post.postID}">
-        <div class="post-panel">
-          <div class="post-head">
-            <div class="user-icon-wrapper">
-              <img class="user-icon" src="/stored-user-images/${userDetails[postItem.post.userID].avatar}">
-            </div>
-            <div class="user-info-wrapper">
-              <div class="user-name">
-                ${userDetails[postItem.post.userID].firstName} ${userDetails[postItem.post.userID].lastName}
-              </div>
-              <div class="post-date">
-                ${postItem.fDatePosted}
-              </div>
-            </div>
-          </div>
-  
-          <div class="post-content">
-            <div class="post-text-wrapper">
-              <div class="post-text">
-                <c:set var="paragraphs" value="${fn:split(postItem.post.description,newLineChar)}"/>
-                <c:forEach var="para" items="${paragraphs}">
-                  <div class="post-text-para">    
-                    ${para}
-                  </div>
-                </c:forEach>
-              </div>
-              <br>
-              <div class="post-image-display" onclick="togglePopup(document.querySelector('#post-item-${postItem.post.postID} .popup-element'))">
-                <c:if test="${fn:length(postItem.images)>0}">
-                  <c:choose>
-                    <c:when test="${fn:length(postItem.images)==1}">
-                      <div class="post-image-item-large">
-                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
-                      </div>
-                    </c:when>
-                    <c:when test="${fn:length(postItem.images)==2}">
-                      <div class="post-image-item-small-wrapper">
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
-                        </div>
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
-                        </div>
-                      </div>
-                    </c:when>
-                    <c:when test="${fn:length(postItem.images)==3}">
-                      <div class="post-image-item-large">
-                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
-                      </div>
-                      <div class="post-image-item-small-wrapper">
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
-                        </div>
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[2].image}">
-                        </div>
-                      </div>
-                    </c:when>
-                    <c:when test="${fn:length(postItem.images)>3}">
-                      <div class="post-image-item-large">
-                        <img class="post-attached-image" src="/stored-user-images/${postItem.images[0].image}">
-                      </div>
-                      <div class="post-image-item-small-wrapper">
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[1].image}">
-                        </div>
-                        <div class="post-image-item-small">
-                          <img class="post-attached-image" src="/stored-user-images/${postItem.images[2].image}">
-                          <div class="image-overlay">+${postItem.images.size() - 2}</div>
-                        </div>
-                      </div>
-                    </c:when>
-                  </c:choose>
-                  
-                  <div class="popup-element">
-                    <div class="popup-content">
-                      <!-- <span class="close-button" onclick="togglePopup(document.querySelector('#post-item-${postItem.post.postID} .popup-element'))">&times;</span> -->
-                      <div class="image-display">
-                        <div class="image-display-frame">
-                          <c:forEach var="imageItem" items="${postItem.images}">
-                            <div class="display-image-wrapper hover-item" id="image-item-${imageItem.index}">
-                              <img class="post-attached-image" src="/stored-user-images/${imageItem.image}">
-                            </div>
-                          </c:forEach>
-                        </div>
-                      </div>
-                      <!-- <div class="image-display-options">
-                        <div class="image-display-button" onclick="hoverLeft(document.querySelector('#post-item-${postItem.post.postID} .popup-element .image-display'))">
-                          Qua trái
-                        </div>
-                        <div class="image-display-button" onclick="hoverRight(document.querySelector('#post-item-${postItem.post.postID} .popup-element .image-display'))">
-                          Qua phải
-                        </div>
-                      </div> -->
-                    </div>
-                  </div>
-                </c:if>
-              </div>
-            </div>
-          </div>
-  
-          <div class="post-end">
-            <div class="post-stat no-select">
-              <div class="like-count">
-                <div class="count-number">
-                  ${postItem.post.likeCount}
-                </div>
-                <div class="stat-like-icon-wrapper">
-                  <img src="resources/img/web_img/home-page/like.png">
-                </div>
-                  
-              </div>
-              <div class="comment-count">
-                <div class="count-number">
-                  ${postItem.post.commentCount}
-                </div>
-                <div class="stat-like-icon-wrapper">
-                  <img src="resources/img/web_img/home-page/comment.png">
-                </div>
-              </div>
-            </div>
-            <div class="post-options">
-              <c:if test="${not postItem.isLikedByUser}">
-                <div class="option-button-wrapper no-select" onclick="processLike('${postItem.post.postID}',this)">
-                  <div class="option-icon-wrapper">
-                    <img class="unclicked-icon show-icon" src="resources/img/web_img/home-page/like.png">
-                    <img class="clicked-icon hide-icon" src="resources/img/web_img/home-page/like-clicked.png">
-                  </div>
-                  <div class="option-name">
-                    Thích
-                  </div>
-                </div>
-              </c:if>
+			<c:set var="isFirstLoad" value="${isFirstLoad}" />
+			<c:if test="${isFirstLoad=='true'}">
+				<c:forEach var="postItem" items="${postItems}">
+					<div class="post-card" id="post-card-${postItem.post.postID}">
+						<input type="hidden" name="postId" value="${postItem.post.postID}">
+						<input type="hidden" name="pictureQuantity" value="${postItem.post.postID}">
+						<input type="hidden" name="likedQuantity" id="likedQuantity-${postItem.post.postID}"
+							value="${postItem.post.likeCount}">
+						<input type="hidden" name="commentQuantity" id="innerCommentQuantity-${postItem.post.postID}"
+							value="${postItem.post.commentCount}">
+						<input type="hidden" name="isLiked-${postItem.post.postID}" id="isLiked-${postItem.post.postID}"
+							value="${postItem.isLikedByUser}">
+						<div class="top">
+							<a href="userpage?userID=${postItem.post.userID}">
+								<div class="user-img">
+									<img src="/stored-user-images/${userDetails[postItem.post.userID].avatar}" alt="">
+								</div>
+							</a>
+							<div class="user-info">
+								<a href="userpage?userID=${postItem.post.userID}">
+									<div class="name">${userDetails[postItem.post.userID].firstName}
+										${userDetails[postItem.post.userID].lastName}</div>
+								</a>
+								<div class="time">${postItem.fDatePosted}</div>
+							</div>
+						</div>
+						<div class="content">
+							<div class="text">
+								<c:set var="paragraphs" value="${fn:split(postItem.post.description,newLineChar)}" />
+								<c:forEach var="para" items="${paragraphs}">
+									${para}
+								</c:forEach>
+							</div>
+							<div class="post-picture-container">
+								<c:if test="${fn:length(postItem.images)>0}">
+									<c:choose>
+										<c:when test="${fn:length(postItem.images)==1}">
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+											</div>
+										</c:when>
+										<c:when test="${fn:length(postItem.images)==2}">
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+											</div>
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+											</div>
+										</c:when>
+										<c:when test="${fn:length(postItem.images)==3}">
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+											</div>
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+											</div>
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+											</div>
+										</c:when>
+										<c:when test="${fn:length(postItem.images)==4}">
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+											</div>
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+											</div>
+											<div class="pictures-line-2">
+												<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+											</div>
+											<div class="pictures-line-2">
+												<img src="/stored-user-images/${postItem.images[3].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[3].image}')">
+											</div>
+										</c:when>
+										<c:when test="${fn:length(postItem.images)>4}">
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+											</div>
+											<div class="pictures-line-1">
+												<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+											</div>
+											<div class="pictures-line-2">
+												<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+													onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+											</div>
+											<div class="pictures-line-2">
+												<div class="see-more-pic-container"
+													onclick="openImageDetail('/stored-user-images/${postItem.images[3].image}')">
+													+
+													${fn:length(postItem.images) - 4 + 1}</div>
+												<img src="/stored-user-images/${postItem.images[3].image}" alt="">
+											</div>
+										</c:when>
+									</c:choose>
+								</c:if>
+							</div>
+						</div>
+						<div class="interact-container">
+							<div class="top">
+								<div id="likeNumberId-${postItem.post.postID}" class="like-number">
+									<c:if test="${!postItem.isLikedByUser}">
+										<div class="wrap">
+											<i class="fa-solid fa-thumbs-up fa-sm"></i>
+										</div>
+										<div class="count-number">${postItem.post.likeCount} Like</div>
+									</c:if>
+									<c:if test="${postItem.isLikedByUser}">
+										<div class="wrap">
+											<i class="fa-solid fa-thumbs-up fa-sm"></i>
+										</div>
+										You and ${postItem.post.likeCount - 1} others
+									</c:if>
+								</div>
+								<div id="commentNumberId-${postItem.post.postID}" class="comment-number" onclick="openPostCommentCard('${postItem.post.postID}');
+                getPostDetail('${postItem.post.postID}')">
+									<i class="fa-regular fa-comment fa-lg"></i>
+									${postItem.post.commentCount} Comment
+								</div>
+							</div>
+							<div class="bottom">
+								<c:if test="${!postItem.isLikedByUser}">
+									<div id="likePost-${postItem.post.postID}" class="container" onclick="; 
+                    processLike('${postItem.post.postID}',this) ">
+										<i class="fa-regular fa-thumbs-up fa-2x"></i> Like
+								</c:if>
+								<c:if test="${postItem.isLikedByUser}">
+									<div id="likePost-${postItem.post.postID}" class="container liked" onclick=";
+                    processLike('${postItem.post.postID}',this)">
+										<i class="fa-solid fa-thumbs-up fa-2x"></i> Like
+								</c:if>
+							</div>
+							<div class="container" id="comment-section-${postItem.post.postID}" onclick="openPostCommentCard('${postItem.post.postID}');
+                getPostDetail('${postItem.post.postID}')">
+								<i class="fa-regular fa-comment fa-2x"></i> Comment
+							</div>
+						</div>
+					</div>
+					</div>
 
-              <c:if test="${postItem.isLikedByUser}">
-                <div class="option-button-wrapper no-select clicked" onclick="processLike('${postItem.post.postID}',this)">
-                  <div class="option-icon-wrapper">
-                    <img class="unclicked-icon hide-icon" src="resources/img/web_img/home-page/like.png">
-                    <img class="clicked-icon show-icon clicked" src="resources/img/web_img/home-page/like-clicked.png">
-                  </div>
-                  <div class="option-name">
-                    Thích
-                  </div>
-                </div>
-              </c:if>
-              <div class="option-button-wrapper no-select" onclick="showComment('${postItem.post.postID}')">
-                <div class="option-icon-wrapper">
-                  <img src="resources/img/web_img/home-page/comment.png">
-                </div>
-                <div class="option-name">
-                  Bình luận
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="comment-section" id="comment-section-${postItem.post.postID}" onscroll="checkCommentScroll('${postItem.post.postID}')">
-          <div class="comment-section-title">Bình luận</div>
-          <div class="send-comment-form">
-            <div class="comment-avatar-icon-wrapper">
-              <img src="/stored-user-images/${userDetails[sessionScope.loggedInID].avatar}">
-            </div>
-            <div class="comment-input-wrapper">
-              <textarea placeholder="Nhập bình luận" value=""
-                oninput="(function(textElement){})(this)"></textarea>
-              <div class="comment-input-options">
-                <div class="submit-comment-button" onclick="processSubmitComment('${postItem.post.postID}')">Gửi</div>
-              </div>
-            </div>
-          </div>
-          <div class="comment-list">
-            
-          </div>
-        </div>
-      </div>
-    </c:forEach>
-  </body>
-</html>
+
+				</c:forEach>
+			</c:if>
+
+			<c:if test="${isFirstLoad=='false'}">
+				<c:set var="isExistMorePost" value="${isExistMorePost}" />
+				<c:if test="${isExistMorePost=='true'}">
+					<c:forEach var="postItem" items="${postItems}">
+						<div class="post-card" id="post-card-${postItem.post.postID}">
+							<input type="hidden" name="postId" value="${postItem.post.postID}">
+							<input type="hidden" name="pictureQuantity" value="${postItem.post.postID}">
+							<input type="hidden" name="likedQuantity" id="likedQuantity-${postItem.post.postID}"
+								value="${postItem.post.likeCount}">
+							<input type="hidden" name="commentQuantity"
+								id="innerCommentQuantity-${postItem.post.postID}" value="${postItem.post.commentCount}">
+							<input type="hidden" name="isLiked-${postItem.post.postID}"
+								id="isLiked-${postItem.post.postID}" value="${postItem.isLikedByUser}">
+							<div class="top">
+								<a href="userpage?userID=${postItem.post.userID}">
+									<div class="user-img">
+										<img src="/stored-user-images/${userDetails[postItem.post.userID].avatar}" alt="">
+									</div>
+								</a>
+								<div class="user-info">
+									<a href="userpage?userID=${postItem.post.userID}">
+										<div class="name">${userDetails[postItem.post.userID].firstName}
+											${userDetails[postItem.post.userID].lastName}</div>
+									</a>
+									<div class="time">${postItem.fDatePosted}</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="text">
+									<c:set var="paragraphs"
+										value="${fn:split(postItem.post.description,newLineChar)}" />
+									<c:forEach var="para" items="${paragraphs}">
+										${para}
+									</c:forEach>
+								</div>
+								<div class="post-picture-container">
+									<c:if test="${fn:length(postItem.images)>0}">
+										<c:choose>
+											<c:when test="${fn:length(postItem.images)==1}">
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+												</div>
+											</c:when>
+											<c:when test="${fn:length(postItem.images)==2}">
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+												</div>
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+												</div>
+											</c:when>
+											<c:when test="${fn:length(postItem.images)==3}">
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+												</div>
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+												</div>
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+												</div>
+											</c:when>
+											<c:when test="${fn:length(postItem.images)==4}">
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+												</div>
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+												</div>
+												<div class="pictures-line-2">
+													<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+												</div>
+												<div class="pictures-line-2">
+													<img src="/stored-user-images/${postItem.images[3].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[3].image}')">
+												</div>
+											</c:when>
+											<c:when test="${fn:length(postItem.images)>4}">
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[0].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[0].image}')">
+												</div>
+												<div class="pictures-line-1">
+													<img src="/stored-user-images/${postItem.images[1].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[1].image}')">
+												</div>
+												<div class="pictures-line-2">
+													<img src="/stored-user-images/${postItem.images[2].image}" alt=""
+														onclick="openImageDetail('/stored-user-images/${postItem.images[2].image}')">
+												</div>
+												<div class="pictures-line-2">
+													<div class="see-more-pic-container"
+														onclick="openImageDetail('/stored-user-images/${postItem.images[3].image}')">
+														+
+														${fn:length(postItem.images) - 4 + 1}</div>
+													<img src="/stored-user-images/${postItem.images[3].image}" alt="">
+												</div>
+											</c:when>
+										</c:choose>
+									</c:if>
+								</div>
+							</div>
+							<div class="interact-container">
+								<div class="top">
+									<div id="likeNumberId-${postItem.post.postID}" class="like-number">
+										<c:if test="${!postItem.isLikedByUser}">
+											<div class="wrap">
+												<i class="fa-solid fa-thumbs-up fa-sm"></i>
+											</div>
+											<div class="count-number">${postItem.post.likeCount} Like</div>
+										</c:if>
+										<c:if test="${postItem.isLikedByUser}">
+											<div class="wrap">
+												<i class="fa-solid fa-thumbs-up fa-sm"></i>
+											</div>
+											You and ${postItem.post.likeCount - 1} others
+										</c:if>
+									</div>
+									<div id="commentNumberId-${postItem.post.postID}" class="comment-number" onclick="openPostCommentCard('${postItem.post.postID}');
+                getPostDetail('${postItem.post.postID}')">
+										<i class="fa-regular fa-comment fa-lg"></i>
+										${postItem.post.commentCount} Comment
+									</div>
+								</div>
+								<div class="bottom">
+									<c:if test="${!postItem.isLikedByUser}">
+										<div id="likePost-${postItem.post.postID}" class="container" onclick="; 
+                    processLike('${postItem.post.postID}',this) ">
+											<i class="fa-regular fa-thumbs-up fa-2x"></i> Like
+									</c:if>
+									<c:if test="${postItem.isLikedByUser}">
+										<div id="likePost-${postItem.post.postID}" class="container liked" onclick=";
+                    processLike('${postItem.post.postID}',this)">
+											<i class="fa-solid fa-thumbs-up fa-2x"></i> Like
+									</c:if>
+								</div>
+								<div class="container" id="comment-section-${postItem.post.postID}" onclick="openPostCommentCard('${postItem.post.postID}');
+                getPostDetail('${postItem.post.postID}')">
+									<i class="fa-regular fa-comment fa-2x"></i> Comment
+								</div>
+							</div>
+						</div>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${isExistMorePost=='false'}">
+
+				</c:if>
+			</c:if>

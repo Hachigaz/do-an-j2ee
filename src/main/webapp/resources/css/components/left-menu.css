@@ -1,0 +1,115 @@
+#main {
+    background-color: #F8F9FB;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+}
+
+#main .left-menu-container {
+    font-family: 'Montserrat', sans-serif !important;
+    width: 22%;
+    height: 100%;
+    position: fixed;
+    top: 96px;
+    left: 0;
+    overflow-y: auto;
+    padding: 0 15px;
+    background-color: #F8F9FB;
+    float: left;
+}
+
+#main .left-menu-container .top,
+#main .left-menu-container .bottom {
+    margin: 8px 0;
+    padding: 16px 0 10px;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 15px;
+}
+
+#main .left-menu-container .top .title,
+#main .left-menu-container .bottom .title {
+    width: 100%;
+    height: auto;
+    padding-left: 15px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #AEB6BE;
+    font-weight: bold;
+}
+
+#main .left-menu-container .top .list,
+#main .left-menu-container .bottom .list {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#main .left-menu-container .top .list a,
+#main .left-menu-container .bottom .list a {
+    text-decoration: none;
+    color: #898989;
+    font-size: 15px;
+}
+
+#main .left-menu-container .top .list a .line,
+#main .left-menu-container .bottom .list a .line {
+    width: 100%;
+    height: 54px;
+    margin: 1px 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 12px 10px;
+}
+
+#main .left-menu-container .top .list a .line .user-img {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main .left-menu-container .top .list a .line .icon-container,
+#main .left-menu-container .bottom .list a .line .icon-container {
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#main .left-menu-container .top .list a .line .icon-container i {
+    color: white;
+}
+
+#main .left-menu-container .top .list a .line .user-img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#main .left-menu-container .top .list a .line .title,
+#main .left-menu-container .bottom .list a .line .title {
+    padding-right: 10px;
+    padding-left: 0;
+    margin: 0;
+    font-size: 12px;
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888888;
+}
+
+#main .left-menu-container .top .list a .line .title:hover,
+#main .left-menu-container .bottom .list a .line .title:hover {
+    color: #1e74fd;
+}

@@ -14,14 +14,16 @@
     border-radius: 20px;
       
   }
+.col-md-3.item {
+    width: 500px;
+}
 .wrapper {
-    background-color: #a6a942;
+    background-color: white;
     position: relative;
     margin-left: 140px;
     margin-right: 100px;
     margin-top: 10px;
-    height: 100vh;
-    
+    /* height: 100vh; */
     display: flex;
     font-family: monospace;
     padding-top: 20px;
@@ -45,37 +47,28 @@
     background-color: transparent;
 }
 .wrapper .friend-wrapper{
-    width: 80%;
+    width: 100%;
     
 }
 .wrapper .friend-wrapper .friend-request,
 .wrapper .friend-wrapper .friend-suggest,
 .wrapper .friend-wrapper .friend-list{
     height: 100%;
-    padding: 0 130px;
+    padding: 0px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .wrapper-item{
     width: 100%;
-    height: 90%;
-    overflow-y: scroll;
-}
-.menu .title-friend-request,
-.menu .title-friend-suggest,
-.menu .title-friend-list{
-    display:none;
-    font-size: 25px;
-    font-weight: 800;
-    text-align: center;
-    transition: 0.25s;
-    cursor: pointer;
-    padding: 20px 0;
-    border-bottom: 1px solid #fff;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between; /* Create space between items */
+    overflow-y: hidden;
 }
 .wrapper .friend-wrapper .title{
     width: calc(100% - 35px);
+    margin-bottom:10px;
     height: 60px;
     background-color: #fff;
     text-align: center;
@@ -83,14 +76,20 @@
     display: flex;
     justify-content: space-between;
 }
-.wrapper .friend-wrapper .title span{
+.wrapper .friend-wrapper .title span {
     margin: 15px 0;
-    width: 100%;
+    width: 20%;
     display: flex;
     align-items: center;
     border-radius: 5px;
     font-size: 25px;
     font-weight: 800;
+}
+
+.wrapper .friend-wrapper .title .view-all-link {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
 }
 .wrapper .friend-wrapper .search-section{
     display: flex;
@@ -121,17 +120,24 @@
 .friend-wrapper .friend-suggest .item,
 .friend-wrapper .friend-list .item{
     background-color: #fff;
-    width: 210px;
+    display:flex;
+    width: calc(50% - 30px);
     height: 210px;
     padding: 10px;
     margin: 15px;
     border-radius: 6px;
     text-align: center;
+    align-items: center;
+}
+.friend-wrapper .friend-request .item:last-child,
+.friend-wrapper .friend-suggest .item:last-child,
+.friend-wrapper .friend-list .item:last-child {
+    margin-bottom: 90px;
 }
 .friend-request .item .avatar,
 .friend-suggest .item .avatar,
 .friend-list .item .avatar{
-    margin-top: 10px;
+    margin-right:10px;
     display: flex;
     justify-content: center;
     padding: 10px 0;
@@ -140,16 +146,19 @@
 .friend-suggest .item .avatar img,
 .friend-list .item .avatar img{
     border-radius: 50%;
-    width: 65px;
-    height: 65px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
 }
 .friend-request .item .user-name,
 .friend-suggest .item .user-name,
 .friend-list .item .user-name{
     margin-top: 5px;
+    margin-left:10px;
+    flex-direction: column;
+    display:flex;
     font-weight: 800;
-    font-size: 17px;
+    font-size: 20px;
 }
 .friend-request .item .common-friend,
 .friend-suggest .item .common-friend,
@@ -160,11 +169,11 @@
 .friend-request .wrapper-item .status-wrapper,
 .friend-suggest .wrapper-item .status-wrapper,
 .friend-list .wrapper-item .status-wrapper{
-    width: 60%;
+    
     height: 30px;
-    position: absolute;
+    left:40%;
     transform: translateX(-50%);
-    left: 50%;
+    
 }
 .friend-request .wrapper-item .status-wrapper i,
 .friend-suggest .wrapper-item .status-wrapper i,
@@ -172,15 +181,16 @@
     position: absolute;
     top: 90%;
     right: 10px;
-    color: #fff;
+    font-size:30px;
+    color: #000;
 }
 .friend-request .wrapper-item .status,
 .friend-suggest .wrapper-item .status,
 .friend-list .wrapper-item .status{
     background-color: #10d876;
-    color: #fff;
-    height: 30px;
-    font-size: 16px;
+    color: #a94442;
+    height: 60px;
+    font-size: 30px;
     width: 100%;
     border-radius: 4px;
     display: flex;
@@ -191,12 +201,16 @@
 }
 .dropdown-select{
     position: relative;
+     z-index: 2;
 }
 .dropdown-list{
     width: 126px;
     position: absolute;
     top: 50px;
+    right:0px;
     display: none;
+     z-index: 3;
+    
 }
 .show{
     display: block;

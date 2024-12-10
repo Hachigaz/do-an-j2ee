@@ -1,3 +1,30 @@
+function toggleRegisterForm() {
+    var registerForm = document.getElementById("registerForm");
+
+    if (registerForm.style.display === "none" || registerForm.style.display === "") {
+        registerForm.style.display = "block";
+        applyBlurEffect(true);
+    } else {
+        registerForm.style.display = "none";
+        applyBlurEffect(false);
+    }
+}
+
+function applyBlurEffect(blur) {
+    var elementsToBlur = document.querySelectorAll("body > *:not(#registerForm)");
+
+    for (var i = 0; i < elementsToBlur.length; i++) {
+        if (blur) {
+            elementsToBlur[i].classList.add("blurred");
+            elementsToBlur[i].style.pointerEvents = "none";
+        } else {
+            elementsToBlur[i].classList.remove("blurred");
+            elementsToBlur[i].style.pointerEvents = "auto";
+        }
+    }
+}
+
+
 $(document).ready(function () {
     $('#registerForm').submit(function (event) {
         event.preventDefault();
@@ -33,4 +60,9 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+// Apply blur effect when the page loads based on the initial state of registerForm
+document.addEventListener("DOMContentLoaded", function () {
+    applyBlurEffect(document.getElementById("registerForm").style.display === "block");
 });

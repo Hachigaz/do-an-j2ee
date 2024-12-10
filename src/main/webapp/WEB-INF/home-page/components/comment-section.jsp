@@ -1,45 +1,37 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!-- <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css"> -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="resources/css/home/components/comment-section/style.css" />
-  </head>
-  <body>
-    <c:forEach var="commentItem" items="${commentItems}">
-      <div class="comment-item">
-        <div class="comment-avatar-icon-wrapper">
-          <img src="/stored-user-images/${commentItem.userDetails.avatar}">
-        </div>
-        <div class="comment-content">
-          <div class="comment-bubble">
-            <div class="comment-username">
-              ${commentItem.userDetails.firstName} ${commentItem.userDetails.lastName}
-            </div>
-            <div class="comment-text">
-              ${commentItem.comment.comment}
-            </div>
-          </div>
-          <div class="comment-options">
-            <div class="comment-date">
-              ${commentItem.fDateSent}
-            </div>
-            <!-- <c:if test="${commentItem.isLikedByUser}">
-              <div class="comment-like-button clicked" onclick="processLikeComment()">
-                Thích
-              </div>
-            </c:if>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-            <c:if test="${not commentItem.isLikedByUser}">
-              <div class="comment-like-button" onclick="processLikeComment()">
-                Thích
+      <c:set var="postID" value="${postID}" />
+      <c:forEach var="commentItem" items="${commentItems}">
+        <div class="comment">
+          <div class="user-img">
+            <a href="userpage?userID=${commentItem.userDetails.userID}">
+              <img src="/stored-user-images/${commentItem.userDetails.avatar}" alt="User's Image">
+            </a>
+          </div>
+          <div class="right">
+            <div class="content">
+              <div class="username">
+                <a href="userpage?userID=${commentItem.userDetails.userID}">${commentItem.userDetails.firstName} ${commentItem.userDetails.lastName}</a>
               </div>
-            </c:if> -->
+              <div class="text">
+                ${commentItem.comment.comment}
+              </div>
+            </div>
+            <div class="time">${commentItem.comment.date}</div>
           </div>
         </div>
-      </div>
-    </c:forEach>
-  </body>
-</html>
+      </c:forEach>
+      <c:set var="isExistMoreComment" value="${isExistMoreComment}" />
+      <c:if test="${isExistMoreComment=='true'}">
+        <c:set var="commentQuantityOfPost" value="${commentQuantityOfPost}" />
+        <c:set var="commentCount" value="${commentCount}" />
+      </c:if>
+
+      <c:if test="${isExistMoreComment=='false'}">
+        <script>
+          let viewMoreCommentDiv = document.querySelector("#post-comment-container-${postID} #view-more-comment");
+          viewMoreCommentDiv.classList.remove("active");
+        </script>
+      </c:if>

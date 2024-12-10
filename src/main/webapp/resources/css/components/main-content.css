@@ -1,0 +1,1875 @@
+#main .main-content {
+    font-family: 'Montserrat', sans-serif !important;
+    width: 56%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 22%;
+    overflow-y: auto;
+    padding: 96px 15px 0;
+    background-color: #F8F9FB;
+    float: left;
+    z-index: 0;
+}
+
+#main .main-content #loading-container {
+    display: none;
+}
+
+#main .main-content #loading-container.active {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+#main .main-content #loading-container img {
+    width: 80px;
+    height: 80px;
+}
+
+#main .main-content::-webkit-scrollbar {
+    display: none;
+}
+
+#main.setting-page-active .left-menu-container,
+#main.change-password-page-active .left-menu-container,
+#main.account-detail-page-active .left-menu-container {
+    background-color: #E8F1FA;
+}
+
+#main.setting-page-active .main-content,
+#main.change-password-page-active .main-content,
+#main.account-detail-page-active .main-content {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    width: 78%;
+    height: auto;
+    padding: 20px 0 30px;
+    background-color: #E8F1FA;
+    overflow-y: auto;
+}
+
+/* ======================================================= */
+#main.setting-page-active .main-content #setting-page {
+    display: block;
+}
+
+#main .main-content #setting-page {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    padding: 60px;
+    display: block;
+}
+
+#main .main-content #setting-page>.title {
+    width: 100%;
+    height: auto;
+    margin-bottom: 48px;
+    color: black;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#main .main-content #setting-page .content {
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content #setting-page .content a {
+    text-decoration: none;
+    color: black;
+}
+
+#main .main-content #setting-page .content a .line {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px 0;
+    border-bottom: 1px solid #E1E1F0;
+}
+
+#main .main-content #setting-page .content a .line .icon-container {
+    width: 45px;
+    height: 45px;
+    margin-right: 16px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    float: left;
+}
+
+#main .main-content #setting-page .content a .line .title {
+    font-size: 14px;
+    width: 30%;
+    height: 100%;
+    color: #111111;
+    font-weight: bold;
+    float: left;
+}
+
+#main .main-content #setting-page .content a .line .arrow {
+    width: 60%;
+    height: 100%;
+    float: right;
+    text-align: end;
+    color: #ADB5BD;
+}
+
+/* ======================================================== */
+#main.change-password-page-active .main-content #change-password-page {
+    display: block;
+}
+
+#main .main-content #change-password-page {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    display: block;
+}
+
+#main .main-content #change-password-page .top {
+    width: 100%;
+    height: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    background-color: #0055FF;
+    border-radius: 5px;
+}
+
+#main .main-content #change-password-page .top .left-arrow {
+    width: auto;
+    height: auto;
+    margin-right: 24px;
+}
+
+#main .main-content #change-password-page .top .left-arrow a {
+    text-decoration: none;
+    color: white;
+}
+
+#main .main-content #change-password-page .top .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    width: auto;
+    height: auto;
+}
+
+#main .main-content #change-password-page .bottom {
+    padding: 48px;
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content #change-password-page .bottom form {
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content #change-password-page .bottom form .line {
+    margin: 0 15px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+#main .main-content #change-password-page .bottom form .line .title {
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #515184;
+    font-weight: bold;
+}
+
+#main .main-content #change-password-page .bottom form .line input {
+    width: 100%;
+    height: 50px;
+    padding: 6px 12px;
+    border: solid 2px #EEEEEE;
+    border-radius: 5px;
+}
+
+#main .main-content #change-password-page .bottom form .line input:focus {
+    border-color: #0055FF;
+    transition: .2s;
+}
+
+#main .main-content #change-password-page .bottom form input[type="submit"] {
+    background-color: #0055FF;
+    border: none;
+    color: white;
+    margin: 5px 15px 0;
+    padding: 16px;
+    width: 175px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#main .main-content #change-password-page .bottom form input[type="submit"]:hover {
+    background-color: #0033FF;
+}
+
+/* ======================================================= */
+#main.account-detail-page-active .main-content #account-detail-page {
+    display: block;
+}
+
+#main .main-content #account-detail-page {
+    width: 80%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    display: block;
+    overflow-y: auto;
+}
+
+#main .main-content #account-detail-page>.top {
+    width: 100%;
+    height: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: row;
+    background-color: #0055FF;
+    border-radius: 5px;
+}
+
+#main .main-content #account-detail-page>.top .left-arrow {
+    width: auto;
+    height: auto;
+    margin-right: 24px;
+}
+
+#main .main-content #account-detail-page>.top .left-arrow a {
+    text-decoration: none;
+    color: white;
+}
+
+#main .main-content #account-detail-page>.top .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    width: auto;
+    height: auto;
+}
+
+#main .main-content #account-detail-page>.bottom {
+    padding: 48px;
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content #account-detail-page>.bottom>.top {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+#main .main-content #account-detail-page>.bottom>.top>.container {
+    width: auto;
+    height: auto;
+
+}
+
+#main .main-content #account-detail-page>.bottom>.top>.container img {
+    width: 100px;
+    height: 100px;
+}
+
+#main .main-content #account-detail-page>.bottom>.top>.container h2 {
+    margin: 16px 0 32px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form {
+    width: auto;
+    height: auto;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row {
+    margin: 0 15px;
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row .left,
+#main .main-content #account-detail-page>.bottom #account-detail-form .row .right {
+    padding: 0 15px;
+    margin-bottom: 16px;
+    width: 50%;
+    height: auto;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #515184;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row .input-field {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #EEEEEE;
+    padding: 6px 12px;
+    margin-top: 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row .input-field:focus {
+    border-color: #0033FF;
+    transition: .2s;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.top,
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.bottom {
+    width: 100%;
+    height: auto;
+    clear: both;
+    padding: 0 15px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.dot-container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    padding: 16px 15px 0;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.dot-container .wrap {
+    width: 100%;
+    height: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: dotted #EEEEEE;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.dot-container .wrap>.title {
+    cursor: pointer;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.dot-container .wrap>.title:hover {
+    color: #444;
+    transition: .2s;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.dot-container .wrap>.title .text {
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.container {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    padding: 16px 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.container #description-input {
+    margin-top: 5px;
+    border: solid #EEEEEE;
+    font-size: 14px;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: #F5F5F5;
+}
+
+#main .main-content #account-detail-page>.bottom #account-detail-form .row>.container #description-input:focus {
+    border-color: #0055FF;
+    transition: .2s;
+}
+
+#main .main-content #account-detail-page .bottom #account-detail-form input[type="submit"] {
+    background-color: #0055FF;
+    border: none;
+    color: white;
+    margin: 10px 15px 0;
+    padding: 20px;
+    width: 175px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#main .main-content #account-detail-page .bottom #account-detail-form input[type="submit"]:hover {
+    background-color: #0033FF;
+}
+
+/* =============== Create Post Interface ================== */
+#main .main-content #create-post-interface {
+    width: 100%;
+    height: auto;
+    padding: 24px 24px 16px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px 0 16px;
+}
+
+#main .main-content #create-post-interface .top {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #B0B8BF;
+}
+
+#main .main-content #create-post-interface .top>.user-img {
+    width: auto;
+    height: auto;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main .main-content #create-post-interface .top>.user-img img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#main .main-content #create-post-interface .top>.container {
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+}
+
+#main .main-content #create-post-interface .top>.container #open-create-post-card {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: none;
+    padding: 12px 15px;
+    background-color: #F0F2F5;
+    color: rgb(101, 103, 107);
+    cursor: pointer;
+}
+
+#main .main-content #create-post-interface .top>.container #open-create-post-card:hover {
+    background-color: #DDDDDD;
+    transition: .2s;
+}
+
+#main .main-content #create-post-interface .bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 12px;
+}
+
+#main .main-content #create-post-interface .bottom .action {
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+#main .main-content #create-post-interface .bottom .action button {
+    width: 100%;
+    height: auto;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 15px;
+    color: rgb(101, 103, 107);
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main .main-content #create-post-interface .bottom .action button:hover {
+    background-color: #F0F0F0;
+    transition: .25s;
+}
+
+#main .main-content #create-post-interface .bottom .action button i {
+    margin-right: 8px;
+}
+
+/* =================== Create post card =================== */
+#create-post-container {
+    font-family: 'Montserrat', sans-serif !important;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+}
+
+#create-post-container form {
+    opacity: none;
+    width: 500px;
+    height: auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, .2);
+}
+
+#create-post-container form>.top {
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+#create-post-container form>.top .title {
+    width: 100%;
+    height: auto;
+    padding: 15px;
+    border-bottom: 1px solid #DDDDDD;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#create-post-container form>.top #close-create-post-card {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #E4E6EB;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#create-post-container form>.top #close-create-post-card:hover {
+    transition: .25s;
+    background-color: #CCCCCC;
+}
+
+#create-post-container form>.top .user {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0 16px;
+    padding: 16px 0;
+}
+
+#create-post-container form>.top .user .left {
+    width: 10%;
+    height: auto;
+    margin-right: 11px;
+}
+
+#create-post-container form>.top .user .left .user-img {
+    width: 100%;
+    height: 100%;
+}
+
+#create-post-container form>.top .user .left .user-img img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#create-post-container form>.top .user .right {
+    width: 90%;
+    height: auto;
+}
+
+#create-post-container form>.top .user .right .username {
+    font-size: 15px;
+    font-weight: bold;
+    cursor: default;
+}
+
+#create-post-container form>.middle {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 10px;
+}
+
+#create-post-container form>.middle::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#create-post-container form>.middle::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#create-post-container form>.middle::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+#create-post-container form>.middle textarea {
+    padding: 0 16px 40px;
+    font-size: 24px;
+    overflow: auto;
+    border: none;
+    outline: none;
+}
+
+#create-post-container form>.middle textarea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#create-post-container form>.middle textarea::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#create-post-container form>.middle textarea::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+#create-post-container form>.middle #pictures-container {
+    padding: 10px 16px;
+    width: 100%;
+    height: 150px;
+    display: none;
+}
+
+#create-post-container form>.middle #pictures-container .wrap {
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid rgb(206, 208, 212);
+    position: relative;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #close-add-pic-container {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 1.5px solid #DEDFE1;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #606770;
+    z-index: 999;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #close-add-pic-container:hover {
+    background-color: #EEEEEE;
+    transition: .2s;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #inner {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7F8FA;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #inner:hover {
+    background-color: rgba(0, 0, 0, .1);
+    transition: .2s;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #inner .title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #inner .title .icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #D8DADF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #1D1F23;
+}
+
+#create-post-container form>.middle #pictures-container .wrap>#container {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, .1);
+    z-index: 100;
+}
+
+#create-post-container form>.middle #pictures-container .wrap>#container.hide {
+    display: none !important;
+}
+
+#create-post-container form>.middle #pictures-container .wrap:hover>#container {
+    display: block;
+}
+
+#create-post-container form>.middle #pictures-container .wrap>#container .add-photo-btn:hover {
+    background-color: #ECECEC;
+}
+
+#create-post-container form>.middle #pictures-container .wrap>#container .add-photo-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #create-post-upload-img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #create-post-upload-img .img {
+    width: 50%;
+    height: auto;
+    max-height: 200px;
+    margin: 3px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: 45%;
+    margin: 2px;
+    border: solid white;
+}
+
+#create-post-container form>.middle #pictures-container .wrap #create-post-upload-img .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#create-post-container form>.bottom {
+    width: 100%;
+    height: auto;
+    padding: 0 16px;
+}
+
+#create-post-container form>.bottom .option-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#create-post-container form>.bottom .option-container .title {
+    width: auto;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0 8px;
+    cursor: default;
+}
+
+#create-post-container form>.bottom .option-container .options {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+#create-post-container form>.bottom .option-container .options .option {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin: 2px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#create-post-container form>.bottom .option-container .options .option:hover {
+    background-color: #DDDDDD;
+    transition: .25s;
+}
+
+#create-post-container form>.bottom .option-container .options .option .name {
+    position: absolute;
+    opacity: 0;
+    top: -37px;
+    right: -30px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+#create-post-container form>.bottom .option-container .options #option1:hover #name1,
+#create-post-container form>.bottom .option-container .options #option2:hover #name2 {
+    opacity: 1;
+    transition: 1s;
+}
+
+#create-post-container form>.bottom .submit-container {
+    width: 100%;
+    height: auto;
+    padding: 16px 0;
+}
+
+#create-post-container form>.bottom .submit-container input {
+    padding: 12px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #0866FF;
+    color: white;
+}
+
+#create-post-container form>.bottom .submit-container input:hover {
+    background-color: #0055FF;
+    transition: .3s;
+}
+
+/* ===================== Post Card ======================== */
+#main .main-content .post-card {
+    width: 100%;
+    height: auto;
+    padding: 24px 24px 16px;
+    background-color: white;
+    border-radius: 15px;
+    margin-bottom: 16px;
+}
+
+#main .main-content .post-card .top {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+
+#main .main-content .post-card .top>a {
+    text-decoration: none;
+    color: #212529;
+}
+
+#main .main-content .post-card .top a>.user-img {
+    width: auto;
+    height: auto;
+    border: none;
+    margin-right: 16px;
+}
+
+#main .main-content .post-card .top a>.user-img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#main .main-content .post-card .top .user-info {
+    width: auto;
+    height: auto;
+    margin: 4px 0 8px;
+}
+
+#main .main-content .post-card .top .user-info>a {
+    text-decoration: none;
+}
+
+#main .main-content .post-card .top .user-info>a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: black;
+    text-underline-offset: 2px;
+}
+
+#main .main-content .post-card .top .user-info .name {
+    color: rgb(33, 37, 41);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#main .main-content .post-card .top .user-info .time {
+    margin-top: 4px;
+    color: rgb(173, 181, 189);
+    font-size: 12px;
+}
+
+#main .main-content .post-card .content {
+    width: 100%;
+    height: auto;
+}
+
+#main .main-content .post-card .content .text {
+    font-size: 15px;
+    margin-bottom: 16px;
+    line-height: 25px;
+    /* white-space: pre-line;  */
+}
+
+#main .main-content .post-card .content .text .dots {
+    display: inline-block;
+}
+
+#main .main-content .post-card .content .text .see-more-btn,
+#main .main-content .post-card .content .text .see-less-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #2A7BFD;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 2px;
+}
+
+#main .main-content .post-card .content .text .see-less-btn {
+    display: none;
+}
+
+#main .main-content .post-card .content .text .see-more-btn:hover,
+#main .main-content .post-card .content .text .see-less-btn:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+#main .main-content .post-card .content .text .more-text {
+    display: none;
+}
+
+#main .main-content .post-card .content .post-picture-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#main .main-content .post-card .content .post-picture-container .pictures-line-1 {
+    width: 50%;
+    height: 100%;
+    margin: 3px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: 49%;
+    margin: 2px;
+    border: solid white;
+    position: relative;
+}
+
+#main .main-content .post-card .content .post-picture-container .pictures-line-1 img,
+#main .main-content .post-card .content .post-picture-container .pictures-line-2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+    z-index: 0;
+    cursor: pointer;
+}
+
+#main .main-content .post-card .content .post-picture-container .pictures-line-2 {
+    width: 50%;
+    height: 200px;
+    margin: 3px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: 49%;
+    margin: 2px;
+    border: solid white;
+    position: relative;
+}
+
+#main .main-content .post-card .content .post-picture-container .pictures-line-2 .see-more-pic-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#main .main-content .post-card .interact-container {
+    width: 100%;
+    height: auto;    
+    padding: 0;
+}
+
+#main .main-content .post-card .interact-container .top {
+    width: 100%;
+    height: auto;
+    margin: 0 16px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+#main .main-content .post-card .interact-container .top .like-number {
+    color: rgb(101, 103, 107);
+    display: flex;
+    align-items: center;
+    cursor: pointer;    
+}
+
+#main .main-content .post-card .interact-container .top .like-number .wrap {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;    
+    margin-right: 8px;
+    border: none;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #02A4FC, #1174FF);
+}
+
+#main .main-content .post-card .interact-container .top .comment-number {
+    width: auto;
+    height: 100%;
+    margin-right: 40px;
+    color: rgb(101, 103, 107);
+    cursor: pointer;
+}
+
+#main .main-content .post-card .interact-container .top .comment-number i {
+    margin-right: 4px;
+}
+
+#main .main-content .post-card .interact-container .bottom {
+    width: 100%;
+    height: auto;
+    border-top: 1px solid #EBECEE;
+    margin: 0 12px 0;
+    padding: 12px 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#main .main-content .post-card .interact-container .bottom > .container {
+    width: 30%;
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main .main-content .post-card .interact-container .bottom > .container.liked {
+    color: #0561F2;
+}
+
+#main .main-content .post-card .interact-container .bottom > .container:hover {
+    background-color: #F0F2F5;
+    transition: .3s;
+}
+
+#main .main-content .post-card .interact-container .bottom > .container i {
+    margin-right: 5px;
+}
+
+/* ================= POST COMMENT ===================== */
+.post-comment-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    position: fixed;
+    padding: 32px 4px;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.post-comment-container.active {
+    display: flex;
+}
+
+.post-comment-container .comment-card {
+    opacity: none;
+    width: 56%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, .2);
+}
+
+.post-comment-container .comment-card .title {
+    width: 100%;
+    height: 36px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.5px solid #CED0D4;
+    padding: 30px 0;
+    position: relative;
+}
+
+.post-comment-container .comment-card .title .close-post-comment-container {
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #EEEEEE;
+}
+
+.post-comment-container .comment-card .title .close-post-comment-container:hover {
+    background-color: #E4E6EB;
+    transition: .2s;
+}
+
+.post-comment-container .comment-card .comment-card-main {
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.post-comment-container .comment-card .comment-card-main::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+.post-comment-container .comment-card .comment-card-main::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.post-comment-container .comment-card .comment-card-main::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+.post-comment-container .comment-card .top {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.post-comment-container .comment-card .top>a {
+    text-decoration: none;
+    color: #212529;
+}
+
+.post-comment-container .comment-card .top a>.user-img {
+    width: auto;
+    height: auto;
+    border: none;
+    margin-right: 16px;
+    display: block;
+    padding: 12px 0 0 16px;
+}
+
+.post-comment-container .comment-card .top a>.user-img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.post-comment-container .comment-card .top .user-info {
+    width: auto;
+    height: auto;
+    margin: 4px 0 8px;
+    padding: 12px 0 0;
+}
+
+.post-comment-container .comment-card .top .user-info>a {
+    text-decoration: none;
+}
+
+.post-comment-container .comment-card .top .user-info>a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: black;
+    text-underline-offset: 2px;
+}
+
+.post-comment-container .comment-card .top .user-info .name {
+    color: rgb(33, 37, 41);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.post-comment-container .comment-card .top .user-info .time {
+    margin-top: 4px;
+    color: rgb(173, 181, 189);
+    font-size: 12px;
+}
+
+.post-comment-container .comment-card .content {
+    width: 100%;
+    height: auto;
+}
+
+.post-comment-container .comment-card .content .text {
+    font-size: 15px;
+    margin-bottom: 16px;
+    padding: 0 16px;
+    line-height: 20px;
+}
+
+.post-comment-container .comment-card .content .text .dots {
+    display: inline-block;
+}
+
+.post-comment-container .comment-card .content .text .see-more-btn,
+.post-comment-container .comment-card .content .text .see-less-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #2A7BFD;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 2px;
+}
+
+.post-comment-container .comment-card .content .text .see-less-btn {
+    display: none;
+}
+
+.post-comment-container .comment-card .content .text .see-more-btn:hover,
+.post-comment-container .comment-card .content .text .see-less-btn:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.post-comment-container .comment-card .content .text .more-text {
+    display: none;
+}
+
+.post-comment-container .comment-card .content .post-picture-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.post-comment-container .comment-card .content .post-picture-container .pictures-line-1 {
+    width: 50%;
+    height: 100%;
+    margin: 3px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: 49%;
+    margin: 1px;
+    border: solid white;
+    position: relative;
+    border: none;
+}
+
+.post-comment-container .comment-card .content .post-picture-container .pictures-line-1 img,
+.post-comment-container .comment-card .content .post-picture-container .pictures-line-2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    vertical-align: middle;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.post-comment-container .comment-card .content .post-picture-container .pictures-line-2 {
+    width: 50%;
+    height: 200px;
+    margin: 3px;
+    max-width: 100%;
+    flex-grow: 1;
+    flex-basis: 49%;
+    margin: 2px;
+    border: solid white;
+    position: relative;
+}
+
+.post-comment-container .comment-card .content .post-picture-container .pictures-line-2 .see-more-pic-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.post-comment-container .comment-card .interact-container {
+    width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.post-comment-container .comment-card .interact-container .top {
+    width: 100%;
+    height: auto;
+    margin: 0 16px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.post-comment-container .comment-card .interact-container .top .like-number {
+    color: rgb(101, 103, 107);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.post-comment-container .comment-card .interact-container .top .like-number .wrap {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-right: 8px;
+    border: none;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #02A4FC, #1174FF);
+}
+
+.post-comment-container .comment-card .interact-container .top .comment-number {
+    width: auto;
+    height: 100%;
+    margin-right: 40px;
+    color: rgb(101, 103, 107);
+    cursor: pointer;
+}
+
+.post-comment-container .comment-card .interact-container .top .comment-number i {
+    margin-right: 4px;
+}
+
+.post-comment-container .comment-card .interact-container .bottom {
+    width: 96%;
+    height: auto;
+    border-top: 1px solid #EBECEE;
+    border-bottom: 1px solid #EBECEE;
+    margin: 0 12px;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.post-comment-container .comment-card .interact-container .bottom>.container {
+    width: 33%;
+    height: auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5B626A;
+}
+
+.post-comment-container .comment-card .interact-container .bottom>.container.liked {
+    color: #0561F2;
+}
+
+.post-comment-container .comment-card .interact-container .bottom>.container:hover {
+    background-color: #F0F2F5;
+    transition: .3s;
+}
+
+.post-comment-container .comment-card .interact-container .bottom>.container i {
+    margin-right: 5px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container {
+    width: 100%;
+    height: auto;
+    padding: 20px 0 0 16px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .user-img {
+    width: auto;
+    height: auto;
+    margin-top: 3px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .user-img>a>img {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .right {
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .right .content {
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    background-color: #F0F2F5;
+    padding: 8px 12px;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border: none;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .right .content .username>a {
+    text-decoration: none;
+    color: #212529;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .right .content .text {
+    padding: 4px 0;
+    margin: 0;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.post-comment-container .comment-card .interact-container .comments-container .comment .right .time {
+    margin: 8px 8px 4px;
+    font-size: 12px;
+    color: rgb(101, 103, 107);
+    width: auto;
+    text-align: left;
+}
+
+.post-comment-container .comment-card .interact-container #view-more-comment {
+    padding: 5px 16px;
+    width: 100%;
+    display: none;
+    flex-direction: row;
+}
+
+.post-comment-container .comment-card .interact-container #view-more-comment.active {
+    display: flex;
+}
+
+.post-comment-container .comment-card .interact-container #view-more-comment .text {
+    font-size: 15px;
+    color: rgb(101, 103, 107);
+    cursor: pointer;
+    width: auto;
+    flex-grow: 1;
+}
+
+.post-comment-container .comment-card .interact-container #view-more-comment .text:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.post-comment-container .comment-card .interact-container #view-more-comment .comment-quantity {
+    font-size: 15px;
+    color: rgb(101, 103, 107);
+}
+
+.post-comment-container .comment-card .create-comment {
+    width: 100%;
+    height: 23%;
+    border-top: 1.5px solid #F2F2F2;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.post-comment-container .comment-card .create-comment .user-img {
+    width: auto;
+    height: auto;
+    margin-right: 10px;
+}
+
+.post-comment-container .comment-card .create-comment .user-img img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.post-comment-container .comment-card .create-comment .input-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    border-radius: 20px;
+    background-color: #F0F2F5;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-comment-container .comment-card .create-comment .input-container input {
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.post-comment-container .comment-card .create-comment .input-container button {
+    width: auto;
+    height: auto;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #0062D2;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.post-comment-container .comment-card .create-comment .input-container button:hover {
+    background-color: #DDDDDD;
+    transition: .2s;
+}
+
+/* =================== Post Image Detail ============================ */
+#post-image-detail-container {
+    width: 100%;
+    height: 100%;
+    z-index: 1001;
+    background-color: black;  
+    position: fixed;  
+    display: none;
+}
+
+#post-image-detail-container.active {
+    display: block;
+}
+
+#post-image-detail-container .inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#post-image-detail-container .inner #close-post-image-detail-container {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#post-image-detail-container .inner .main {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#post-image-detail-container .inner .main #post-image-detail {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#post-image-detail-container .inner .main #post-image-detail img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+}
+
+#post-image-detail-container .inner #to-left-img {
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    color: black;
+    background-color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+}
+
+#post-image-detail-container .inner #to-right-img {
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    color: black;
+    background-color: rgba(255, 255, 255, .7);
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+}
+
+#post-image-detail-container .inner #to-left-img:hover,
+#post-image-detail-container .inner #to-right-img:hover {
+    background-color: rgba(255, 255, 255, .9);
+    transition: .25s;
+}
+
+/* ================= Right menu container ================ */
+#main .right-menu-container {
+    font-family: 'Montserrat', sans-serif !important;
+    width: 22%;
+    height: 100%;
+    position: fixed;
+    top: 0;    
+    right: 0;
+    overflow-y: auto;
+    padding: 96px 10px 0;
+    float: right;
+    background-color: #F8F9FB;        
+}
+
+#main .right-menu-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#main .right-menu-container::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#main .right-menu-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+
+#main .right-menu-container .inner {
+    width: 100%;
+    height: auto;
+    padding: 16px 15px 10px;
+    margin: 8px 0;
+    background-color: white;
+    border-radius: 15px;
+}
+
+#main .right-menu-container .inner .top {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #F1F1F1;
+    padding: 10px 0 20px;
+}
+
+#main .right-menu-container .inner .top .title {
+    width: auto;
+    height: auto;
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+}
+
+#main .right-menu-container .inner .top .see-all {
+    width: auto;
+    height: auto;
+}
+
+#main .right-menu-container .inner .top .see-all a {
+    font-size: 12px;
+    color: rgb(30, 116, 253);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#main .right-menu-container .inner .list {
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+}
+
+#main .right-menu-container .inner .list .card {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#main .right-menu-container .inner .list .card .user-img {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+#main .right-menu-container .inner .list .card .user-img img {
+    width: 45px;
+    height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+    border-radius: 50%;
+}
+
+#main .right-menu-container .inner .list .card .name a {
+    font-size: 15px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}

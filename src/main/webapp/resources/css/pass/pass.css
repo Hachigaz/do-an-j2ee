@@ -1,0 +1,50 @@
+body {
+  backdrop-filter: blur(5px);
+}
+
+form {
+  margin-top:150px;
+  width: 300px;
+  margin-left: 400px;
+  border: solid;
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: blur(0); /* Remove blur inside the form */
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 15px; /* Some padding */
+  border: none; /* No borders */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer/hand icon */
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: red;
+  background: none;
+  border: none;
+}

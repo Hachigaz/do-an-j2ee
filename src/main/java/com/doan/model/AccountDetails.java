@@ -1,6 +1,5 @@
 package com.doan.model;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +12,14 @@ public class AccountDetails {
     private java.sql.Date birthDate;
     private String avatar;
     private String background;
-    private int friendCount;
-    
+    private int chatID;
+    private int friendCounts;
+
     public AccountDetails(){
         
     }
     public AccountDetails(String userID, String firstName, String lastName, String address, java.sql.Date birthDate,
-            String avatar, String background,int friendCount) {
+            String avatar, String background, int friendCounts) {
         this.userID = userID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,7 +27,7 @@ public class AccountDetails {
         this.birthDate = birthDate;
         this.avatar = avatar;
         this.background = background;
-        this.friendCount=friendCount;
+        this.friendCounts=friendCounts;
     }
     public String getUserID() {
         return userID;
@@ -71,13 +71,20 @@ public class AccountDetails {
     public void setBirthDate(java.sql.Date birthDate) {
         this.birthDate = birthDate;
     }
-    public void setFriendCount(int friendCount){
-        this.friendCount=friendCount;
-    }
-    public int getFriendCount(){
-        return friendCount;
-    }
     private Map<String, String> temporaryProperties = new HashMap<>();
+
+    public int getChatID() {
+        return this.chatID;
+    }
+    public void setChatID(int chatID) {
+        this.chatID = chatID;
+    }
+     public int getfriendCounts() {
+        return this.friendCounts;
+    }
+    public void setfriendCounts(int friendCounts) {
+        this.friendCounts = friendCounts;
+    }
 
     // Phương thức để thêm một thuộc tính tạm thời
     public void setTemporaryProperty(String propertyName, String value) {

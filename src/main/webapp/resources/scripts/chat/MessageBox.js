@@ -14,7 +14,6 @@ class MessageBox{
     constructor(chatID, friendAccountDetails){
         this.chatID = chatID;
         this.friendAccountDetails = friendAccountDetails;
-
         {
             let chatItemHTML = `
                 <div class="friend-item" id="${chatUserItemIDStr+chatID}" onclick="showChatFrame(${chatID})">

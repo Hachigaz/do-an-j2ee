@@ -16,7 +16,7 @@
     </script>
 
 </head>
-  <body>
+  <body class="main-page">
     <%@ include file="/WEB-INF/components/header/header.jsp" %>
     <div class="chat">
       <div class="content">
@@ -51,7 +51,7 @@
               <div class="message-frame">
                 <div class="from-message">
                   <div class="message-user-wrapper">
-                    <div class="user-avatar-wrapper"><img class="img" src="resources/img/profile-4.png" /></div>
+                    <div class="user-avatar-wrapper"><img class="img" src="/stored-user-images/${sessionScope.loggedInDetails.avatar}" /></div>
                   </div>
                   <div class="message-box">
                     <div class="user-fullname">Thế Hiển</div>

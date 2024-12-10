@@ -20,7 +20,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers","/DataRequest/SendRequest","/DataRequest/ReceiveRequest","/DataRequest/getRequestList"})
+
+@WebServlet(name = "DataRequest", value = {"/DataRequest/Friends","/DataRequest/FriendDetails","/DataRequest/Unfriend","/DataRequest/Strangers","/DataRequest/SendRequest","/DataRequest/ReceiveRequest","/DataRequest/getRequestList","/DataRequest/CommonFriend"})
 public class FriendRequest extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +40,8 @@ public class FriendRequest extends HttpServlet{
             ReceiveRequest(req, resp);
         }else if(uri.contains("getRequestList")){
             getRequestList(req, resp);
+        }else if(uri.contains("CommonFriend")){
+
         }
         
     }
@@ -54,9 +57,20 @@ public class FriendRequest extends HttpServlet{
     }
     private void getFriendsDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         HttpSession session = req.getSession();
+        
+        String userID1 = req.getParameter("userID");          // Get userID from the request parameters
+        System.out.println("userID của friend: "+userID1);
+        List<AccountDetails> accountDetails ;
         String userID = session.getAttribute("loggedInID").toString();
+        if (userID1!= null){
+            System.out.println("UsErID1 của friend=" + userID1);
+             accountDetails = sqlFriend.getAllFriendAccountDetails(userID1);
 
-        List<AccountDetails> accountDetails = sqlFriend.getAllFriendAccountDetails(userID);
+        }
+        else{ 
+             accountDetails = sqlFriend.getAllFriendAccountDetails(userID);
+
+        }
         String list = new Gson().toJson(accountDetails);
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();

@@ -13,7 +13,8 @@
         <form id="userregisterForm" action="register" method="post" enctype="multipart/form-data">
             <label style="font-weight: bold; font-size: 20px;">Đăng ký</label><br>
             <label >Nhanh chóng và dễ dàng. </label><br>
-            <label >_____________________________________ </label><br>
+            <label >__________________________________________ </label><br>
+                    
 
             <label class="inline-label" for="username">Username:</label>
             <input class="inline-input" type="text" id="username" name="username" required>
